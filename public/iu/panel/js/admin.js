@@ -54,17 +54,17 @@ form.addEventListener("submit", async (e) => {
 
         const response = await fetch(
           `${API_URL}/usuarios/login`,
-            {
-                method: "POST",
-
-                credentials: "include",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify(datos)
-            }
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              usuario,
+              password
+            })
+          }
         );
 
 
