@@ -143,189 +143,145 @@ document.addEventListener(
 
 async function verificarSesion() {
 
-  if (redirigiendoLogin) {
-    return false;
-  }
+  console.log("=================================");
+  console.log("INICIANDO VERIFICACIÓN DE SESIÓN");
+  console.log("API:", API_URL);
+  console.log("=================================");
 
-  const MAX_INTENTOS = 3;
+  try {
 
-  for (let intento = 1; intento <= MAX_INTENTOS; intento++) {
+    const respuesta = await fetchConTimeout(
+      `${API_URL}/usuarios/auth/verificar`,
+      {
+        method: "GET",
+        credentials: "include",
+        cache: "no-store"
+      },
+      15000
+    );
 
-    try {
+    console.log(
+      "STATUS /auth/verificar:",
+      respuesta.status
+    );
 
-      console.log(
-        `Verificando sesión. Intento ${intento}/${MAX_INTENTOS}`
+    console.log(
+      "OK:",
+      respuesta.ok
+    );
+
+    /*
+     * NO REDIRIGIR TODAVÍA
+     */
+
+    if (respuesta.status === 401) {
+
+      console.error(
+        "❌ BACKEND RESPONDIÓ 401: NO HAY SESIÓN"
       );
 
-      const respuesta =
-        await fetchConTimeout(
-          `${API_URL}/usuarios/auth/verificar`,
-          {
-            method: "GET",
-            credentials: "include",
-            cache: "no-store"
-          },
-          15000
-        );
+      mostrarErrorConexion(
+        "El backend respondió 401. La sesión no está llegando."
+      );
+
+      return false;
+    }
 
 
-      /* ==========================================
-         SESIÓN NO AUTORIZADA
-      ========================================== */
+    if (respuesta.status === 403) {
 
-      if (
-        respuesta.status === 401 ||
-        respuesta.status === 403
-      ) {
+      console.error(
+        "❌ BACKEND RESPONDIÓ 403: ACCESO DENEGADO"
+      );
 
-        console.warn(
-          "Sesión no válida."
-        );
+      mostrarErrorConexion(
+        "El backend respondió 403. Acceso denegado."
+      );
 
-        redirigirAlLogin();
-
-        return false;
-
-      }
+      return false;
+    }
 
 
-      /* ==========================================
-         ERROR DEL SERVIDOR
-      ========================================== */
+    if (!respuesta.ok) {
 
-      if (
-        respuesta.status >= 500
-      ) {
+      console.error(
+        "❌ ERROR HTTP:",
+        respuesta.status
+      );
 
-        console.error(
-          "El backend respondió:",
-          respuesta.status
-        );
+      mostrarErrorConexion(
+        `El backend respondió ${respuesta.status}.`
+      );
 
-        if (intento < MAX_INTENTOS) {
-
-          await esperar(2000);
-
-          continue;
-
-        }
-
-        mostrarErrorConexion();
-
-        return false;
-
-      }
+      return false;
+    }
 
 
-      /* ==========================================
-         OTROS ERRORES HTTP
-      ========================================== */
-
-      if (!respuesta.ok) {
-
-        console.error(
-          "Error verificando sesión:",
-          respuesta.status
-        );
-
-        if (intento < MAX_INTENTOS) {
-
-          await esperar(2000);
-
-          continue;
-
-        }
-
-        mostrarErrorConexion();
-
-        return false;
-
-      }
+    const usuario =
+      await respuesta.json();
 
 
-      /* ==========================================
-         USUARIO
-      ========================================== */
-
-      const usuario =
-        await respuesta.json();
+    console.log(
+      "👤 USUARIO DEVUELTO POR BACKEND:",
+      usuario
+    );
 
 
-      console.log(
-        "Usuario recibido:",
+    console.log(
+      "usuario.activo:",
+      usuario?.activo
+    );
+
+
+    if (!usuario) {
+
+      console.error(
+        "❌ El backend no devolvió usuario."
+      );
+
+      mostrarErrorConexion(
+        "El backend no devolvió los datos del usuario."
+      );
+
+      return false;
+    }
+
+
+    if (usuario.activo !== true) {
+
+      console.error(
+        "❌ EL USUARIO ESTÁ INACTIVO:",
         usuario
       );
 
-
-      /* ==========================================
-         VALIDAR USUARIO
-      ========================================== */
-
-      if (
-        !usuario ||
-        usuario.activo !== true
-      ) {
-
-        console.warn(
-          "Usuario no válido o inactivo."
-        );
-
-        redirigirAlLogin();
-
-        return false;
-
-      }
-
-
-      console.log(
-        "Sesión válida."
+      mostrarErrorConexion(
+        "El backend considera que el usuario está inactivo."
       );
 
-      return true;
-
-
-    } catch (error) {
-
-      console.error(
-        `Error intento ${intento}:`,
-        error
-      );
-
-
-      /*
-       * Timeout o error de conexión.
-       * NO significa que la sesión haya expirado.
-       */
-
-      if (intento < MAX_INTENTOS) {
-
-        console.log(
-          "Esperando antes de reintentar..."
-        );
-
-        await esperar(2000);
-
-        continue;
-
-      }
-
+      return false;
     }
 
+
+    console.log(
+      "✅ SESIÓN VÁLIDA"
+    );
+
+    return true;
+
+
+  } catch (error) {
+
+    console.error(
+      "❌ ERROR REAL VERIFICANDO SESIÓN:",
+      error
+    );
+
+    mostrarErrorConexion(
+      `Error de conexión: ${error.message}`
+    );
+
+    return false;
   }
-
-
-  /*
-   * Después de los 3 intentos,
-   * el problema parece ser conexión/backend.
-   */
-
-  console.error(
-    "No se pudo verificar la sesión después de 3 intentos."
-  );
-
-  mostrarErrorConexion();
-
-  return false;
 
 }
 
