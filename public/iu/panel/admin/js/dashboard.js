@@ -90,48 +90,44 @@ document.addEventListener(
     configurarModalActividades();
 
 
-    /*
-     * PRIMERO:
-     * comprobar que existe una sesión válida.
-     */
-    const sesionValida =
+    const estadoSesion =
       await verificarSesion();
 
 
-    /*
-     * Si no existe sesión,
-     * verificarSesion() ya redirigió.
-     */
-    if (!sesionValida) {
+    if (estadoSesion === "NO_VALIDA") {
+
+      redirigirAlLogin();
+
       return;
+
     }
 
 
-    /*
-     * Cargar dashboard.
-     */
+    if (estadoSesion === "ERROR") {
+
+      console.warn(
+        "No se pudo verificar la sesión."
+      );
+
+      mostrarErrorConexion();
+
+      return;
+
+    }
+
+
     await cargarDashboard();
 
 
-    /*
-     * Actualizar usuarios conectados
-     * cada 5 segundos.
-     */
     setInterval(
       actualizarUsuariosEnTiempoReal,
       5000
     );
 
 
-    /*
-     * Actualizar actividad inmediatamente.
-     */
     mantenerSesionActiva();
 
 
-    /*
-     * Mantener sesión activa cada minuto.
-     */
     setInterval(
       mantenerSesionActiva,
       60 * 1000
@@ -147,142 +143,129 @@ document.addEventListener(
 
 async function verificarSesion() {
 
-  if (redirigiendoLogin) {
-    return false;
-  }
+  const maxIntentos = 3;
 
-  try {
 
-    const respuesta = await fetch(
-      `${API_URL}/usuarios/auth/verificar`,
-      {
-        method: "GET",
-        credentials: "include",
-        cache: "no-store"
+  for (
+    let intento = 1;
+    intento <= maxIntentos;
+    intento++
+  ) {
+
+    try {
+
+      console.log(
+        `Verificando sesión. Intento ${intento}/${maxIntentos}`
+      );
+
+
+      const respuesta =
+        await fetchConTimeout(
+          `${API_URL}/usuarios/auth/verificar`,
+          {
+            method: "GET",
+            credentials: "include",
+            cache: "no-store"
+          },
+          15000
+        );
+
+
+      /* ==========================
+         SESIÓN INVÁLIDA
+      ========================== */
+
+      if (respuesta.status === 401) {
+
+        return "NO_VALIDA";
+
       }
-    );
 
 
-    /* ==========================================
-       SESIÓN NO VÁLIDA
-    ========================================== */
+      if (respuesta.status === 403) {
 
-    if (respuesta.status === 401) {
+        return "NO_VALIDA";
 
-      console.warn(
-        "Sesión no válida. Redirigiendo al login."
-      );
-
-      redirigirAlLogin();
-
-      return false;
-    }
+      }
 
 
-    /* ==========================================
-       PROHIBIDO
-    ========================================== */
+      /* ==========================
+         ERROR SERVIDOR
+      ========================== */
 
-    if (respuesta.status === 403) {
+      if (respuesta.status >= 500) {
 
-      console.error(
-        "El usuario no tiene autorización."
-      );
+        if (intento < maxIntentos) {
 
-      redirigirAlLogin();
+          await esperar(2000);
 
-      return false;
-    }
+          continue;
 
+        }
 
-    /* ==========================================
-       ERROR DEL SERVIDOR
-    ========================================== */
+        return "ERROR";
 
-    if (respuesta.status >= 500) {
-
-      console.error(
-        "El backend respondió con error:",
-        respuesta.status
-      );
-
-      /*
-       * IMPORTANTE:
-       *
-       * NO redirigir.
-       *
-       * Un 500 no significa que
-       * la sesión haya terminado.
-       */
-
-      return false;
-    }
+      }
 
 
-    /* ==========================================
-       OTRO ERROR HTTP
-    ========================================== */
+      if (!respuesta.ok) {
 
-    if (!respuesta.ok) {
+        return "ERROR";
+
+      }
+
+
+      const usuario =
+        await respuesta.json();
+
+
+      if (
+        !usuario ||
+        usuario.activo !== true
+      ) {
+
+        return "NO_VALIDA";
+
+      }
+
+
+      return "VALIDA";
+
+
+    } catch (error) {
 
       console.error(
-        "Error verificando sesión:",
-        respuesta.status
+        `Error intento ${intento}:`,
+        error
       );
 
-      return false;
+
+      if (intento < maxIntentos) {
+
+        await esperar(2000);
+
+        continue;
+
+      }
+
+
+      return "ERROR";
+
     }
 
-
-    /* ==========================================
-       LEER USUARIO
-    ========================================== */
-
-    const usuario =
-      await respuesta.json();
-
-
-    if (
-      !usuario ||
-      usuario.activo !== true
-    ) {
-
-      console.warn(
-        "La sesión no es válida o el usuario está inactivo."
-      );
-
-      redirigirAlLogin();
-
-      return false;
-    }
-
-
-    console.log(
-      "Sesión verificada correctamente:",
-      usuario.usuario
-    );
-
-
-    return true;
-
-
-  } catch (error) {
-
-    console.error(
-      "Error de conexión verificando sesión:",
-      error
-    );
-
-    /*
-     * IMPORTANTE:
-     *
-     * Un error de red NO significa
-     * automáticamente que la sesión
-     * haya expirado.
-     */
-
-    return false;
   }
+
+
+  return "ERROR";
+
+}
+
+
+function esperar(ms) {
+
+  return new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
 
 }
 
