@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Crear Agenda</title>
+
+  <link rel="stylesheet" href="../user/css/c_visitas.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css">
+
+</head>
+
+<body>
+
+<!-- ==============================
+     ENCABEZADO
+=============================== -->
+
+<header class="encabezado">
+
+  <img
+    src="../../../multimedia/admin1.png"
+    alt="Municipalidad Provincial de Ascope"
+    class="logo"
+  >
+
+</header>
+
+
+<!-- ==============================
+     CONTENIDO
+=============================== -->
+
+<main class="contenedor">
+
+  <section class="formulario-container">
+
+    <!-- TÍTULO -->
+
+    <div class="titulo">
+
+      <h1>CREAR</h1>
+
+      <h2>VISITA</h2>
+
+    </div>
+
+
+    <!-- FORMULARIO -->
+
+    <form id="frmVisita">
+
+      <!-- NOMBRE DEL VISITANTE -->
+
+      <div class="grupo">
+
+        <label for="nombreVisitante">
+          Nombre del visitante
+        </label>
+
+        <div class="campo">
+
+          <input
+            type="text"
+            id="nombreVisitante"
+            name="nombre_visitante"
+            maxlength="20"
+            required
+            placeholder="Ingrese el nombre"
+          >
+
+          <span id="contadorNombre" class="contador">
+      0 / 20 caracteres
+    </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- DNI -->
+
+      <div class="grupo">
+
+        <label for="dniVisitante">
+          DNI
+        </label>
+
+        <input
+          type="text"
+          id="dniVisitante"
+          name="dni_visitante"
+          maxlength="8"
+          inputmode="numeric"
+          required
+          placeholder="Ingrese el DNI"
+        >
+
+      </div>
+
+
+      <!-- FUNCIONARIO VISITADO -->
+
+      <div class="grupo">
+
+        <label for="funcionarioVisitado">
+          Funcionario visitado
+        </label>
+
+        <div class="campo">
+
+          <input
+            type="text"
+            id="funcionarioVisitado"
+            name="funcionario_visitado"
+            maxlength="20"
+            required
+            placeholder="Ingrese el funcionario"
+          >
+
+          <span id="contadorFuncionario" class="contador">
+      0 / 20 caracteres
+    </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- HORA DE ENTRADA -->
+
+      <div class="grupo">
+
+        <label for="horaEntrada">
+          Hora entrada
+        </label>
+
+        <input
+          type="time"
+          id="horaEntrada"
+          name="hora_entrada_registrada"
+          required
+        >
+
+      </div>
+
+
+      <!-- HORA DE SALIDA -->
+
+      <div class="grupo">
+
+        <label for="horaSalida">
+          Hora salida
+        </label>
+
+        <input
+          type="time"
+          id="horaSalida"
+          name="hora_salida_registrada"
+        >
+
+      </div>
+
+
+      <!-- MOTIVO -->
+
+      <div class="grupo grupo-motivo">
+
+        <label for="motivo">
+          Motivo
+        </label>
+
+        <div class="campo">
+
+    <textarea
+      id="motivo"
+      name="motivo"
+      maxlength="50"
+      required
+      placeholder="Ingrese el motivo de la visita"
+    ></textarea>
+
+          <span id="contadorMotivo" class="contador">
+      0 / 50 caracteres
+    </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- LUGAR DE VISITA -->
+
+      <div class="grupo">
+
+        <label for="lugarVisita">
+          Lugar de Visita
+        </label>
+
+        <select
+          id="lugarVisita"
+          name="lugar_especifico_visita"
+          required
+        >
+
+          <option value="">Seleccione un lugar</option>
+
+          <option value="Gerencia Municipal">
+            Gerencia Municipal
+          </option>
+
+          <option value="Gerencia de Transporte">
+            Gerencia de Transporte
+          </option>
+
+          <option value="Mesa de Partes">
+            Mesa de Partes
+          </option>
+
+          <option value="Oficina de Rentas">
+            Oficina de Rentas
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- FECHA DE REGISTRO -->
+
+      <input
+        type="hidden"
+        id="fechaRegistro"
+      >
+
+
+      <!-- BOTONES -->
+
+      <div class="botones">
+
+        <button
+          type="button"
+          id="btnCancelar"
+          class="btn-cancelar"
+        >
+          <i class="bi bi-x-circle"></i>
+          Cancelar
+        </button>
+
+
+        <button
+          type="submit"
+          class="btn-crear"
+        >
+          <i class="bi bi-check-circle"></i>
+          Crear Visita
+        </button>
+
+      </div>
+
+    </form>
+
+  </section>
+
+</main>
+
+
+<!-- ==============================
+     PIE DE PÁGINA
+=============================== -->
+
+<footer class="footer">
+
+  <img
+    src="../../../multimedia/admin2.png"
+    alt="Gob.pe"
+    class="footer-img"
+  >
+
+</footer>
+
+
+<script src="../user/js/c_visitas.js"></script>
+<script type="module" src="../../panel/user/js/crear.js"></script>
+
+</body>
+
+</html>

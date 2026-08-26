@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muni-Ascope</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+<!-- PANTALLA DE CARGA -->
+<section>
+  <div id="intro">
+
+    <!-- O VIDEO -->
+    <video
+      class="intro-media"
+      autoplay
+      muted
+      playsinline
+    >
+      <source src="multimedia/Pantalla_Carga.mp4" type="video/mp4">
+    </video>
+
+  </div>
+</section>
+
+<!-- BOTÓN FLOTANTE LENGUA DE SEÑAS -->
+<section>
+  <button id="btnFlotante">?</button>
+
+  <!-- POPUP VIDEO -->
+  <div id="popupVideo">
+
+    <!-- BOTÓN CERRAR -->
+    <button id="cerrarPopup">&times;</button>
+
+    <!-- VIDEO -->
+    <video id="miVideo" controls>
+      <source src="multimedia/Testing.mp4" type="video/mp4">
+    </video>
+
+  </div>
+</section>
+
+<!-- BOTÓN FLOTANTE -->
+<button id="chatToggle" class="chat-toggle">
+  <i class="bi bi-chat-dots-fill"></i>
+</button>
+
+<!-- CHATBOT -->
+<div id="chatWidget" class="chat-widget">
+
+  <div class="chat-header">
+    <h3>Asistente Virtual</h3>
+
+    <button id="closeChat" class="close-btn">
+      ✕
+    </button>
+  </div>
+
+  <div id="chatBox" class="chat-body">
+
+    <div class="message bot">
+      Hola 👋, selecciona una consulta:
+    </div>
+
+    <div id="opcionesChat" class="chat-options"></div>
+
+  </div>
+
+</div>
+
+<div class="top-bar">
+  <div class="left-logos">
+    <a href="https://www.gob.pe/" target="_blank">
+    <img
+      src="multimedia/gob.png"
+      class="logo-gob"
+      alt="Gob.pe"
+    >
+    </a>
+
+    <a href="index.html">
+    <img
+      src="multimedia/Muni_Ascope.png"
+      class="logo-pdt"
+      alt="Logo Municipalidad"
+    >
+    </a>
+
+    <a href="https://www.transparencia.gob.pe/enlaces/pte_transparencia_enlaces.aspx?id_entidad=12097" target="_blank">
+    <img
+      src="multimedia/PdT.png"
+      class="logo-pdt"
+      alt="Portal de Transparencia"
+    >
+    </a>
+
+  </div>
+
+  <div class="right-icons">
+    <a href="#"><i class="bi bi-tiktok"></i></a>
+    <a href="#"><i class="bi bi-facebook"></i></a>
+    <a href="#"><i class="bi bi-instagram"></i></a>
+    <a href="#"><i class="bi bi-youtube"></i></a>
+  </div>
+</div>
+
+<div id="popupBienvenida" class="popup-bienvenida">
+
+  <div class="popup-contenido">
+
+    <!-- BOTON CERRAR -->
+    <button
+      class="cerrar-popup"
+      id="cerrarPopupBienvenida">
+      ✕
+    </button>
+
+    <!-- CAROUSEL -->
+    <div id="carouselPopup" class="carousel slide" data-bs-ride="carousel">
+
+      <!-- INDICADORES -->
+      <div class="carousel-indicators">
+
+        <button type="button" data-bs-target="#carouselPopup" data-bs-slide-to="0" class="active"></button>
+
+        <button type="button" data-bs-target="#carouselPopup" data-bs-slide-to="1"></button>
+
+        <button type="button" data-bs-target="#carouselPopup" data-bs-slide-to="2"></button>
+
+        <button type="button" data-bs-target="#carouselPopup" data-bs-slide-to="3"></button>
+
+        <button type="button" data-bs-target="#carouselPopup" data-bs-slide-to="4"></button>
+
+        <button type="button" data-bs-target="#carouselPopup" data-bs-slide-to="5"></button>
+
+      </div>
+
+      <!-- IMAGENES -->
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="multimedia/img1.jpg" class="d-block w-100 popup-img" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="multimedia/img2.jpg" class="d-block w-100 popup-img" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="multimedia/img3.jpg" class="d-block w-100 popup-img" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="multimedia/img4.jpg" class="d-block w-100 popup-img" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="multimedia/img5.jpg" class="d-block w-100 popup-img" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="multimedia/img6.jpg" class="d-block w-100 popup-img" alt="">
+        </div>
+
+      </div>
+
+      <!-- CONTROLES -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselPopup" data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon"></span>
+
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselPopup" data-bs-slide="next">
+
+        <span class="carousel-control-next-icon"></span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg custom-navbar">
+  <div class="container">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+
+      <ul class="navbar-nav gap-3">
+
+        <!-- INICIO -->
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="bi bi-house-fill me-1"></i>
+            Inicio
+          </a>
+        </li>
+
+        <!-- MUNICIPALIDAD -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-bank2 me-1"></i>
+            Municipalidad
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="iu/municipalidad/nosotros.html">
+                <i class="bi bi-building me-2"></i>
+                Nosotros
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="https://www.muniascope.gob.pe/archivos/instrumentos%20de%20gestion/ORGANIGRAMA.pdf" target="_blank">
+                <i class="bi bi-diagram-3-fill me-2"></i>
+                Organigrama
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="https://www.gob.pe/institucion/muniascope/funcionarios" target="_blank">
+                <i class="bi bi-people-fill me-2"></i>
+                Funcionarios
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="https://www.muniascope.gob.pe/archivos/instrumentos%20de%20gestion/ROF.pdf" target="_blank">
+                <i class="bi bi-building-gear me-2"></i>
+                Reglamento de Organización y Funciones
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="https://www.muniascope.gob.pe/archivos/instrumentos%20de%20gestion/TUPA.pdf" target="_blank">
+                <i class="bi bi-folder-check me-2"></i>
+                Texto Unico de Procedimientos Administrativos
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="iu/municipalidad/noticias.html">
+                <i class="bi bi-megaphone-fill me-2"></i>
+                Noticias
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- SERVICIOS -->
+        <li class="nav-item">
+          <a class="nav-link" href="iu/servicios/servicios.html">
+            <i class="bi bi-grid-fill me-1"></i>
+            Servicios
+          </a>
+        </li>
+
+        <!-- TRAMITES -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-file-earmark-text-fill me-1"></i>
+            Tramites
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="iu/tramites/lice-condu-clasb.html">
+                <i class="bi bi-car-front me-2"></i>
+                Licencia de Conducir Clase B
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="iu/tramites/tarj-uni-circu.html">
+                <i class="bi bi-card-heading me-2"></i>
+                Tarjeta única de Circulación
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="iu/tramites/impu-predi.html">
+                <i class="bi bi-receipt me-2"></i>
+                Impuesto Predial
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="iu/tramites/impu-vehi.html">
+                <i class="bi bi-clipboard2-data me-2"></i>
+                Impuesto Vehicular
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="iu/tramites/impu-alcabala.html">
+                <i class="bi bi-file-earmark-text me-2"></i>
+                Impuesto de Alcabala
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/file/d/13H-Ma-RtfXkIwLrPyqyR9HLXfuVjtuEM/view" target="_blank">
+                <i class="bi bi-shield-check me-2"></i>
+                Certificado ITSE
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- GESTION -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-gear-wide-connected me-2"></i>
+            Gestion
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="iu/gestion/documentos.html">
+                <i class="bi bi-file-earmark-text me-2"></i>
+                Documentos
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="iu/gestion/Agenda.html">
+                <i class="bi bi-calendar-event me-2"></i>
+                Agenda
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="iu/gestion/visitas.html">
+                <i class="bi bi-people me-2"></i>
+                Visitas
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class="bi bi-clipboard2-check me-2"></i>
+                Procedimientos de Selección
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+        <!-- MESA DE PARTES -->
+        <li class="nav-item">
+          <a class="nav-link" href="https://facilita.gob.pe/t/53070">
+            <i class="bi bi-envelope-paper-fill me-1"></i>
+            Mesa de Partes Virtual
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+
+  <img
+    src="https://imgs.deperu.com/pueblos/municipalidad_provincial_ascope_la_libertad.jpg"
+    alt="Municipalidad de Ascope"
+    class="hero-img"
+  >
+
+  <div class="hero-overlay text-center">
+    <h1>
+      Municipalidad <span>de Ascope</span>
+    </h1>
+  </div>
+
+</section>
+
+<section class="enlaces-section">
+
+  <div class="container">
+
+    <!-- TITULO -->
+    <h2 class="titulo-seccion">
+      Enlaces de Interés
+    </h2>
+
+    <!-- GRID -->
+    <div class="row g-4 justify-content-center">
+
+      <!-- BOTON -->
+      <div class="col-12 col-md-4">
+        <a href="https://recaudacion.muniascope.com/" class="enlace-card" target="_blank">
+
+          <i class="bi bi-cash-coin"></i>
+
+          <span>
+                        Sistema de Recaudación
+                    </span>
+
+        </a>
+      </div>
+
+      <!-- BOTON -->
+      <div class="col-12 col-md-4">
+        <a href="https://muniascope.gob.pe/seguridad.html" class="enlace-card" target="_blank">
+
+          <i class="bi bi-shield-check"></i>
+
+          <span>
+                        Seguridad Ciudadana
+                    </span>
+
+        </a>
+      </div>
+
+      <!-- BOTON -->
+      <div class="col-12 col-md-4">
+        <a href="https://rec.mtc.gob.pe/LicenciaConducir/ArCentroMedicoConfiguracion" class="enlace-card" target="_blank">
+
+          <i class="bi bi-hospital"></i>
+
+          <span>
+                        Consulta tu Centro Médico
+                    </span>
+
+        </a>
+      </div>
+
+      <!-- BOTON -->
+      <div class="col-12 col-md-4">
+        <a href="https://facilita.gob.pe/t/49876" class="enlace-card" target="_blank">
+
+          <i class="bi bi-book"></i>
+
+          <span>
+                        Libro de Reclamaciones Digital
+                    </span>
+
+        </a>
+      </div>
+
+      <!-- BOTON -->
+      <div class="col-12 col-md-4">
+        <a href="#" class="enlace-card" target="_blank">
+
+          <i class="bi bi-person-vcard"></i>
+
+          <span>
+                        Sistema Interno de Licencias
+                    </span>
+
+        </a>
+      </div>
+
+      <!-- BOTON -->
+      <div class="col-12 col-md-4">
+        <a href="https://rec.mtc.gob.pe/LicenciaConducir/ArEscuelaConductorConfiguracion" class="enlace-card" target="_blank">
+
+          <i class="bi bi-car-front"></i>
+
+          <span>
+                        Consulta tu Escuela de Conductores
+                    </span>
+
+        </a>
+      </div>
+
+      <!-- BOTON -->
+      <div class="col-12 col-md-4">
+        <a href="https://busqueda.muniascope.com/" class="enlace-card" target="_blank">
+
+          <i class="bi bi-file-earmark-text"></i>
+
+          <span>
+                        Sistema Interno de Infracciones
+                    </span>
+
+        </a>
+      </div>
+
+      <!-- BOTON -->
+      <div class="col-12 col-md-4">
+        <a href="https://consultas.muniascope.com/" class="enlace-card" target="_blank">
+
+          <i class="bi bi-card-checklist"></i>
+
+          <span>
+                        Consulta tu Licencia de Conducir
+                    </span>
+
+        </a>
+      </div>
+
+      <!-- BOTON -->
+      <div class="col-12 col-md-4">
+        <a href="https://licencias-tramite.mtc.gob.pe/frmConsultaEvaluaciones.aspx" class="enlace-card" target="_blank">
+
+          <i class="bi bi-clipboard2-pulse"></i>
+
+          <span>
+                        Consulta tu Examen Médico y COFIPRO
+                    </span>
+
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="contacto-section">
+
+  <div class="container">
+
+    <!-- TITULO -->
+    <h2 class="titulo-contacto">
+      Contactanos
+    </h2>
+
+    <!-- MAPA -->
+    <div class="mapa-container">
+
+      <iframe
+        src="https://www.google.com/maps?q=-7.7146,-79.1076&output=embed"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>
+
+    </div>
+
+    <!-- CONTENIDO -->
+    <div class="row gy-5 align-items-start">
+
+      <!-- FORMULARIO -->
+      <div class="col-lg-6">
+
+        <form id="formContacto" class="contact-form">
+
+          <div class="row g-3">
+
+            <!-- NOMBRE -->
+            <div class="col-md-6">
+              <input
+                type="text"
+                id="nombre"
+                class="form-control"
+                placeholder="Nombre:"
+              >
+            </div>
+
+            <!-- CORREO -->
+            <div class="col-md-6">
+              <input
+                type="email"
+                id="correo"
+                class="form-control"
+                placeholder="Correo:"
+              >
+            </div>
+
+            <!-- ASUNTO -->
+            <div class="col-12">
+              <input
+                type="text"
+                id="asunto"
+                class="form-control"
+                placeholder="Asunto:"
+              >
+            </div>
+
+            <!-- MENSAJE -->
+            <div class="col-12">
+              <textarea
+                id="mensaje"
+                class="form-control textarea-custom"
+                placeholder="Mensaje:"
+              ></textarea>
+            </div>
+
+            <!-- BOTON -->
+            <div class="col-12">
+
+              <button
+                type="submit"
+                id="btnEnviar"
+                class="btn btn-dark px-4 py-2">
+
+                <i class="bi bi-send-fill me-2"></i>
+                Enviar Mensaje
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- INFORMACION -->
+      <div class="col-lg-6">
+
+        <!-- INFORMACION -->
+        <div class="mb-5">
+
+          <h3 class="fw-bold mb-3">
+
+            <i class="bi bi-send-fill me-2"></i>
+            Información
+
+          </h3>
+
+          <p class="mb-1">
+            Correo: imagen@muniascope.gob.pe
+          </p>
+
+          <p>
+            Teléfono: (044) 307006
+          </p>
+
+        </div>
+
+        </br>
+
+        <!-- DIRECCION -->
+        <div class="mb-5">
+
+          <h3 class="fw-bold mb-3">
+
+            <i class="bi bi-geo-alt-fill me-2"></i>
+            Dirección
+
+          </h3>
+
+          <p>
+            Leoncio Prado 0301,
+            <br>
+            Ascope, Perú
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="nav-footer">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="index.html">Inicio</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="iu/municipalidad/nosotros.html">Nosotros</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="servicios.php">Servicios</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="notas.php">Notas</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.transparencia.gob.pe/enlaces/pte_transparencia_enlaces.aspx?id_entidad=12097#.ZDd9anaZOUk" target="_blank">Gestión</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="contacto.php">Contacto</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="socials-a">
+          <ul class="list-inline">
+
+            <!-- FACEBOOK -->
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/MuniAscope/">
+                <i class="bi bi-facebook"></i>
+              </a>
+            </li>
+
+            <!-- TWITTER / X -->
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="bi bi-twitter-x"></i>
+              </a>
+            </li>
+
+            <!-- INSTAGRAM -->
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="bi bi-instagram"></i>
+              </a>
+            </li>
+
+            <!-- YOUTUBE -->
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="bi bi-youtube"></i>
+              </a>
+            </li>
+
+            <!-- LINKEDIN -->
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="bi bi-linkedin"></i>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="copyright-footer">
+          <p class="copyright color-text-a">
+            &copy; Copyright
+            Municipalidad Provincial de Ascope 2023 - 2026.
+          </p>
+        </div>
+        <div class="credits">
+          Oficina de Atención al Ciudadano y
+          <a href="https://www.muniascope.gob.pe/gestion002.php?id=1">
+            Gestión Documentaria
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>

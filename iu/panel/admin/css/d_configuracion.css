@@ -1,0 +1,1157 @@
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #ffcc00;
+  --primary-hover: #f2bd00;
+
+  --sidebar: #0f172a;
+  --sidebar-hover: #1b2740;
+
+  --blue: #2563eb;
+
+  --green: #16a34a;
+  --green-light: #dcfce7;
+
+  --red: #dc2626;
+  --red-light: #fee2e2;
+
+  --text: #0f172a;
+  --text-secondary: #64748b;
+
+  --background: #f1f5f9;
+  --card: #ffffff;
+
+  --radius: 18px;
+
+  --shadow:
+    0 8px 25px rgba(15, 23, 42, 0.07);
+
+  --shadow-hover:
+    0 12px 30px rgba(15, 23, 42, 0.11);
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  min-height: 100vh;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  background: var(--background);
+
+  color: var(--text);
+}
+
+
+/* =====================================================
+   LAYOUT
+===================================================== */
+
+.layout {
+  min-height: 100vh;
+
+  display: flex;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+  width: 270px;
+
+  min-height: 100vh;
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  z-index: 100;
+
+  background: var(--sidebar);
+
+  padding: 22px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+.agenda-logo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 0 8px;
+
+  margin-bottom: 48px;
+}
+
+
+.agenda-logo img {
+  width: 64px;
+  height: 64px;
+
+  object-fit: contain;
+
+  border: 2px solid var(--primary);
+
+  border-radius: 50%;
+
+  padding: 5px;
+}
+
+
+.agenda-logo h2 {
+  font-size: 17px;
+
+  color: var(--primary);
+
+  font-weight: 700;
+
+  margin-bottom: 4px;
+}
+
+
+.agenda-logo span {
+  display: block;
+
+  color: #94a3b8;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   MENÚ
+===================================================== */
+
+.sidebar-menu {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.menu-item {
+  width: 100%;
+
+  min-height: 52px;
+
+  padding: 0 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  border-radius: 14px;
+
+  color: #e2e8f0;
+
+  text-decoration: none;
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.menu-item i {
+  width: 22px;
+
+  text-align: center;
+
+  font-size: 18px;
+}
+
+
+.menu-item:hover {
+  background: var(--sidebar-hover);
+
+  color: #ffffff;
+
+  transform: translateX(2px);
+}
+
+
+.menu-item.active {
+  background: var(--primary);
+
+  color: #111827;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 7px 18px rgba(255, 204, 0, 0.20);
+}
+
+
+.menu-item.active i {
+  color: #111827;
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.main-content {
+  width: calc(100% - 270px);
+
+  margin-left: 270px;
+
+  min-height: 100vh;
+
+  padding: 30px 32px 50px;
+}
+
+
+/* =====================================================
+   CABECERA
+===================================================== */
+
+.page-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  margin-bottom: 28px;
+}
+
+
+.page-title h1 {
+  font-size: 34px;
+
+  line-height: 1.1;
+
+  font-weight: 750;
+
+  color: #0b172a;
+
+  margin-bottom: 7px;
+}
+
+
+.page-title p {
+  color: var(--text-secondary);
+
+  font-size: 16px;
+}
+
+
+/* =====================================================
+   PERFIL SUPERIOR DERECHO
+===================================================== */
+
+.profile-wrapper {
+  position: relative;
+}
+
+
+.profile-button {
+  width: 62px;
+  height: 62px;
+
+  padding: 0;
+
+  border-radius: 50%;
+
+  border: 2px solid var(--primary);
+
+  background: #edf4ff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.profile-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 18px rgba(37, 99, 235, 0.14);
+}
+
+
+.profile-button img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+
+/* =====================================================
+   MENÚ PERFIL
+===================================================== */
+
+.profile-dropdown {
+  position: absolute;
+
+  top: calc(100% + 10px);
+
+  right: 0;
+
+  width: 260px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 15px;
+
+  padding: 10px;
+
+  z-index: 9999;
+
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.16);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform:
+    translateY(-7px)
+    scale(0.98);
+
+  transform-origin: top right;
+
+  transition:
+    opacity 0.18s ease,
+    visibility 0.18s ease,
+    transform 0.18s ease;
+}
+
+
+.profile-dropdown.show {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+
+.profile-dropdown-header {
+  padding: 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.profile-dropdown-header img {
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 2px solid var(--primary);
+}
+
+
+.profile-dropdown-header div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.profile-dropdown-header strong {
+  color: var(--text);
+
+  font-size: 14px;
+}
+
+
+.profile-dropdown-header span {
+  color: var(--text-secondary);
+
+  font-size: 12px;
+}
+
+
+.profile-dropdown-divider {
+  height: 1px;
+
+  background: #e2e8f0;
+
+  margin: 5px 0;
+}
+
+
+.profile-dropdown-item {
+  width: 100%;
+
+  border: none;
+
+  background: transparent;
+
+  padding: 11px 12px;
+
+  border-radius: 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  text-align: left;
+}
+
+
+.logout-item {
+  color: var(--red);
+}
+
+
+.logout-item:hover {
+  background: var(--red-light);
+
+  color: #b91c1c;
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.configuration-grid {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr);
+
+  gap: 26px;
+}
+
+
+/* =====================================================
+   ÚNICA CARD
+===================================================== */
+
+.config-card {
+  width: 100%;
+
+  background: var(--card);
+
+  border-radius: var(--radius);
+
+  padding: 30px;
+
+  box-shadow: var(--shadow);
+
+  border: 1px solid rgba(226, 232, 240, 0.65);
+
+  transition:
+    box-shadow 0.2s ease;
+}
+
+
+.config-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+
+/* =====================================================
+   CABECERA CARD
+===================================================== */
+
+.card-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+
+.card-header-icon {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #fff6cc;
+
+  color: #f4bd00;
+
+  font-size: 20px;
+}
+
+
+.card-header h2 {
+  font-size: 22px;
+
+  line-height: 1.2;
+
+  font-weight: 750;
+
+  color: #101827;
+
+  margin-bottom: 4px;
+}
+
+
+.card-header p {
+  color: var(--text-secondary);
+
+  font-size: 14px;
+
+  line-height: 1.45;
+}
+
+
+/* =====================================================
+   PERFIL PERSONAL
+===================================================== */
+
+.personal-profile {
+  display: flex;
+
+  align-items: center;
+
+  gap: 22px;
+
+  padding: 22px;
+
+  margin-bottom: 28px;
+
+  background: #f7f9fc;
+
+  border-radius: 16px;
+
+  border: 1px solid #edf1f6;
+}
+
+
+/* =====================================================
+   FOTO
+===================================================== */
+
+.personal-profile-photo {
+  position: relative;
+
+  width: 100px;
+  height: 100px;
+
+  min-width: 100px;
+  min-height: 100px;
+}
+
+
+.personal-profile-photo img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  border-radius: 50%;
+
+  border: 3px solid var(--primary);
+
+  background: #eef2f7;
+}
+
+
+/* =====================================================
+   BOTÓN CAMBIAR FOTO
+===================================================== */
+
+.btn-change-photo {
+  position: absolute;
+
+  right: -3px;
+
+  bottom: -3px;
+
+  width: 35px;
+  height: 35px;
+
+  border: 3px solid #ffffff;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+
+  color: #111827;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  box-shadow:
+    0 4px 12px rgba(15, 23, 42, 0.15);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.btn-change-photo:hover {
+  background: var(--primary-hover);
+
+  transform: scale(1.08);
+}
+
+
+/* =====================================================
+   INFORMACIÓN DEL PERFIL
+===================================================== */
+
+.personal-profile-main {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 5px;
+}
+
+
+.personal-profile-main h3 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 20px;
+
+  font-weight: 750;
+}
+
+
+.personal-profile-main > span {
+  color: var(--text-secondary);
+
+  font-size: 14px;
+
+  margin-bottom: 7px;
+}
+
+
+/* =====================================================
+   LINK CAMBIAR FOTO
+===================================================== */
+
+.photo-link {
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #2563eb;
+
+  font-size: 13px;
+
+  font-weight: 650;
+
+  cursor: pointer;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  transition:
+    color 0.2s ease;
+}
+
+
+.photo-link:hover {
+  color: #1d4ed8;
+
+  text-decoration: underline;
+}
+
+
+/* =====================================================
+   DATOS PERSONALES
+===================================================== */
+
+.personal-data {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  column-gap: 35px;
+
+  border-top: 1px solid #e2e8f0;
+}
+
+
+.personal-data-item {
+  min-height: 62px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+
+.personal-data-label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+
+  font-weight: 500;
+}
+
+
+.personal-data-label i {
+  width: 18px;
+
+  color: #eab900;
+
+  text-align: center;
+}
+
+
+.personal-data-item strong {
+  color: #111827;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  text-align: right;
+
+  word-break: break-word;
+}
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+.status-text.activo {
+  color: var(--green) !important;
+}
+
+
+.status-text.inactivo {
+  color: var(--red) !important;
+}
+
+
+/* =====================================================
+   MENSAJES
+===================================================== */
+
+#mensajeError,
+#mensajeExito {
+  position: fixed;
+
+  top: 24px;
+
+  right: 24px;
+
+  z-index: 10000;
+
+  min-width: 300px;
+
+  max-width: 430px;
+
+  padding: 14px 17px;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  box-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.14);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(-12px);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+}
+
+
+#mensajeError.show,
+#mensajeExito.show {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: translateY(0);
+}
+
+
+#mensajeError {
+  background: #fff1f2;
+
+  color: #be123c;
+
+  border: 1px solid #fecdd3;
+}
+
+
+#mensajeExito {
+  background: #f0fdf4;
+
+  color: #15803d;
+
+  border: 1px solid #bbf7d0;
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.25);
+
+  outline-offset: 2px;
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+
+  border-radius: 20px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 850px) {
+
+  .sidebar {
+    width: 78px;
+
+    padding: 18px 10px;
+  }
+
+
+  .agenda-logo {
+    justify-content: center;
+
+    padding: 0;
+
+    margin-bottom: 35px;
+  }
+
+
+  .agenda-logo img {
+    width: 52px;
+    height: 52px;
+  }
+
+
+  .agenda-logo div {
+    display: none;
+  }
+
+
+  .menu-item {
+    justify-content: center;
+
+    padding: 0;
+
+    min-height: 48px;
+  }
+
+
+  .menu-item span {
+    display: none;
+  }
+
+
+  .menu-item i {
+    font-size: 19px;
+  }
+
+
+  .main-content {
+    width: calc(100% - 78px);
+
+    margin-left: 78px;
+
+    padding: 25px 20px 40px;
+  }
+
+}
+
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
+@media (max-width: 650px) {
+
+  .main-content {
+    width: 100%;
+
+    margin-left: 0;
+
+    padding: 20px 15px 35px;
+  }
+
+
+  .sidebar {
+    display: none;
+  }
+
+
+  .page-header {
+    align-items: center;
+
+    margin-bottom: 22px;
+  }
+
+
+  .page-title h1 {
+    font-size: 27px;
+  }
+
+
+  .page-title p {
+    font-size: 14px;
+  }
+
+
+  .profile-button {
+    width: 50px;
+    height: 50px;
+  }
+
+
+  .config-card {
+    padding: 20px;
+
+    border-radius: 15px;
+  }
+
+
+  .card-header h2 {
+    font-size: 19px;
+  }
+
+
+  .personal-profile {
+    padding: 18px;
+
+    gap: 16px;
+  }
+
+
+  .personal-profile-photo {
+    width: 82px;
+    height: 82px;
+
+    min-width: 82px;
+    min-height: 82px;
+  }
+
+
+  .personal-profile-main h3 {
+    font-size: 17px;
+  }
+
+
+  .personal-data {
+    grid-template-columns: 1fr;
+  }
+
+
+  .personal-data-item {
+    min-height: 55px;
+  }
+
+
+  #mensajeError,
+  #mensajeExito {
+    left: 15px;
+
+    right: 15px;
+
+    min-width: 0;
+
+    max-width: none;
+  }
+
+
+  .profile-dropdown {
+    right: 0;
+
+    width: 220px;
+  }
+
+}
+
+
+/* =====================================================
+   MÓVIL PEQUEÑO
+===================================================== */
+
+@media (max-width: 400px) {
+
+  .page-title h1 {
+    font-size: 24px;
+  }
+
+
+  .page-title p {
+    font-size: 13px;
+  }
+
+
+  .profile-button {
+    width: 46px;
+    height: 46px;
+  }
+
+
+  .personal-profile {
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+  }
+
+
+  .personal-profile-main {
+    align-items: center;
+  }
+
+
+  .config-card {
+    padding: 17px;
+  }
+
+}

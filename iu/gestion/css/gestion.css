@@ -1,0 +1,500 @@
+/* ==========================================
+   RESET & ESTILOS BASE
+========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* ==========================================
+   CONTENEDOR Y LAYOUT
+========================================== */
+.documentos-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 20px;
+}
+
+.documentos-panel {
+  flex: 1;
+  padding: 28px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.documentos-header {
+  margin-bottom: 20px;
+}
+
+.documentos-header h2 {
+  font-size: 28px;
+  color: #1e293b;
+}
+
+/* ==========================================
+   SIDEBAR DOCUMENTOS
+========================================== */
+.documentos-sidebar {
+  width: 290px;
+  background: #0f172a;
+  color: white;
+  padding: 25px;
+  border-radius: 18px;
+  height: fit-content;
+  position: sticky;
+  top: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.documentos-sidebar .sidebar-logo {
+  margin-bottom: 35px;
+}
+
+.documentos-sidebar .sidebar-logo h2 {
+  color: #facc15;
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.documentos-sidebar .sidebar-logo span {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.documentos-sidebar .sidebar-section {
+  margin-bottom: 35px;
+}
+
+.documentos-sidebar .sidebar-section h3 {
+  color: #facc15;
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+.documentos-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.documentos-sidebar li {
+  padding: 11px 14px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+  color: #e2e8f0;
+  font-size: 14px;
+}
+
+.documentos-sidebar li:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.documentos-sidebar li.active {
+  background: #facc15;
+  color: black;
+  font-weight: 600;
+}
+
+/* ==========================================
+   SIDEBAR DESPLEGABLE (ACORDEÓN)
+========================================== */
+.sidebar-group {
+  margin-bottom: 18px;
+}
+
+.sidebar-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #facc15;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.sidebar-toggle i {
+  transition: 0.25s;
+}
+
+.sidebar-group ul {
+  display: none;
+  margin-top: 10px;
+}
+
+.sidebar-group.active ul {
+  display: block;
+}
+
+.sidebar-group.active .sidebar-toggle i {
+  transform: rotate(180deg);
+}
+
+/* ==========================================
+   FILTROS DE BÚSQUEDA
+========================================== */
+.documentos-filtros {
+  margin-bottom: 25px;
+}
+
+.documentos-filtros input {
+  width: 320px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  outline: none;
+  transition: 0.2s;
+}
+
+.documentos-filtros input:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.15);
+}
+
+/* ==========================================
+   TABLA DE DOCUMENTOS
+========================================== */
+.documentos-table-wrapper {
+  overflow-x: auto;
+}
+
+.documentos-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.documentos-table thead {
+  background: #e6c539;
+  color: white;
+}
+
+.documentos-table th {
+  padding: 15px;
+  text-align: left;
+  font-size: 14px;
+  color: #000;
+}
+
+.documentos-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+.documentos-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* ==========================================
+   BOTONES DE ACCIÓN (ACCESO A DOCUMENTOS)
+========================================== */
+.btn-documento {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  background: #000000;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s;
+  border: none;
+}
+
+.btn-documento:hover {
+  background: #e6c539;
+  color: black;
+}
+
+.btn-disabled {
+  background: #94a3b8;
+  color: white;
+  cursor: not-allowed;
+}
+
+.btn-disabled:hover {
+  background: #94a3b8;
+  color: white;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+@media (max-width: 1100px) {
+  .documentos-container {
+    flex-direction: column;
+  }
+
+  .documentos-sidebar {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+
+  .documentos-filtros input {
+    width: 100%;
+  }
+
+  .documentos-filtros{
+
+    flex-direction:column;
+    align-items:stretch;
+
+  }
+
+  .documentos-filtros input{
+
+    max-width:none;
+    width:100%;
+
+  }
+
+  .btn-agregar-documento{
+
+    justify-content:center;
+    width:100%;
+
+  }
+
+}
+
+.sidebar-search{
+
+  position:relative;
+
+  margin-bottom:15px;
+
+}
+
+.sidebar-search input{
+
+  width:100%;
+
+  padding:12px 14px 12px 42px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#1e293b;
+
+  color:white;
+
+  transition:.25s;
+
+}
+
+.sidebar-search input::placeholder{
+
+  color:#94a3b8;
+
+}
+
+.sidebar-search input:focus{
+
+  background:#334155;
+
+  box-shadow:0 0 0 3px rgba(250,204,21,.20);
+
+}
+
+.sidebar-search i{
+
+  position:absolute;
+
+  left:14px;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  color:#94a3b8;
+
+}
+
+.sidebar-filter{
+
+  margin-bottom:28px;
+
+}
+
+.sidebar-filter h3{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  color:#facc15;
+
+  font-size:17px;
+
+  margin-bottom:12px;
+
+}
+
+.sidebar-filter ul{
+
+  max-height:180px;
+
+  overflow-y:auto;
+
+}
+
+/*=========================================
+    LISTAS DEL SIDEBAR
+=========================================*/
+
+#listaAniosDocumentos,
+#listaMesesDocumentos,
+#listaCategoriasDocumentos,
+#listaTiposDocumentos{
+
+  list-style:none;
+  margin:0;
+  padding:0;
+  max-height:220px;
+  overflow-y:auto;
+
+}
+
+#listaAniosDocumentos li,
+#listaMesesDocumentos li,
+#listaCategoriasDocumentos li,
+#listaTiposDocumentos li{
+
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  color:#e2e8f0;
+  transition:.2s;
+
+}
+
+#listaAniosDocumentos li:hover,
+#listaMesesDocumentos li:hover,
+#listaCategoriasDocumentos li:hover,
+#listaTiposDocumentos li:hover{
+
+  background:rgba(255,255,255,.08);
+
+}
+
+#listaAniosDocumentos li.active,
+#listaMesesDocumentos li.active,
+#listaCategoriasDocumentos li.active,
+#listaTiposDocumentos li.active{
+
+  background:#facc15;
+  color:#000;
+  font-weight:600;
+
+}
+
+#listaAniosDocumentos::-webkit-scrollbar,
+#listaMesesDocumentos::-webkit-scrollbar,
+#listaCategoriasDocumentos::-webkit-scrollbar,
+#listaTiposDocumentos::-webkit-scrollbar{
+
+  width:6px;
+
+}
+
+#listaAniosDocumentos::-webkit-scrollbar-thumb,
+#listaMesesDocumentos::-webkit-scrollbar-thumb,
+#listaCategoriasDocumentos::-webkit-scrollbar-thumb,
+#listaTiposDocumentos::-webkit-scrollbar-thumb{
+
+  background:#475569;
+  border-radius:50px;
+
+}
+
+#listaAniosDocumentos::-webkit-scrollbar-track,
+#listaMesesDocumentos::-webkit-scrollbar-track,
+#listaCategoriasDocumentos::-webkit-scrollbar-track,
+#listaTiposDocumentos::-webkit-scrollbar-track{
+
+  background:transparent;
+
+}
+
+/*=========================================
+    BOTÓN AGREGAR DOCUMENTO
+=========================================*/
+
+.documentos-filtros{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+  margin-bottom:30px;
+
+}
+
+.documentos-filtros input{
+
+  flex:1;
+  max-width:420px;
+
+}
+
+.btn-agregar-documento{
+
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+
+  padding:8px 14px;
+
+  background:#f4cb2d;
+  color:#000;
+
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:600;
+
+  border-radius:16px;
+
+  box-shadow:0 10px 22px rgba(244,203,45,.45);
+
+  transition:.25s;
+
+}
+
+.btn-agregar-documento i{
+
+  font-size:24px;
+
+}
+
+.btn-agregar-documento:hover{
+
+  background:#e6c539;
+
+  color:#000;
+
+  transform:translateY(-3px);
+
+  box-shadow:0 16px 30px rgba(244,203,45,.55);
+
+}

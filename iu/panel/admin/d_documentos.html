@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>Gestión de Documentos - Muni Ascope</title>
+
+  <link
+    rel="stylesheet"
+    href="css/d_documentos.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="documentos-sidebar">
+
+  <div class="documentos-logo">
+
+    <img
+      src="../../../multimedia/admin1.png"
+      alt="Municipalidad">
+
+    <div>
+
+      <h2>Municipalidad</h2>
+
+      <span>Provincia de Ascope</span>
+
+    </div>
+
+  </div>
+
+
+  <nav class="documentos-nav">
+
+    <a href="dashboard.html">
+
+      <i class="bi bi-house-door-fill"></i>
+
+      <span>Dashboard</span>
+
+    </a>
+
+
+    <a href="d_usuarios.html">
+
+      <i class="bi bi-people-fill"></i>
+
+      <span>Usuarios</span>
+
+    </a>
+
+
+    <a href="d_agenda.html">
+
+      <i class="bi bi-calendar-event-fill"></i>
+
+      <span>Agenda</span>
+
+    </a>
+
+
+    <a
+      href="d_documentos.html"
+      class="activo">
+
+      <i class="bi bi-file-earmark-text-fill"></i>
+
+      <span>Documentos</span>
+
+    </a>
+
+
+    <a href="d_visitas.html">
+
+      <i class="bi bi-person-vcard-fill"></i>
+
+      <span>Visitas</span>
+
+    </a>
+
+
+    <a href="d_estadisticas.html">
+
+      <i class="bi bi-bar-chart-fill"></i>
+
+      <span>Estadísticas</span>
+
+    </a>
+
+
+    <a href="d_configuracion.html">
+
+      <i class="bi bi-gear-fill"></i>
+
+      <span>Configuración</span>
+
+    </a>
+
+  </nav>
+
+</aside>
+
+
+
+<!-- =========================================================
+     CONTENIDO
+========================================================= -->
+
+<main class="documentos-contenido">
+
+
+  <!-- =======================================================
+       ENCABEZADO
+  ======================================================== -->
+
+  <header class="documentos-encabezado">
+
+    <div>
+
+      <h1>
+        Documentos
+      </h1>
+
+      <p>
+        Administración de documentos registrados
+      </p>
+
+    </div>
+
+
+    <div class="documentos-usuario-perfil" id="usuarioPerfil">
+
+      <button
+        type="button"
+        class="documentos-usuario-icono"
+        id="btnPerfilUsuario"
+        title="Perfil">
+
+        <img
+          id="fotoUsuarioSesion"
+          src="../../../multimedia/admin1.png"
+          alt="Foto de perfil">
+
+        <i
+          class="bi bi-person-fill"
+          id="iconoUsuarioSesion">
+        </i>
+
+      </button>
+
+      <div
+        class="documentos-menu-perfil"
+        id="menuPerfilUsuario">
+
+        <button
+          type="button"
+          id="btnCerrarSesion">
+
+          <i class="bi bi-box-arrow-right"></i>
+
+          Cerrar sesión
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =======================================================
+       CONTENEDOR
+  ======================================================== -->
+
+  <section class="documentos-container">
+
+
+    <!-- =====================================================
+         CABECERA
+    ====================================================== -->
+
+    <div class="documentos-header">
+
+      <div>
+
+        <h2>
+
+          <i class="bi bi-file-earmark-text-fill"></i>
+
+          Gestión de Documentos
+
+        </h2>
+
+        <p>
+          Registre, modifique o elimine documentos del sistema.
+        </p>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="documentos-btn-crear"
+        id="btnCrearDocumento">
+
+        <i class="bi bi-plus-circle-fill"></i>
+
+        Crear documento
+
+      </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BUSCADOR
+    ====================================================== -->
+
+    <div class="documentos-filtros">
+
+      <div class="documentos-buscador">
+
+        <i class="bi bi-search"></i>
+
+        <input
+          type="text"
+          id="buscarDocumento"
+          placeholder="Buscar por nombre o categoría..."
+          autocomplete="off">
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TABLA
+    ====================================================== -->
+
+    <div class="documentos-tabla-container">
+
+      <table class="documentos-tabla">
+
+        <thead>
+
+        <tr>
+
+          <th>ID</th>
+
+          <th>Nombre</th>
+
+          <th>Categoría</th>
+
+          <th>Tipo</th>
+
+          <th>Fecha publicación</th>
+
+          <th>Archivo</th>
+
+          <th>Acciones</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody id="tablaDocumentos">
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+  </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     MODAL CREAR DOCUMENTO
+========================================================= -->
+
+<div
+  class="documentos-modal-overlay"
+  id="modalCrearDocumento">
+
+
+  <div class="documentos-modal">
+
+
+    <div class="documentos-modal-header">
+
+      <div>
+
+        <h2>
+
+          <i class="bi bi-file-earmark-plus-fill"></i>
+
+          Crear documento
+
+        </h2>
+
+        <p>
+          Registre un nuevo documento institucional.
+        </p>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="documentos-btn-cerrar"
+        id="cerrarCrearDocumento">
+
+        <i class="bi bi-x-lg"></i>
+
+      </button>
+
+    </div>
+
+
+
+    <!-- FORMULARIO -->
+
+    <form
+      id="formCrearDocumento"
+      enctype="multipart/form-data">
+
+      <div class="documentos-form-grid">
+
+        <!-- NOMBRE -->
+        <div class="documentos-campo documentos-campo-completo">
+
+          <label for="crearNombre">
+            Nombre del documento
+          </label>
+
+          <input
+            type="text"
+            id="crearNombre"
+            name="nombre"
+            placeholder="Ingrese el nombre del documento"
+            required>
+
+        </div>
+
+
+        <!-- CATEGORÍA -->
+        <div class="documentos-campo">
+
+          <label for="crearCategoria">
+            Categoría
+          </label>
+
+          <select
+            id="crearCategoria"
+            name="categoria"
+            required>
+
+            <option value="">
+              Seleccione una categoría
+            </option>
+
+            <option value="Acuerdos de Concejo">
+              Acuerdos de Concejo
+            </option>
+
+            <option value="Decretos de Alcaldía">
+              Decretos de Alcaldía
+            </option>
+
+            <option value="Documentos de Gestión">
+              Documentos de Gestión
+            </option>
+
+            <option value="Informes">
+              Informes
+            </option>
+
+            <option value="Normativa Institucional">
+              Normativa Institucional
+            </option>
+
+            <option value="Ordenanzas">
+              Ordenanzas
+            </option>
+
+            <option value="Ordenanzas Municipales">
+              Ordenanzas Municipales
+            </option>
+
+            <option value="Planes Institucionales">
+              Planes Institucionales
+            </option>
+
+            <option value="Resoluciones">
+              Resoluciones
+            </option>
+
+            <option value="Resoluciones de Alcaldía">
+              Resoluciones de Alcaldía
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- TIPO -->
+        <div class="documentos-campo">
+
+          <label for="crearTipo">
+            Tipo
+          </label>
+
+          <select
+            id="crearTipo"
+            name="tipo">
+
+            <option value="">
+              Detectar automáticamente
+            </option>
+
+            <option value="PDF">
+              PDF
+            </option>
+
+            <option value="DOC">
+              DOC
+            </option>
+
+            <option value="DOCX">
+              DOCX
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- FECHA PUBLICACIÓN -->
+        <div class="documentos-campo">
+
+          <label for="crearFechaPublicacion">
+            Fecha de publicación
+          </label>
+
+          <input
+            type="date"
+            id="crearFechaPublicacion"
+            name="fechaPublicacion"
+            required>
+
+        </div>
+
+
+        <!-- ARCHIVO -->
+        <div class="documentos-campo documentos-campo-completo">
+
+          <label for="crearArchivo">
+            Documento
+          </label>
+
+          <div class="documentos-upload">
+
+            <i class="bi bi-cloud-arrow-up-fill"></i>
+
+            <div>
+              <strong>
+                Seleccionar documento
+              </strong>
+
+              <span>
+                        PDF, DOC o DOCX
+                    </span>
+            </div>
+
+            <input
+              type="file"
+              id="crearArchivo"
+              name="archivo"
+              accept=".pdf,.doc,.docx"
+              required>
+
+          </div>
+
+          <small id="nombreArchivoCrear">
+            Ningún archivo seleccionado
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="documentos-modal-footer">
+
+        <button
+          type="button"
+          class="documentos-btn-cancelar"
+          id="cancelarCrearDocumento">
+
+          Cancelar
+
+        </button>
+
+        <button
+          type="submit"
+          class="documentos-btn-guardar">
+
+          <i class="bi bi-check-lg"></i>
+
+          Crear documento
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     MODAL EDITAR DOCUMENTO
+========================================================= -->
+
+<div
+  class="documentos-modal-overlay"
+  id="modalEditarDocumento">
+
+
+  <div class="documentos-modal">
+
+
+    <div class="documentos-modal-header">
+
+      <div>
+
+        <h2>
+
+          <i class="bi bi-pencil-square"></i>
+
+          Modificar documento
+
+        </h2>
+
+        <p>
+          Modifique la información del documento.
+        </p>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="documentos-btn-cerrar"
+        id="cerrarEditarDocumento">
+
+        <i class="bi bi-x-lg"></i>
+
+      </button>
+
+    </div>
+
+
+
+    <form
+      id="formEditarDocumento"
+      enctype="multipart/form-data">
+
+      <input
+        type="hidden"
+        id="editarDocumentoId">
+
+
+      <div class="documentos-form-grid">
+
+        <!-- NOMBRE -->
+        <div class="documentos-campo documentos-campo-completo">
+
+          <label for="editarNombre">
+            Nombre del documento
+          </label>
+
+          <input
+            type="text"
+            id="editarNombre"
+            required>
+
+        </div>
+
+
+        <!-- CATEGORÍA -->
+        <div class="documentos-campo">
+
+          <label for="editarCategoria">
+            Categoría
+          </label>
+
+          <select
+            id="editarCategoria"
+            required>
+
+            <option value="">
+              Seleccione una categoría
+            </option>
+
+            <option value="Acuerdos de Concejo">
+              Acuerdos de Concejo
+            </option>
+
+            <option value="Decretos de Alcaldía">
+              Decretos de Alcaldía
+            </option>
+
+            <option value="Documentos de Gestión">
+              Documentos de Gestión
+            </option>
+
+            <option value="Informes">
+              Informes
+            </option>
+
+            <option value="Normativa Institucional">
+              Normativa Institucional
+            </option>
+
+            <option value="Ordenanzas">
+              Ordenanzas
+            </option>
+
+            <option value="Ordenanzas Municipales">
+              Ordenanzas Municipales
+            </option>
+
+            <option value="Planes Institucionales">
+              Planes Institucionales
+            </option>
+
+            <option value="Resoluciones">
+              Resoluciones
+            </option>
+
+            <option value="Resoluciones de Alcaldía">
+              Resoluciones de Alcaldía
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- TIPO -->
+        <div class="documentos-campo">
+
+          <label for="editarTipo">
+            Tipo
+          </label>
+
+          <select id="editarTipo">
+
+            <option value="PDF">
+              PDF
+            </option>
+
+            <option value="DOC">
+              DOC
+            </option>
+
+            <option value="DOCX">
+              DOCX
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- FECHA -->
+        <div class="documentos-campo">
+
+          <label for="editarFechaPublicacion">
+            Fecha de publicación
+          </label>
+
+          <input
+            type="date"
+            id="editarFechaPublicacion"
+            required>
+
+        </div>
+
+
+        <!-- ARCHIVO ACTUAL -->
+        <div class="documentos-archivo-actual documentos-campo-completo">
+
+          <div class="documentos-archivo-icono">
+
+            <i class="bi bi-file-earmark-text-fill"></i>
+
+          </div>
+
+          <div class="documentos-archivo-info">
+
+                <span>
+                    Archivo actual
+                </span>
+
+            <strong id="archivoActualNombre">
+              Sin archivo
+            </strong>
+
+          </div>
+
+          <button
+            type="button"
+            class="documentos-btn-ver"
+            id="btnVerArchivoActual">
+
+            <i class="bi bi-eye-fill"></i>
+
+            Ver
+
+          </button>
+
+        </div>
+
+
+        <!-- REEMPLAZAR ARCHIVO -->
+        <div class="documentos-campo documentos-campo-completo">
+
+          <label for="editarArchivo">
+            Reemplazar archivo
+          </label>
+
+          <div class="documentos-upload documentos-upload-reemplazo">
+
+            <i class="bi bi-arrow-repeat"></i>
+
+            <div>
+
+              <strong>
+                Seleccionar nuevo documento
+              </strong>
+
+              <span>
+                        PDF, DOC o DOCX
+                    </span>
+
+            </div>
+
+            <input
+              type="file"
+              id="editarArchivo"
+              name="archivo"
+              accept=".pdf,.doc,.docx">
+
+          </div>
+
+          <small id="nombreArchivoEditar">
+            Si no selecciona un archivo,
+            se conservará el actual.
+          </small>
+
+
+          <div class="documentos-aviso-reemplazo">
+
+            <i class="bi bi-exclamation-triangle-fill"></i>
+
+            <span>
+                    Si selecciona un nuevo archivo,
+                    el archivo actual será eliminado
+                    y reemplazado por el nuevo.
+                </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="documentos-modal-footer">
+
+        <button
+          type="button"
+          class="documentos-btn-cancelar"
+          id="cancelarEditarDocumento">
+
+          Cancelar
+
+        </button>
+
+        <button
+          type="submit"
+          class="documentos-btn-guardar">
+
+          <i class="bi bi-save-fill"></i>
+
+          Guardar cambios
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     MODAL ELIMINAR
+========================================================= -->
+
+<div
+  class="documentos-modal-overlay"
+  id="modalEliminarDocumento">
+
+
+  <div class="documentos-modal documentos-modal-eliminar">
+
+
+    <div class="documentos-icono-eliminar">
+
+      <i class="bi bi-trash-fill"></i>
+
+    </div>
+
+
+    <h2>
+      ¿Eliminar documento?
+    </h2>
+
+
+    <p>
+
+      Está a punto de eliminar el documento
+
+      <strong id="nombreDocumentoEliminar">
+        Documento
+      </strong>.
+
+      <br><br>
+
+      También se eliminará el archivo asociado.
+
+      <br>
+
+      Esta acción no se puede deshacer.
+
+    </p>
+
+
+    <div class="documentos-modal-footer">
+
+      <button
+        type="button"
+        class="documentos-btn-cancelar"
+        id="cancelarEliminarDocumento">
+
+        Cancelar
+
+      </button>
+
+
+      <button
+        type="button"
+        class="documentos-btn-eliminar"
+        id="confirmarEliminarDocumento">
+
+        <i class="bi bi-trash-fill"></i>
+
+        Eliminar
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script
+  type="module"
+  src="js/d_documentos.js">
+</script>
+
+
+</body>
+
+</html>

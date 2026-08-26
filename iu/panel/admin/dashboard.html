@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>Panel Administrativo</title>
+
+  <link
+    rel="stylesheet"
+    href="css/admin.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<body>
+
+<div class="admin-container">
+
+  <!-- =====================================================
+       SIDEBAR
+  ====================================================== -->
+
+  <aside class="sidebar">
+
+    <div class="sidebar-logo">
+
+      <div class="logo-imagen">
+
+        <img
+          src="../../../multimedia/admin1.png"
+          alt="Municipalidad">
+
+      </div>
+
+      <div class="logo-texto">
+
+        <h2>Municipalidad</h2>
+
+        <span>Provincia de Ascope</span>
+
+      </div>
+
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+      <a
+        href="dashboard.html.html"
+        class="nav-item active">
+
+        <i class="bi bi-house-fill"></i>
+
+        <span>Dashboard</span>
+
+      </a>
+
+
+      <a
+        href="d_usuarios.html"
+        class="nav-item">
+
+        <i class="bi bi-people-fill"></i>
+
+        <span>Usuarios</span>
+
+      </a>
+
+
+      <a
+        href="d_agenda.html"
+        class="nav-item">
+
+        <i class="bi bi-calendar-fill"></i>
+
+        <span>Agenda</span>
+
+      </a>
+
+
+      <a
+        href="d_documentos.html"
+        class="nav-item">
+
+        <i class="bi bi-file-earmark-text-fill"></i>
+
+        <span>Documentos</span>
+
+      </a>
+
+
+      <a
+        href="d_visitas.html"
+        class="nav-item">
+
+        <i class="bi bi-person-vcard-fill"></i>
+
+        <span>Visitas</span>
+
+      </a>
+
+
+      <a
+        href="d_estadisticas.html"
+        class="nav-item">
+
+        <i class="bi bi-bar-chart-fill"></i>
+
+        <span>Estadísticas</span>
+
+      </a>
+
+
+      <a
+        href="d_configuracion.html"
+        class="nav-item">
+
+        <i class="bi bi-gear-fill"></i>
+
+        <span>Configuración</span>
+
+      </a>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+  ====================================================== -->
+
+  <main class="main-content">
+
+
+    <!-- =================================================
+         ENCABEZADO
+    ================================================== -->
+
+    <header class="dashboard-header">
+
+      <div>
+
+        <h1>Panel Administrativo</h1>
+
+        <p>Administrador del Sistema</p>
+
+      </div>
+
+
+      <!-- =================================================
+           PERFIL
+      ================================================== -->
+
+      <div class="profile-container">
+
+        <button
+          class="profile-button"
+          id="btnPerfil"
+          type="button"
+          aria-label="Opciones de perfil">
+
+          <i class="bi bi-person-fill"></i>
+
+        </button>
+
+
+        <!-- MENÚ DEL PERFIL -->
+
+        <div
+          class="profile-menu"
+          id="menuPerfil">
+
+          <button
+            type="button"
+            class="profile-menu-item logout-item"
+            id="btnCerrarSesion">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            <span>Cerrar sesión</span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- =================================================
+         TARJETAS PRINCIPALES
+    ================================================== -->
+
+    <section class="stats-cards">
+
+
+      <article class="stat-card">
+
+        <div class="stat-icon">
+
+          <i class="bi bi-people-fill"></i>
+
+        </div>
+
+        <div class="stat-info">
+
+          <span
+            class="stat-number"
+            id="totalUsuarios">
+            0
+          </span>
+
+          <span class="stat-label">
+            Usuarios registrados
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <article class="stat-card">
+
+        <div class="stat-icon">
+
+          <i class="bi bi-file-earmark-text-fill"></i>
+
+        </div>
+
+        <div class="stat-info">
+
+          <span
+            class="stat-number"
+            id="totalDocumentos">
+            0
+          </span>
+
+          <span class="stat-label">
+            Documentos publicados
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <article class="stat-card">
+
+        <div class="stat-icon">
+
+          <i class="bi bi-calendar-fill"></i>
+
+        </div>
+
+        <div class="stat-info">
+
+          <span
+            class="stat-number"
+            id="totalActividades">
+            0
+          </span>
+
+          <span class="stat-label">
+            Actividades registradas
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <article class="stat-card">
+
+        <div class="stat-icon">
+
+          <i class="bi bi-person-vcard-fill"></i>
+
+        </div>
+
+        <div class="stat-info">
+
+          <span
+            class="stat-number"
+            id="totalVisitas">
+            0
+          </span>
+
+          <span class="stat-label">
+            Visitas registradas
+          </span>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- =================================================
+         GRÁFICOS
+    ================================================== -->
+
+    <section class="dashboard-grid">
+
+
+      <article class="dashboard-card registros-card">
+
+        <div class="card-header">
+
+          <div class="card-title">
+
+            <i class="bi bi-bar-chart-fill"></i>
+
+            <div>
+
+              <h2>Registros del Sistema</h2>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="chart-container">
+
+          <canvas id="graficoRegistros"></canvas>
+
+        </div>
+
+      </article>
+
+
+      <article class="dashboard-card uso-card">
+
+        <div class="card-header">
+
+          <div class="card-title">
+
+            <i class="bi bi-pie-chart-fill"></i>
+
+            <div>
+
+              <h2>Uso del Portal</h2>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="portal-chart">
+
+          <canvas id="graficoUsoPortal"></canvas>
+
+          <div
+            class="portal-porcentaje"
+            id="porcentajePortal">
+
+            0%
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- =================================================
+         PARTE INFERIOR
+    ================================================== -->
+
+    <section class="dashboard-grid bottom-grid">
+
+
+      <!-- =============================================
+           ACTIVIDAD RECIENTE
+      ============================================== -->
+
+      <article class="dashboard-card actividad-card">
+
+        <div class="card-header">
+
+          <div class="card-title">
+
+            <i class="bi bi-clock-history"></i>
+
+            <div>
+
+              <h2>Actividad Reciente</h2>
+
+            </div>
+
+          </div>
+
+
+          <!-- NUEVO BOTÓN -->
+
+          <button
+            type="button"
+            class="btn-ver-todas"
+            id="btnVerTodasActividades">
+
+            Ver todas
+
+          </button>
+
+        </div>
+
+
+        <div class="activity-table-container">
+
+          <table class="activity-table">
+
+            <thead>
+
+            <tr>
+
+              <th>Fecha</th>
+
+              <th>Usuario</th>
+
+              <th>Acción</th>
+
+            </tr>
+
+            </thead>
+
+
+            <tbody id="tablaActividades">
+
+            <tr class="empty-row">
+
+              <td colspan="3">
+                No existen actividades registradas.
+              </td>
+
+            </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </article>
+
+
+      <!-- =============================================
+           USUARIOS CONECTADOS
+      ============================================== -->
+
+      <article class="dashboard-card usuarios-card">
+
+        <div class="card-header">
+
+          <div class="card-title">
+
+            <i class="bi bi-person-check-fill"></i>
+
+            <div>
+
+              <h2>Usuarios Conectados</h2>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="usuarios-conectados"
+          id="usuariosConectados">
+
+          <div class="sin-usuarios">
+
+            <span class="estado-online"></span>
+
+            <span>
+              No hay usuarios conectados.
+            </span>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL - TODAS LAS ACTIVIDADES
+====================================================== -->
+
+<div
+  class="modal-overlay"
+  id="modalActividades">
+
+  <div class="modal-actividades">
+
+    <div class="modal-header">
+
+      <div class="modal-title">
+
+        <i class="bi bi-clock-history"></i>
+
+        <h2>Todas las actividades</h2>
+
+      </div>
+
+      <button
+        type="button"
+        class="modal-close"
+        id="btnCerrarModal">
+
+        <i class="bi bi-x-lg"></i>
+
+      </button>
+
+    </div>
+
+
+    <div class="modal-body">
+
+      <div class="activity-table-container">
+
+        <table class="activity-table">
+
+          <thead>
+
+          <tr>
+
+            <th>Fecha</th>
+
+            <th>Usuario</th>
+
+            <th>Acción</th>
+
+          </tr>
+
+          </thead>
+
+          <tbody id="tablaTodasActividades">
+
+          <tr class="empty-row">
+
+            <td colspan="3">
+              No existen actividades registradas.
+            </td>
+
+          </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     SCRIPTS
+====================================================== -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+
+<script
+  type="module"
+  src="js/dashboard.js">
+</script>
+
+</body>
+
+</html>

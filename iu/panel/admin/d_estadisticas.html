@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Estadísticas | Municipalidad</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/d_estadisticas.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- =====================================================
+       SIDEBAR
+  ====================================================== -->
+
+  <aside class="sidebar">
+
+    <div class="agenda-logo">
+
+      <img
+        src="../../../multimedia/admin1.png"
+        alt="Municipalidad">
+
+      <div>
+
+        <h2>Municipalidad</h2>
+
+        <span>Provincia de Ascope</span>
+
+      </div>
+
+    </div>
+
+    <nav class="sidebar-menu">
+
+      <a href="dashboard.html" class="menu-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="d_usuarios.html" class="menu-item">
+        <i class="fa-solid fa-users"></i>
+        <span>Usuarios</span>
+      </a>
+
+      <a href="d_agenda.html" class="menu-item">
+        <i class="fa-solid fa-calendar"></i>
+        <span>Agenda</span>
+      </a>
+
+      <a href="d_documentos.html" class="menu-item">
+        <i class="fa-solid fa-file-lines"></i>
+        <span>Documentos</span>
+      </a>
+
+      <a href="d_visitas.html" class="menu-item">
+        <i class="fa-solid fa-address-card"></i>
+        <span>Visitas</span>
+      </a>
+
+      <a href="d_estadisticas.html" class="menu-item active">
+        <i class="fa-solid fa-chart-simple"></i>
+        <span>Estadísticas</span>
+      </a>
+
+      <a href="d_configuracion.html" class="menu-item">
+        <i class="fa-solid fa-gear"></i>
+        <span>Configuración</span>
+      </a>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+  ====================================================== -->
+
+  <main class="main-content">
+
+    <!-- =================================================
+         CABECERA
+    ================================================== -->
+
+    <header class="page-header">
+
+      <div class="page-title">
+
+        <h1>Estadísticas</h1>
+
+        <p>
+          Resumen general de la información registrada
+          en el sistema.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="profile-button"
+        id="btnPerfil"
+        aria-label="Perfil"
+      >
+        <img
+          id="fotoPerfilHeader"
+          src=""
+          alt="Foto de perfil"
+        >
+      </button>
+
+    </header>
+
+
+    <!-- =================================================
+         FILTROS
+    ================================================== -->
+
+    <section class="filter-card">
+
+      <div class="filter-group">
+
+        <label for="filtroAnio">
+          Año
+        </label>
+
+        <select id="filtroAnio"></select>
+
+      </div>
+
+      <div class="filter-group">
+
+        <label for="filtroPeriodo">
+          Periodo
+        </label>
+
+        <select id="filtroPeriodo">
+
+          <option value="todo">
+            Todo el año
+          </option>
+
+          <option value="1">Enero</option>
+          <option value="2">Febrero</option>
+          <option value="3">Marzo</option>
+          <option value="4">Abril</option>
+          <option value="5">Mayo</option>
+          <option value="6">Junio</option>
+          <option value="7">Julio</option>
+          <option value="8">Agosto</option>
+          <option value="9">Septiembre</option>
+          <option value="10">Octubre</option>
+          <option value="11">Noviembre</option>
+          <option value="12">Diciembre</option>
+
+        </select>
+
+      </div>
+
+      <button
+        type="button"
+        id="btnAplicarFiltros"
+        class="btn-filter"
+      >
+        <i class="fa-solid fa-filter"></i>
+        Aplicar filtros
+      </button>
+
+    </section>
+
+
+    <!-- =================================================
+         EXPORTACIÓN
+    ================================================== -->
+
+    <section class="export-card">
+
+      <div class="export-info">
+
+        <div class="export-icon">
+          <i class="fa-solid fa-file-export"></i>
+        </div>
+
+        <div>
+
+          <h2>Exportar estadísticas</h2>
+
+          <p>
+            Descarga los datos obtenidos o genera un reporte
+            visual del dashboard.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="export-actions">
+
+        <button
+          type="button"
+          id="btnDescargarCSV"
+          class="btn-export btn-export-csv"
+        >
+          <i class="fa-solid fa-file-csv"></i>
+          Descargar CSV
+        </button>
+
+
+        <button
+          type="button"
+          id="btnDescargarPDF"
+          class="btn-export btn-export-pdf"
+        >
+          <i class="fa-solid fa-file-pdf"></i>
+          Descargar PDF
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         TARJETAS
+    ================================================== -->
+
+    <section class="stats-grid">
+
+      <article class="stat-card">
+
+        <div class="stat-icon">
+          <i class="fa-solid fa-users"></i>
+        </div>
+
+        <div class="stat-info">
+
+          <span>Usuarios registrados</span>
+
+          <strong id="usuariosRegistrados">
+            0
+          </strong>
+
+          <small id="usuariosVariacion">
+            Registros del periodo
+          </small>
+
+        </div>
+
+      </article>
+
+
+      <article class="stat-card">
+
+        <div class="stat-icon">
+          <i class="fa-solid fa-address-card"></i>
+        </div>
+
+        <div class="stat-info">
+
+          <span>Visitas registradas</span>
+
+          <strong id="visitasRegistradas">
+            0
+          </strong>
+
+          <small>
+            Visitas del periodo
+          </small>
+
+        </div>
+
+      </article>
+
+
+      <article class="stat-card">
+
+        <div class="stat-icon">
+          <i class="fa-solid fa-calendar"></i>
+        </div>
+
+        <div class="stat-info">
+
+          <span>Actividades programadas</span>
+
+          <strong id="actividadesProgramadas">
+            0
+          </strong>
+
+          <small>
+            Actividades registradas
+          </small>
+
+        </div>
+
+      </article>
+
+
+      <article class="stat-card">
+
+        <div class="stat-icon">
+          <i class="fa-solid fa-file-lines"></i>
+        </div>
+
+        <div class="stat-info">
+
+          <span>Documentos publicados</span>
+
+          <strong id="documentosPublicados">
+            0
+          </strong>
+
+          <small>
+            Documentos registrados
+          </small>
+
+        </div>
+
+      </article>
+
+
+      <article class="stat-card">
+
+        <div class="stat-icon">
+          <i class="fa-solid fa-newspaper"></i>
+        </div>
+
+        <div class="stat-info">
+
+          <span>Noticias publicadas</span>
+
+          <strong id="noticiasPublicadas">
+            0
+          </strong>
+
+          <small>
+            Noticias institucionales
+          </small>
+
+        </div>
+
+      </article>
+
+
+      <article class="stat-card">
+
+        <div class="stat-icon">
+          <i class="fa-solid fa-user-check"></i>
+        </div>
+
+        <div class="stat-info">
+
+          <span>Usuarios activos</span>
+
+          <strong id="usuariosActivos">
+            0
+          </strong>
+
+          <small id="porcentajeUsuariosActivos">
+            0% de los usuarios
+          </small>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- =================================================
+         GRÁFICOS
+    ================================================== -->
+
+    <section class="charts-grid">
+
+      <!-- REGISTROS -->
+
+      <article class="chart-card chart-large">
+
+        <div class="chart-header">
+
+          <div>
+
+            <h2>
+              <i class="fa-solid fa-chart-column"></i>
+              Registros mensuales
+            </h2>
+
+            <p>
+              Cantidad de registros realizados durante el año.
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="chart-container">
+          <canvas id="graficoRegistrosMensuales"></canvas>
+        </div>
+
+      </article>
+
+
+      <!-- VISITAS POR LUGAR -->
+
+      <article class="chart-card chart-small">
+
+        <div class="chart-header">
+
+          <div>
+
+            <h2>
+              <i class="fa-solid fa-chart-pie"></i>
+              Visitas por lugar
+            </h2>
+
+            <p>
+              Distribución de visitantes.
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="chart-container donut-container">
+          <canvas id="graficoVisitasLugar"></canvas>
+        </div>
+
+      </article>
+
+
+      <!-- DOCUMENTOS -->
+
+      <article class="chart-card chart-large">
+
+        <div class="chart-header">
+
+          <div>
+
+            <h2>
+              <i class="fa-solid fa-file-lines"></i>
+              Documentos publicados
+            </h2>
+
+            <p>
+              Documentos registrados por mes.
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="chart-container">
+          <canvas id="graficoDocumentos"></canvas>
+        </div>
+
+      </article>
+
+
+      <!-- ACTIVIDADES: PLATAFORMA + AGENDA -->
+
+      <article class="chart-card chart-small">
+
+        <div class="chart-header">
+
+          <div>
+
+            <h2>
+              <i class="fa-solid fa-calendar-check"></i>
+              Actividades
+            </h2>
+
+            <p>
+              Comparación mensual entre actividades de la
+              plataforma y actividades de la agenda.
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="chart-container">
+          <canvas id="graficoActividades"></canvas>
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- =================================================
+         RESUMEN
+    ================================================== -->
+
+    <section class="summary-card">
+
+      <div class="chart-header">
+
+        <div>
+
+          <h2>
+            <i class="fa-solid fa-chart-simple"></i>
+            Resumen del sistema
+          </h2>
+
+          <p>
+            Total acumulado de información registrada en el sistema.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="summary-grid">
+
+        <div class="summary-item">
+
+          <span>
+            Total de usuarios
+          </span>
+
+          <strong id="totalUsuarios">
+            0
+          </strong>
+
+        </div>
+
+
+        <div class="summary-item">
+
+          <span>
+            Total de visitas
+          </span>
+
+          <strong id="totalVisitas">
+            0
+          </strong>
+
+        </div>
+
+
+        <div class="summary-item">
+
+          <span>
+            Total de documentos
+          </span>
+
+          <strong id="totalDocumentos">
+            0
+          </strong>
+
+        </div>
+
+
+        <div class="summary-item">
+
+          <span>
+            Total de noticias
+          </span>
+
+          <strong id="totalNoticias">
+            0
+          </strong>
+
+        </div>
+
+
+        <!-- ACTIVIDADES DE LA PLATAFORMA -->
+
+        <div class="summary-item">
+
+          <span>
+            Total de actividades
+          </span>
+
+          <strong id="totalActividades">
+            0
+          </strong>
+
+        </div>
+
+
+        <!-- ACTIVIDADES DE LA AGENDA -->
+
+        <div class="summary-item">
+
+          <span>
+            Total de agenda
+          </span>
+
+          <strong id="totalAgenda">
+            0
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         LOADING
+    ================================================== -->
+
+    <div id="estadoCarga" class="loading">
+
+      <div class="spinner"></div>
+
+      <span>
+        Cargando estadísticas...
+      </span>
+
+    </div>
+
+
+    <!-- =================================================
+         ERROR
+    ================================================== -->
+
+    <div id="mensajeError" class="error-message">
+
+      <i class="fa-solid fa-circle-exclamation"></i>
+
+      <span id="textoError">
+        No se pudieron cargar las estadísticas.
+      </span>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="js/d_estadisticas.js"></script>
+
+</body>
+</html>

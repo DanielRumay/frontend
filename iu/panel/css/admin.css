@@ -1,0 +1,257 @@
+*{
+
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+
+}
+
+body{
+
+  font-family:Arial,Helvetica,sans-serif;
+
+  background:#fff8df;
+
+  min-height:100vh;
+
+  display:flex;
+
+  flex-direction:column;
+
+}
+
+/*===========================*/
+
+header{
+
+  background:#f6de6d;
+
+  height:90px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+}
+
+.logo img{
+
+  height:70px;
+
+}
+
+/*===========================*/
+
+main{
+
+  flex:1;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+}
+
+.login-box{
+
+  width:500px;
+
+  text-align:center;
+
+}
+
+/*===========================*/
+
+.login-box h1{
+
+  font-size:60px;
+
+  font-weight:900;
+
+  color:#111;
+
+  line-height:1.1;
+
+  margin-bottom:50px;
+
+}
+
+.login-box h1 span{
+
+  display:block;
+
+  color:#d6b325;
+
+  margin-top:15px;
+
+}
+
+/*===========================*/
+
+.input-group{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:25px;
+
+  margin-bottom:25px;
+
+}
+
+.input-group label{
+
+  width:120px;
+
+  text-align:right;
+
+  font-weight:bold;
+
+  font-size:20px;
+
+}
+
+/*===========================*/
+
+.input-group input{
+
+  width:320px;
+
+  padding:12px 20px;
+
+  border-radius:30px;
+
+  border:3px solid #222;
+
+  outline:none;
+
+  font-size:18px;
+
+}
+
+/*===========================*/
+
+.password{
+
+  position:relative;
+
+}
+
+.password button{
+
+  position:absolute;
+
+  right:15px;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  background:none;
+
+  border:none;
+
+  cursor:pointer;
+
+  font-size:20px;
+
+}
+
+/*===========================*/
+
+.btn-login{
+
+  margin-top:25px;
+
+  padding:15px 40px;
+
+  border:none;
+
+  border-radius:30px;
+
+  background:#d4af1e;
+
+  color:white;
+
+  font-size:20px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+}
+
+.btn-login:hover{
+
+  background:#b99610;
+
+}
+
+/*===========================*/
+
+footer{
+
+  height:100px;
+
+  background:#f6de6d;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+}
+
+footer img{
+
+  height:65px;
+
+}
+
+/*===========================*/
+
+@media(max-width:700px){
+
+  .login-box{
+
+    width:90%;
+
+  }
+
+  .input-group{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+  }
+
+  .input-group label{
+
+    width:auto;
+
+  }
+
+  .input-group input{
+
+    width:100%;
+
+  }
+
+  .password{
+
+    width:100%;
+
+  }
+
+}

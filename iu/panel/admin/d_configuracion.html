@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Configuración | Municipalidad</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <link rel="stylesheet" href="css/d_configuracion.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- =====================================================
+       SIDEBAR
+  ====================================================== -->
+
+  <aside class="sidebar">
+
+    <div class="agenda-logo">
+
+      <img
+        src="../../../multimedia/admin1.png"
+        alt="Municipalidad"
+      >
+
+      <div>
+        <h2>Municipalidad</h2>
+        <span>Provincia de Ascope</span>
+      </div>
+
+    </div>
+
+    <nav class="sidebar-menu">
+
+      <a href="dashboard.html" class="menu-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="d_usuarios.html" class="menu-item">
+        <i class="fa-solid fa-users"></i>
+        <span>Usuarios</span>
+      </a>
+
+      <a href="d_agenda.html" class="menu-item">
+        <i class="fa-solid fa-calendar"></i>
+        <span>Agenda</span>
+      </a>
+
+      <a href="d_documentos.html" class="menu-item">
+        <i class="fa-solid fa-file-lines"></i>
+        <span>Documentos</span>
+      </a>
+
+      <a href="d_visitas.html" class="menu-item">
+        <i class="fa-solid fa-address-card"></i>
+        <span>Visitas</span>
+      </a>
+
+      <a href="d_estadisticas.html" class="menu-item">
+        <i class="fa-solid fa-chart-simple"></i>
+        <span>Estadísticas</span>
+      </a>
+
+      <a
+        href="d_configuracion.html"
+        class="menu-item active"
+      >
+        <i class="fa-solid fa-gear"></i>
+        <span>Configuración</span>
+      </a>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+  ====================================================== -->
+
+  <main class="main-content">
+
+    <!-- =================================================
+         CABECERA
+    ================================================== -->
+
+    <header class="page-header">
+
+      <div class="page-title">
+
+        <h1>Configuración</h1>
+
+        <p>
+          Consulta la información de tu perfil
+        </p>
+
+      </div>
+
+
+      <!-- =================================================
+           PERFIL SUPERIOR DERECHO
+      ================================================== -->
+
+      <div class="profile-wrapper">
+
+        <button
+          type="button"
+          class="profile-button"
+          id="btnPerfil"
+          aria-label="Abrir menú de perfil"
+          aria-expanded="false"
+        >
+
+          <img
+            src="../../../multimedia/perfil-default.png"
+            id="fotoPerfil"
+            alt="Foto de perfil"
+          >
+
+        </button>
+
+
+        <div
+          class="profile-dropdown"
+          id="profileDropdown"
+        >
+
+          <div class="profile-dropdown-header">
+
+            <img
+              src="../../../multimedia/perfil-default.png"
+              id="imagenPerfilDropdown"
+              alt="Perfil"
+            >
+
+            <div>
+
+              <strong id="nombrePerfilDropdown">
+                Administrador
+              </strong>
+
+              <span id="usuarioPerfilDropdown">
+                admin
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="profile-dropdown-divider"></div>
+
+
+          <button
+            type="button"
+            class="profile-dropdown-item logout-item"
+            id="btnLogoutHeader"
+          >
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>
+              Cerrar sesión
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- =================================================
+         ÚNICA CARD
+    ================================================== -->
+
+    <div class="configuration-grid">
+
+      <section class="config-card profile-card">
+
+        <!-- CABECERA -->
+
+        <div class="card-header">
+
+          <div class="card-header-icon">
+            <i class="fa-solid fa-user"></i>
+          </div>
+
+          <div>
+
+            <h2>Información del perfil</h2>
+
+            <p>
+              Consulta tus datos personales y cambia tu foto de perfil.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PERFIL
+        ================================================== -->
+
+        <div class="personal-profile">
+
+          <div class="personal-profile-photo">
+
+            <img
+              src="../../../multimedia/perfil-default.png"
+              id="imagenPerfil"
+              alt="Foto de perfil"
+            >
+
+            <!-- BOTÓN PARA CAMBIAR FOTO -->
+
+            <button
+              type="button"
+              class="btn-change-photo"
+              id="btnCambiarFoto"
+              title="Cambiar foto de perfil"
+              aria-label="Cambiar foto de perfil"
+            >
+
+              <i class="fa-solid fa-camera"></i>
+
+            </button>
+
+          </div>
+
+
+          <div class="personal-profile-main">
+
+            <h3 id="nombrePerfil">
+              Administrador del Sistema
+            </h3>
+
+            <span id="rolPerfil">
+              Administrador
+            </span>
+
+            <button
+              type="button"
+              class="photo-link"
+              id="btnCambiarFotoTexto"
+            >
+
+              <i class="fa-solid fa-camera"></i>
+
+              Cambiar foto de perfil
+
+            </button>
+
+            <!-- INPUT OCULTO -->
+
+            <input
+              type="file"
+              id="inputFotoPerfil"
+              accept="image/jpeg,image/png,image/webp"
+              hidden
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DATOS PERSONALES
+        ================================================== -->
+
+        <div class="personal-data">
+
+
+          <!-- NOMBRES -->
+
+          <div class="personal-data-item">
+
+            <div class="personal-data-label">
+
+              <i class="fa-solid fa-user"></i>
+
+              <span>Nombres</span>
+
+            </div>
+
+            <strong id="datoNombres">
+              -
+            </strong>
+
+          </div>
+
+
+          <!-- APELLIDOS -->
+
+          <div class="personal-data-item">
+
+            <div class="personal-data-label">
+
+              <i class="fa-solid fa-user"></i>
+
+              <span>Apellidos</span>
+
+            </div>
+
+            <strong id="datoApellidos">
+              -
+            </strong>
+
+          </div>
+
+
+          <!-- CORREO -->
+
+          <div class="personal-data-item">
+
+            <div class="personal-data-label">
+
+              <i class="fa-solid fa-envelope"></i>
+
+              <span>Correo electrónico</span>
+
+            </div>
+
+            <strong id="datoCorreo">
+              -
+            </strong>
+
+          </div>
+
+
+          <!-- USUARIO -->
+
+          <div class="personal-data-item">
+
+            <div class="personal-data-label">
+
+              <i class="fa-solid fa-at"></i>
+
+              <span>Usuario</span>
+
+            </div>
+
+            <strong id="datoUsuario">
+              -
+            </strong>
+
+          </div>
+
+
+          <!-- ROL -->
+
+          <div class="personal-data-item">
+
+            <div class="personal-data-label">
+
+              <i class="fa-solid fa-shield-halved"></i>
+
+              <span>Rol</span>
+
+            </div>
+
+            <strong id="datoRol">
+              -
+            </strong>
+
+          </div>
+
+
+          <!-- ESTADO -->
+
+          <div class="personal-data-item">
+
+            <div class="personal-data-label">
+
+              <i class="fa-solid fa-circle-check"></i>
+
+              <span>Estado de cuenta</span>
+
+            </div>
+
+            <strong
+              id="datoEstadoCuenta"
+              class="status-text activo"
+            >
+              Activo
+            </strong>
+
+          </div>
+
+
+          <!-- FECHA DE REGISTRO -->
+
+          <div class="personal-data-item">
+
+            <div class="personal-data-label">
+
+              <i class="fa-solid fa-calendar"></i>
+
+              <span>Fecha de registro</span>
+
+            </div>
+
+            <strong id="datoFechaRegistro">
+              -
+            </strong>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <!-- =================================================
+         MENSAJE DE ERROR
+    ================================================== -->
+
+    <div
+      id="mensajeError"
+      class="error-message"
+    >
+
+      <i class="fa-solid fa-circle-exclamation"></i>
+
+      <span id="textoError">
+        No se pudo cargar la información.
+      </span>
+
+    </div>
+
+
+    <!-- =================================================
+         MENSAJE DE ÉXITO
+    ================================================== -->
+
+    <div
+      id="mensajeExito"
+      class="success-message"
+    >
+
+      <i class="fa-solid fa-circle-check"></i>
+
+      <span id="textoExito">
+        Foto actualizada correctamente.
+      </span>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL LOGOUT
+====================================================== -->
+
+<div
+  class="modal-overlay"
+  id="modalLogout"
+  style="display: none;"
+>
+
+  <div class="logout-modal">
+
+    <div class="logout-modal-icon">
+
+      <i class="fa-solid fa-right-from-bracket"></i>
+
+    </div>
+
+    <h2>
+      ¿Cerrar sesión?
+    </h2>
+
+    <p>
+      ¿Estás seguro de que deseas cerrar tu sesión
+      del panel administrativo?
+    </p>
+
+    <div class="modal-actions">
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        id="btnCancelarLogout"
+      >
+        Cancelar
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-danger"
+        id="btnConfirmarLogout"
+      >
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        Cerrar sesión
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="js/d_configuracion.js"></script>
+
+</body>
+
+</html>

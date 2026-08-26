@@ -1,0 +1,202 @@
+/* ==========================================
+   RESET & ESTILOS BASE
+========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* ==========================================
+   BREADCRUMB GENERAL
+========================================== */
+.breadcrumb-custom {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.breadcrumb-custom a {
+  text-decoration: none;
+  color: #000;
+}
+
+.breadcrumb-custom span {
+  margin: 0 8px;
+}
+
+/* ==========================================
+   SECTION ALCALDE (PRESENTACIÓN)
+========================================== */
+.alcalde-section {
+  position: relative;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+    url('../../multimedia/fondo-municipalidad.jpg');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  padding: 50px 0;
+}
+
+.alcalde-img {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.titulo-alcalde {
+  font-size: 55px;
+  font-weight: 900;
+  color: #2e2e2e;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.subtitulo-alcalde {
+  font-size: 28px;
+  color: #444;
+  margin-bottom: 40px;
+  font-family: serif;
+}
+
+.titulo-presentacion {
+  color: #c8ab3f;
+  font-size: 45px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.texto-presentacion {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #333;
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+/* ==========================================
+   MISION - VISION
+========================================== */
+.mision-vision-section {
+  background: #ece7cf;
+  padding: 0;
+}
+
+/* Tabs */
+.tabs-mv {
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+  background: #fff;
+  padding: 30px 20px;
+}
+
+.tab-btn {
+  border: none;
+  background: transparent;
+  font-size: 60px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.3s ease;
+  color: #000;
+  font-family: Impact, sans-serif;
+}
+
+.tab-btn.active {
+  color: #c8ab3f;
+}
+
+/* Contenido de Tabs */
+.contenido-mv {
+  padding: 70px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.tab-content {
+  display: none;
+  animation: fade 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-content p {
+  font-size: 32px;
+  line-height: 1.7;
+  text-align: center;
+  color: #111;
+  font-family: serif;
+}
+
+/* Animación Fade */
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE NOSOTROS
+========================================== */
+@media (max-width: 992px) {
+  .titulo-alcalde {
+    font-size: 38px;
+    text-align: center;
+  }
+
+  .subtitulo-alcalde {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .titulo-presentacion {
+    text-align: center;
+    font-size: 35px;
+  }
+
+  .texto-presentacion {
+    text-align: center;
+  }
+
+  .alcalde-img {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .tabs-mv {
+    gap: 25px;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    font-size: 26px;
+  }
+
+  .contenido-mv {
+    padding: 40px 20px;
+  }
+
+  .tab-content p {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+}

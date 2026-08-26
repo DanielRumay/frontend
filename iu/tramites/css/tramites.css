@@ -1,0 +1,404 @@
+
+/* =========================
+   SECCION LICENCIA
+========================= */
+
+.tramites-section {
+  position: relative;
+  background:
+    linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
+    url('../../multimedia/fondo-municipalidad.jpg');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* Breadcrumb */
+.breadcrumb-custom {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.breadcrumb-custom a {
+  text-decoration: none;
+  color: #000;
+}
+
+.breadcrumb-custom span {
+  margin: 0 8px;
+}
+
+.licencia-section{
+  background: #ffffff;
+  padding: 80px 0;
+}
+
+/* TITULO */
+
+.titulo-licencia{
+  font-size: 55px;
+  font-weight: 800;
+  color: #000;
+
+  line-height: 1.1;
+
+  margin-bottom: 20px;
+}
+
+/* TEXTO */
+
+.texto-licencia{
+  font-size: 22px;
+  line-height: 1.8;
+  color: #555;
+
+  margin-bottom: 25px;
+}
+
+/* CORREO */
+
+.correo-licencia{
+  font-size: 22px;
+  color: #333;
+}
+
+/* IMAGEN */
+
+.licencia-img{
+  width: 100%;
+  max-width: 450px;
+
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  border-radius: 30px;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px){
+
+  .licencia-section{
+    padding: 50px 20px;
+  }
+
+  .titulo-licencia{
+    font-size: 34px;
+    text-align: center;
+  }
+
+  .texto-licencia,
+  .correo-licencia{
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .licencia-img{
+    max-width: 100%;
+    border-radius: 22px;
+  }
+
+}
+
+/* =========================
+   REQUISITOS
+========================= */
+
+.requisitos-section{
+  background: #ffffff;
+  padding: 80px 0;
+}
+
+/* TITULO */
+
+.titulo-requisitos{
+  font-size: 45px;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+/* MENU */
+
+.menu-requisitos{
+  background: #e6c539;
+  border-radius: 30px;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  height: 350px;
+}
+
+.menu-requisitos2{
+  background: #000000;
+  border-radius: 30px;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  height: 100%;
+  width: 100%;
+}
+
+/* BOTONES */
+
+.btn-requisito{
+  background: transparent;
+  border: none;
+
+  color: #ffffff;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.btn-requisito2{
+  background: transparent;
+  border: none;
+
+  color: #ffffff;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.btn-requisito:hover{
+  color: #000000;
+}
+
+.btn-requisito.active{
+  color: #000000;
+}
+
+.btn-requisito2:hover{
+  color: #e6c539;
+}
+
+.btn-requisito2.active{
+  color: #e6c539;
+}
+
+/* CAJA DERECHA */
+
+.contenido-requisitos{
+  background: #e6c539;
+
+  border-radius: 30px;
+
+  padding: 40px;
+
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
+.contenido-requisitos2{
+
+  border-radius: 30px;
+
+  padding: 40px;
+
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
+/* PANELES */
+
+.requisito-box{
+  display: none;
+  width: 100%;
+}
+
+.requisito-box.active{
+  display: block;
+}
+
+/* LISTA */
+
+.requisito-box ol{
+  margin: 0;
+  padding-left: 35px;
+}
+
+.requisito-box li{
+  color: black;
+
+  font-size: 30px;
+  font-weight: 700;
+
+  margin-bottom: 18px;
+
+  line-height: 1.4;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px){
+
+  .titulo-requisitos{
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .menu-requisitos{
+    border-radius: 22px;
+    padding: 20px;
+  }
+
+  .btn-requisito{
+    font-size: 20px;
+  }
+
+  .contenido-requisitos{
+    min-height: 350px;
+    padding: 25px;
+    border-radius: 22px;
+  }
+
+  .requisito-box li{
+    font-size: 20px;
+  }
+
+}
+
+/* ==========================
+   FAQ
+========================== */
+
+.faq-section {
+  padding: 80px 0;
+  background: #fdfdfd;
+}
+
+.faq-section .container {
+  width: min(1200px, 90%);
+  margin: auto;
+}
+
+/* ENCABEZADO */
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: #6b7280;
+}
+
+/* GRID */
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+
+.faq-grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(350px, 500px));
+  justify-content: center;
+  gap: 30px;
+}
+
+/* TARJETAS */
+
+.faq-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 35px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  transition: .3s ease;
+  border-top: 5px solid #d4a600;
+  height: fit-content;
+}
+
+.faq-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,.12);
+}
+
+/* ICONO */
+
+.faq-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(212,166,0,.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.faq-icon i {
+  font-size: 2rem;
+  color: #d4a600;
+}
+
+/* TITULO */
+
+.faq-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+/* TEXTO */
+
+.faq-card p {
+  color: #4b5563;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 992px) {
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .faq-card {
+    padding: 30px;
+  }
+}

@@ -1,0 +1,573 @@
+/* ==========================================
+   RESET & ESTILOS BASE
+========================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f1f5f9;
+  color:#0f172a;
+}
+
+/* ==========================================
+   CONTENEDOR
+========================================== */
+
+.agenda-container{
+  display:flex;
+  align-items:flex-start;
+  gap:30px;
+  padding:20px;
+}
+
+.agenda-panel{
+  flex:1;
+  padding:28px;
+  border-radius:18px;
+  background:#ffffff;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+.agenda-header{
+  margin-bottom:20px;
+}
+
+.agenda-header h2{
+  font-size:28px;
+  color:#1e293b;
+  margin-bottom:8px;
+}
+
+.agenda-header p{
+  color:#64748b;
+  line-height:1.5;
+}
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.agenda-sidebar{
+
+  width:290px;
+  background:#0f172a;
+  color:white;
+  padding:25px;
+  border-radius:18px;
+  height:fit-content;
+  position:sticky;
+  top:25px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.agenda-sidebar .sidebar-logo{
+
+  margin-bottom:35px;
+
+}
+
+.agenda-sidebar .sidebar-logo h2{
+
+  color:#facc15;
+  font-size:28px;
+  margin-bottom:5px;
+
+}
+
+.agenda-sidebar .sidebar-logo span{
+
+  color:#94a3b8;
+  font-size:14px;
+
+}
+
+.agenda-sidebar ul{
+
+  list-style:none;
+  padding:0;
+  margin:0;
+
+}
+
+.agenda-sidebar li{
+
+  padding:11px 14px;
+  margin-bottom:6px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.25s;
+  color:#e2e8f0;
+  font-size:14px;
+
+}
+
+.agenda-sidebar li:hover{
+
+  background:rgba(255,255,255,.08);
+
+}
+
+.agenda-sidebar li.active{
+
+  background:#facc15;
+  color:black;
+  font-weight:600;
+
+}
+
+/* ==========================================
+   ACORDEÓN
+========================================== */
+
+.sidebar-group{
+
+  margin-bottom:18px;
+
+}
+
+.sidebar-toggle{
+
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:none;
+  border:none;
+  color:#facc15;
+  font-size:17px;
+  font-weight:600;
+  cursor:pointer;
+  padding:10px 0;
+
+}
+
+.sidebar-toggle i{
+
+  transition:.25s;
+
+}
+
+.sidebar-group ul{
+
+  display:none;
+  margin-top:10px;
+
+}
+
+.sidebar-group.active ul{
+
+  display:block;
+
+}
+
+.sidebar-group.active .sidebar-toggle i{
+
+  transform:rotate(180deg);
+
+}
+
+/* ==========================================
+   BUSCADOR
+========================================== */
+
+.agenda-filtros{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:25px;
+
+  margin-bottom:30px;
+
+}
+
+.agenda-filtros input{
+
+  flex:1;
+
+  max-width:420px;
+
+  padding:14px 18px;
+
+  border-radius:12px;
+
+  border:1px solid #cbd5e1;
+
+  outline:none;
+
+  transition:.2s;
+
+}
+
+.agenda-filtros input:focus{
+
+  border-color:#facc15;
+  box-shadow:0 0 0 4px rgba(250,204,21,.15);
+
+}
+
+/* ==========================================
+   TABLA
+========================================== */
+
+.agenda-table-wrapper{
+
+  overflow-x:auto;
+
+}
+
+.agenda-table{
+
+  width:100%;
+  border-collapse:collapse;
+
+}
+
+.agenda-table thead{
+
+  background:#e6c539;
+
+}
+
+.agenda-table th{
+
+  padding:15px;
+  text-align:left;
+  color:#000;
+  font-size:14px;
+
+}
+
+.agenda-table td{
+
+  padding:14px;
+  border-bottom:1px solid #e2e8f0;
+  font-size:14px;
+
+}
+
+.agenda-table tbody tr{
+
+  transition:.2s;
+
+}
+
+.agenda-table tbody tr:hover{
+
+  background:#f8fafc;
+
+}
+
+/* ==========================================
+   NUMERACIÓN
+========================================== */
+
+.agenda-table th:first-child,
+.agenda-table td:first-child{
+
+  width:70px;
+  text-align:center;
+  font-weight:600;
+
+}
+
+/* ==========================================
+   FECHA Y HORA
+========================================== */
+
+.agenda-table td:nth-child(4),
+.agenda-table td:nth-child(5){
+
+  white-space:nowrap;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1100px){
+
+  .agenda-container{
+
+    flex-direction:column;
+
+  }
+
+  .agenda-sidebar{
+
+    width:100%;
+    position:relative;
+    top:0;
+
+  }
+
+  .agenda-filtros input{
+
+    width:100%;
+
+  }
+
+  .btn-agregar-documento{
+
+    justify-content:center;
+    width:100%;
+
+  }
+
+}
+
+@media(max-width:768px){
+
+  .agenda-panel{
+
+    padding:20px;
+
+  }
+
+  .agenda-header h2{
+
+    font-size:24px;
+
+  }
+
+  .agenda-table{
+
+    min-width:700px;
+
+  }
+
+}
+
+/*=========================================
+    BUSCADOR DE LUGAR
+=========================================*/
+
+.sidebar-search{
+
+  position:relative;
+
+  margin-bottom:15px;
+
+}
+
+.sidebar-search input{
+
+  width:100%;
+
+  padding:12px 14px 12px 42px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#1e293b;
+
+  color:white;
+
+  transition:.25s;
+
+}
+
+.sidebar-search input::placeholder{
+
+  color:#94a3b8;
+
+}
+
+.sidebar-search input:focus{
+
+  background:#334155;
+
+  box-shadow:0 0 0 3px rgba(250,204,21,.20);
+
+}
+
+.sidebar-search i{
+
+  position:absolute;
+
+  left:14px;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  color:#94a3b8;
+
+}
+
+#listaLugaresAgenda{
+
+  list-style:none;
+
+  margin:0;
+
+  padding:0;
+
+  max-height:220px;
+
+  overflow-y:auto;
+
+}
+
+#listaLugaresAgenda li{
+
+  padding:10px 14px;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+  color:#e2e8f0;
+
+  transition:.2s;
+
+}
+
+#listaLugaresAgenda li:hover{
+
+  background:rgba(255,255,255,.08);
+
+}
+
+#listaLugaresAgenda li.active{
+
+  background:#facc15;
+
+  color:#000;
+
+  font-weight:600;
+
+}
+
+/* Scroll */
+
+#listaLugaresAgenda::-webkit-scrollbar{
+
+  width:6px;
+
+}
+
+#listaLugaresAgenda::-webkit-scrollbar-thumb{
+
+  background:#475569;
+
+  border-radius:50px;
+
+}
+
+#listaLugaresAgenda::-webkit-scrollbar-track{
+
+  background:transparent;
+
+}
+
+/*=========================================
+    SECCIÓN LUGAR
+=========================================*/
+
+.sidebar-lugar{
+
+  margin-top:30px;
+
+  padding-top:25px;
+
+  border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.sidebar-lugar h3{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  color:#facc15;
+
+  font-size:17px;
+
+  margin-bottom:15px;
+
+}
+
+.sidebar-lugar h3 i{
+
+  font-size:18px;
+
+}
+
+.sidebar-filter {
+  margin-bottom: 28px;
+}
+
+.sidebar-filter h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #facc15;
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.sidebar-filter ul {
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.btn-agregar-agenda{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  padding:8px 14px;
+
+  background:#f4cb2d;
+
+  color:#000;
+
+  text-decoration:none;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  border-radius:16px;
+
+  box-shadow:0 10px 22px rgba(244,203,45,.45);
+
+  transition:.25s;
+
+}
+
+.btn-agregar-agenda i{
+
+  font-size:22px;
+
+}
+
+.btn-agregar-agenda:hover{
+
+  background:#e6c539;
+
+  color:#000;
+
+  transform:translateY(-3px);
+
+  box-shadow:0 16px 30px rgba(244,203,45,.55);
+
+}

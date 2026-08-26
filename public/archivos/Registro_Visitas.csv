@@ -1,0 +1,11 @@
+id,fecha_registro,nombre_visitante,dni_visitante,funcionario_visitado,hora_entrada_registrada,hora_salida_registrada,motivo,lugar_especifico_visita,fecha_creacion
+1,2026-06-10,"Juan Perez Gomez",12345678,"Carlos Ramirez",08:15:00,09:00:00,"Consulta sobre licencia de conducir","Gerencia de Transporte","2026-06-10 10:47:38"
+2,2026-06-10,"Maria Lopez Torres",23456789,"Ana Rodriguez",09:10:00,09:45:00,"Presentacion de documentos","Mesa de Partes","2026-06-10 10:47:38"
+3,2026-06-10,"Jose Castillo Ruiz",34567890,"Luis Mendoza",10:00:00,11:20:00,"Reunion de coordinacion","Gerencia Municipal","2026-06-10 10:47:38"
+4,2026-06-10,"Rosa Fernandez Diaz",45678901,"Patricia Salas",10:30:00,11:00:00,"Solicitud de informacion","Oficina de Rentas","2026-06-10 10:47:38"
+5,2026-06-10,"Miguel Vargas Soto",56789012,"Carlos Ramirez",11:15:00,12:10:00,"Tramite de permiso","Gerencia de Transporte","2026-06-10 10:47:38"
+6,2026-06-10,"Lucia Herrera Cruz",67890123,"Ana Rodriguez",13:00:00,13:40:00,"Seguimiento de expediente","Mesa de Partes","2026-06-10 10:47:38"
+7,2026-06-10,"Pedro Alva Morales",78901234,"Luis Mendoza",14:10:00,15:00:00,"Reunion de trabajo","Gerencia Municipal","2026-06-10 10:47:38"
+8,2026-06-10,"Carmen Rojas Silva",89012345,"Patricia Salas",15:20:00,16:05:00,"Consulta tributaria","Oficina de Rentas","2026-06-10 10:47:38"
+9,2026-06-10,"Fernando Chavez Leon",90123456,"Carlos Ramirez",16:15:00,17:00:00,"Renovacion de licencia","Gerencia de Transporte","2026-06-10 10:47:38"
+10,2026-06-10,"Elena Gutierrez Paredes",01234567,"Ana Rodriguez",16:40:00,NULL,"Entrega de documentos","Mesa de Partes","2026-06-10 10:47:38"

@@ -1,0 +1,491 @@
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+
+  font-family:"Courier New", monospace;
+  background:#FFFBEA;
+  color:#111;
+  min-height:100vh;
+
+  display:flex;
+  flex-direction:column;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.header{
+
+  width:100%;
+  background:#F6DD69;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:12px 0;
+
+  border-bottom:2px solid rgba(0,0,0,.08);
+
+}
+
+.header img{
+
+  width:360px;
+  max-width:90%;
+
+}
+
+/* ==========================================
+   MAIN
+========================================== */
+
+.main{
+
+  flex:1;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:50px 20px;
+
+}
+
+/* ==========================================
+   FORMULARIO
+========================================== */
+
+.contenedor-formulario{
+
+  width:100%;
+  max-width:720px;
+
+}
+
+/* ==========================================
+   TITULO
+========================================== */
+
+.contenedor-formulario h1{
+
+  text-align:center;
+  font-size:58px;
+  font-weight:bold;
+  line-height:1;
+
+  margin-bottom:45px;
+
+}
+
+.contenedor-formulario h1 span{
+
+  display:block;
+
+  color:#D8B62B;
+
+  margin-top:10px;
+
+}
+
+/* ==========================================
+   GRUPOS
+========================================== */
+
+.grupo{
+
+  display:grid;
+
+  grid-template-columns:150px 1fr;
+
+  gap:18px;
+
+  align-items:start;
+
+  margin-bottom:28px;
+
+}
+
+.grupo label{
+
+  font-size:26px;
+
+  font-weight:bold;
+
+  margin-top:12px;
+
+}
+
+.grupo label span{
+
+  color:#B00020;
+
+}
+
+/* ==========================================
+   CAMPOS
+========================================== */
+
+.campo{
+
+  display:flex;
+
+  flex-direction:column;
+
+}
+
+input[type=text],
+input[type=date],
+select{
+
+  width:100%;
+
+  border:3px solid #111;
+
+  border-radius:18px;
+
+  background:white;
+
+  font-size:20px;
+
+  font-family:inherit;
+
+  padding:14px 18px;
+
+  transition:.25s;
+
+}
+
+input[type=text]:focus,
+input[type=date]:focus,
+select:focus{
+
+  outline:none;
+
+  border-color:#D8B62B;
+
+  box-shadow:0 0 0 5px rgba(216,182,43,.20);
+
+}
+
+/* ==========================================
+   CONTADOR
+========================================== */
+
+small{
+
+  margin-top:8px;
+
+  text-align:right;
+
+  color:#777;
+
+  font-size:15px;
+
+}
+
+/* ==========================================
+   BOTON DOCUMENTO
+========================================== */
+
+.btn-imagen{
+
+  width:100%;
+
+  height:58px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:12px;
+
+  background:linear-gradient(135deg,#FFE78A,#F6DD69);
+
+  border:2px solid #D8B62B;
+
+  border-radius:14px;
+
+  color:#4A3B00;
+
+  font-size:18px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.30s;
+
+}
+
+.btn-imagen:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:0 10px 20px rgba(216,182,43,.30);
+
+  background:linear-gradient(135deg,#FFEFB1,#F8E27A);
+
+}
+
+.btn-imagen:active{
+
+  transform:scale(.98);
+
+}
+
+.btn-imagen i{
+
+  font-size:22px;
+
+}
+
+/* ==========================================
+   NOMBRE ARCHIVO
+========================================== */
+
+#nombreArchivo{
+
+  display:block;
+
+  width:fit-content;
+
+  margin:18px auto 0;
+
+  padding:10px 18px;
+
+  background:#F7F7F7;
+
+  border:1px dashed #CFCFCF;
+
+  border-radius:10px;
+
+  color:#666;
+
+  font-size:14px;
+
+  text-align:center;
+
+}
+
+/* ==========================================
+   PREVIEW DOCUMENTO
+========================================== */
+
+.preview-documento{
+
+  width:260px;
+
+  min-height:190px;
+
+  margin:25px auto 0;
+
+  border:2px dashed #CFCFCF;
+
+  border-radius:16px;
+
+  background:#FAFAFA;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  padding:20px;
+
+  transition:.30s;
+
+}
+
+.preview-documento:hover{
+
+  border-color:#D8B62B;
+
+}
+
+.preview-documento i{
+
+  font-size:70px;
+
+  color:#C62828;
+
+  margin-bottom:18px;
+
+}
+
+.preview-documento h3{
+
+  font-size:18px;
+
+  text-align:center;
+
+  word-break:break-word;
+
+  margin-bottom:10px;
+
+}
+
+.preview-documento span{
+
+  color:#777;
+
+  font-size:15px;
+
+}
+
+/* ==========================================
+   BOTONES
+========================================== */
+
+.botones{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:25px;
+
+  margin-top:45px;
+
+}
+
+.botones button{
+
+  border:none;
+
+  border-radius:18px;
+
+  padding:16px 34px;
+
+  cursor:pointer;
+
+  font-size:20px;
+
+  font-family:inherit;
+
+  font-weight:bold;
+
+  transition:.25s;
+
+}
+
+.btn-cancelar{
+
+  background:#E5E7EB;
+
+  color:#111;
+
+}
+
+.btn-cancelar:hover{
+
+  background:#D1D5DB;
+
+}
+
+.btn-guardar{
+
+  background:#D8B62B;
+
+  color:white;
+
+}
+
+.btn-guardar:hover{
+
+  background:#B99817;
+
+  transform:translateY(-3px);
+
+}
+
+.botones i{
+
+  margin-right:8px;
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer{
+
+  width:100%;
+
+  background:#F6DD69;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  padding:15px 0;
+
+  margin-top:30px;
+
+}
+
+.footer img{
+
+  width:280px;
+
+  max-width:85%;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+  .contenedor-formulario h1{
+
+    font-size:42px;
+
+  }
+
+  .grupo{
+
+    grid-template-columns:1fr;
+
+    gap:10px;
+
+  }
+
+  .grupo label{
+
+    margin-top:0;
+
+    font-size:22px;
+
+  }
+
+  .botones{
+
+    flex-direction:column;
+
+  }
+
+  .botones button{
+
+    width:100%;
+
+  }
+
+}
