@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'bootstrap';
 
 const userInput = document.getElementById("userInput");
