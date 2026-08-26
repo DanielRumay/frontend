@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Muni-Ascope</title>
   <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../tramites/css/tramites.css">
+  <link rel="stylesheet" href="css/tramites.css">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -28,7 +28,6 @@
   </div>
 </section>
 
-<!-- PARTE ANTES DEL NAVBAR -->
 <div class="top-bar">
   <div class="left-logos">
     <a href="https://www.gob.pe/" target="_blank">
@@ -39,7 +38,7 @@
       >
     </a>
 
-    <a href="../../index.html">
+    <a href="../../../index.html">
       <img
         src="../../multimedia/Muni_Ascope.png"
         class="logo-pdt"
@@ -79,7 +78,7 @@
 
         <!-- INICIO -->
         <li class="nav-item">
-          <a class="nav-link" href="../../index.html">
+          <a class="nav-link" href="../../../index.html">
             <i class="bi bi-house-fill me-1"></i>
             Inicio
           </a>
@@ -243,7 +242,6 @@
   </div>
 </nav>
 
-<!-- LETRERO DE SECCION -->
 <section class="hero">
 
   <img
@@ -254,19 +252,18 @@
 
   <div class="hero-overlay text-center">
     <h1>
-      Impuesto <span>Vehicular</span>
+      Licencia de <span>Conducir Clase B</span>
     </h1>
   </div>
 
 </section>
 
-<!-- INTRODUCCION -->
 <section class="tramites-section py-5">
   <div class="container">
 
     <!-- Breadcrumb -->
     <div class="breadcrumb-custom mb-4">
-      <a href="../../index.html">Inicio</a>
+      <a href="../../../index.html">Inicio</a>
       <span>/</span>
       <strong>Tramites</strong>
     </div>
@@ -277,34 +274,35 @@
 
         <div class="row align-items-center gy-4">
 
-          <!-- IMAGEN -->
-          <div class="col-lg-5 text-center">
-
-            <img
-              src="../../multimedia/vehicular.png"
-              alt="Licencia de conducir"
-              class="licencia-img"
-            >
-
-          </div>
-
           <!-- TEXTO -->
           <div class="col-lg-7">
 
             <h1 class="titulo-licencia">
-              ¿QUE ES EL IMPUESTO VEHICULAR?
+              ¿QUE ES LA LICENCIA DE CONDUCIR?
             </h1>
 
             <p class="texto-licencia">
-              Es el impuesto que grava la propiedad de los vehículos como:
-              automoviles, camionetas, station wagons, camiones,remolcadores o tractocamiones, buses y omnibuses.
-              Es de periocidad anual.
+              Es el documento oficial otorgado por el Ministerio de
+              Transportes y Comunicaciones que autoriza a su titular
+              a conducir un vehículo de transporte terrestre a nivel
+              nacional. También es conocido como "Brevete".
             </p>
 
             <p class="correo-licencia">
               <strong>Correo:</strong>
-              rentas@muniascope.gob.pe
+              transporte@muniascope.gob.pe
             </p>
+
+          </div>
+
+          <!-- IMAGEN -->
+          <div class="col-lg-5 text-center">
+
+            <img
+              src="../../multimedia/licencia.jpg"
+              alt="Licencia de conducir"
+              class="licencia-img"
+            >
 
           </div>
 
@@ -317,74 +315,50 @@
   </div>
 </section>
 
-<!-- INFORMACION -->
-<section class="faq-section">
-  <div class="container">
-
-    <div class="faq-grid">
-
-      <div class="faq-card">
-
-        <h3>¿Cuántos años se paga el impuesto vehicular?</h3>
-
-        <p>
-          Debe ser pagado durante 3 años, contados a partir del año
-          siguiente al que realizó la primera inscripción en el
-          Registro de Propiedad Vehicular.
-        </p>
-      </div>
-
-      <div class="faq-card">
-
-        <h3>¿Quién paga el Impuesto Vehicular?</h3>
-
-        <p>
-          Está obligado al pago el propietario del vehículo al 1 de enero
-          de cada año en el que el vehículo deba tributar.
-        </p>
-      </div>
-
-      <div class="faq-card">
-
-        <h3>¿Cuál es la tasa del impuesto vehicular?</h3>
-
-        <p>
-          La tasa es el 1% de la base imponible.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- SELECCION SEGUN REQUISITO -->
 <section class="requisitos-section">
 
   <div class="container">
 
     <!-- TITULO -->
     <h2 class="titulo-requisitos">
-      Requisitos que debe presentar:
+      Requisitos para:
     </h2>
 
     <div class="row gy-4">
 
       <!-- MENU IZQUIERDO -->
-      <div class="col-lg-12 d-flex">
+      <div class="col-lg-7 d-flex">
 
-        <div class="menu-requisitos2">
+        <div class="menu-requisitos">
 
           <button
-            class="btn-requisito2 active"
+            class="btn-requisito active"
             onclick="mostrarRequisito('req1', this)">
-            El propietaro para declarar el vehículo
+            Nueva Lic. de Conducir Moto Lineal
           </button>
 
           <button
-            class="btn-requisito2"
+            class="btn-requisito"
             onclick="mostrarRequisito('req2', this)">
-            Constancia de No Adeudo del Impuesto Vehicular
+            Nueva Lic. de Conducir Mototaxi
+          </button>
+
+          <button
+            class="btn-requisito"
+            onclick="mostrarRequisito('req3', this)">
+            Duplicado Lic. de Conducir Moto Lineal o Mototaxi
+          </button>
+
+          <button
+            class="btn-requisito"
+            onclick="mostrarRequisito('req4', this)">
+            Revalidar Lic. de Conducir Moto Lineal
+          </button>
+
+          <button
+            class="btn-requisito"
+            onclick="mostrarRequisito('req5', this)">
+            Revalidar Lic. de Conducir Mototaxi
           </button>
 
         </div>
@@ -392,20 +366,17 @@
       </div>
 
       <!-- CUADRO DERECHO -->
-      <div class="col-lg-12 d-flex">
+      <div class="col-lg-5 d-flex">
 
-        <div class="contenido-requisitos2">
+        <div class="contenido-requisitos">
 
           <!-- PANEL 1 -->
           <div class="requisito-box active" id="req1">
 
             <ol>
-              <li>Solicitud dirigida a la Alcaldesa(FUT).</li>
-              <li>Copia de Tarjeta de Propiedad y/o inscripción del vehículo en SUNARP.</li>
-              <li>Copia de DNI del propietario(s).</li>
-              <li>Copia de Vigencia de poder para el caso de personas jurídicas.</li>
-              <li>Copia de recibo de luz o agua.</li>
-              <li>Copia de boleta y/o factura de compra del vehículo.</li>
+              <li>Copia de DNI.</li>
+              <li>Foto Tamaño Carné.</li>
+              <li>Certificado Médico.</li>
               <li>Derecho de Pago.</li>
             </ol>
 
@@ -415,10 +386,48 @@
           <div class="requisito-box" id="req2">
 
             <ol>
-              <li>Solicitud dirigida a la Alcaldesa(FUT).</li>
               <li>Copia de DNI.</li>
-              <li>Estado de deuda.</li>
-              <li>Copia de Vigencia de Poder para el caso de personas jurídicas.</li>
+              <li>Foto Tamaño Carné.</li>
+              <li>Certificado Médico.</li>
+              <li>Certificado Cofipro.</li>
+              <li>Derecho de Pago.</li>
+            </ol>
+
+          </div>
+
+          <!-- PANEL 3 -->
+          <div class="requisito-box" id="req3">
+
+            <ol>
+              <li>Copia de DNI.</li>
+              <li>Foto Tamaño Carné.</li>
+              <li>Denuncia policial por pérdida o robo.</li>
+              <li>Derecho de Pago.</li>
+            </ol>
+
+          </div>
+
+          <!-- PANEL 4 -->
+          <div class="requisito-box" id="req4">
+
+            <ol>
+              <li>Copia de DNI.</li>
+              <li>Foto Tamaño Carné.</li>
+              <li>Certificado Médico.</li>
+              <li>Licencia Vencida Original.</li>
+            </ol>
+
+          </div>
+
+          <!-- PANEL 5 -->
+          <div class="requisito-box" id="req5">
+
+            <ol>
+              <li>Copia de DNI.</li>
+              <li>Foto Tamaño Carné.</li>
+              <li>Certificado Médico.</li>
+              <li>Certificado Cofipro.</li>
+              <li>Licencia Vencida Original.</li>
               <li>Derecho de Pago.</li>
             </ol>
 
@@ -434,8 +443,6 @@
 
 </section>
 
-
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="row">
@@ -443,7 +450,7 @@
         <nav class="nav-footer">
           <ul class="list-inline">
             <li class="list-inline-item">
-              <a href="./">Inicio</a>
+              <a href="">Inicio</a>
             </li>
             <li class="list-inline-item">
               <a href="nosotros.php">Nosotros</a>
@@ -519,10 +526,8 @@
   </div>
 </footer>
 
-
-
 <script type="module" src="../../js/main.js"></script>
-<script type="module" src="../tramites/js/tramites.js"></script>
+<script type="module" src="js/tramites.js"></script>
 
 </body>
 </html>

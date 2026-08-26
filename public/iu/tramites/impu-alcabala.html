@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Muni-Ascope</title>
   <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../tramites/css/tramites.css">
+  <link rel="stylesheet" href="css/tramites.css">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -28,6 +28,7 @@
   </div>
 </section>
 
+<!-- PARTE ANTES DEL NAVBAR -->
 <div class="top-bar">
   <div class="left-logos">
     <a href="https://www.gob.pe/" target="_blank">
@@ -38,7 +39,7 @@
       >
     </a>
 
-    <a href="../../index.html">
+    <a href="../../../index.html">
       <img
         src="../../multimedia/Muni_Ascope.png"
         class="logo-pdt"
@@ -78,7 +79,7 @@
 
         <!-- INICIO -->
         <li class="nav-item">
-          <a class="nav-link" href="../../index.html">
+          <a class="nav-link" href="../../../index.html">
             <i class="bi bi-house-fill me-1"></i>
             Inicio
           </a>
@@ -242,6 +243,7 @@
   </div>
 </nav>
 
+<!-- LETRERO DE SECCION -->
 <section class="hero">
 
   <img
@@ -252,18 +254,19 @@
 
   <div class="hero-overlay text-center">
     <h1>
-      Licencia de <span>Conducir Clase B</span>
+      Impuesto <span>Alcabala</span>
     </h1>
   </div>
 
 </section>
 
+<!-- INTRODUCCION -->
 <section class="tramites-section py-5">
   <div class="container">
 
     <!-- Breadcrumb -->
     <div class="breadcrumb-custom mb-4">
-      <a href="../../index.html">Inicio</a>
+      <a href="../../../index.html">Inicio</a>
       <span>/</span>
       <strong>Tramites</strong>
     </div>
@@ -274,35 +277,35 @@
 
         <div class="row align-items-center gy-4">
 
-          <!-- TEXTO -->
-          <div class="col-lg-7">
-
-            <h1 class="titulo-licencia">
-              ¿QUE ES LA LICENCIA DE CONDUCIR?
-            </h1>
-
-            <p class="texto-licencia">
-              Es el documento oficial otorgado por el Ministerio de
-              Transportes y Comunicaciones que autoriza a su titular
-              a conducir un vehículo de transporte terrestre a nivel
-              nacional. También es conocido como "Brevete".
-            </p>
-
-            <p class="correo-licencia">
-              <strong>Correo:</strong>
-              transporte@muniascope.gob.pe
-            </p>
-
-          </div>
-
           <!-- IMAGEN -->
           <div class="col-lg-5 text-center">
 
             <img
-              src="../../multimedia/licencia.jpg"
-              alt="Licencia de conducir"
+              src="../../multimedia/alcabala.jpg"
+              alt="ALCABALA"
               class="licencia-img"
             >
+
+          </div>
+
+          <!-- TEXTO -->
+          <div class="col-lg-7">
+
+            <h1 class="titulo-licencia">
+              ¿QUE ES EL IMPUESTO DE ALCABALA?
+            </h1>
+
+            <p class="texto-licencia">
+              Es un Impuesto que grava las transferencias de propiedad
+              de bienes inmuebles urbanos o rústicos a título oneroso
+              o gratuito, cualquiera sea su forma o modalidad, inclusive
+              las ventas con reserva de dominio.
+            </p>
+
+            <p class="correo-licencia">
+              <strong>Correo:</strong>
+              rentas@muniascope.gob.pe
+            </p>
 
           </div>
 
@@ -315,50 +318,72 @@
   </div>
 </section>
 
+<!-- INFORMACION -->
+<section class="faq-section">
+  <div class="container">
+
+    <div class="faq-grid">
+
+      <div class="faq-card">
+
+        <h3>¿Quién paga el Impuesto de Alcabala?</h3>
+
+        <p>
+          Está obligado al pago el comprador o adquiriente del inmueble.
+        </p>
+      </div>
+
+      <div class="faq-card">
+
+        <h3>¿Cuánto se paga del Impuesto de Alcabala?</h3>
+
+        <p>
+          La base imponible del impuesto es el valor de transferencia,
+          el cual no podrá ser menor al valor de autovalúo del inmueble
+          correspondiente al ejercicio en que se produce la transferencia, ajustado por el Índice de Precios al por Mayor (IPM).
+          A la referida base se aplicará la tasa del impuesto del 3%.
+          No esta afecto al Impuesto de Alcabala, el tramo comprendido por las primeras 10 UIT del valor del inmueble.
+        </p>
+      </div>
+
+      <div class="faq-card">
+
+        <h3>¿Hasta cuándo hay plazo para efectuar el pago?</h3>
+
+        <p>
+          El pago del impuesto debe realizarse hasta el último día hábil del mes siguiente
+          de efectuada la transferencia. En caso contrario se aplicarán los intereses moratorias correspondientes.
+          El pago se efectuará al contado, sin que para ello sea relevante la forma de
+          pago del precio de venta del bien acordada por las partes.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- SELECCION SEGUN REQUISITO -->
 <section class="requisitos-section">
 
   <div class="container">
 
     <!-- TITULO -->
     <h2 class="titulo-requisitos">
-      Requisitos para:
+      Requisitos que debe cumplir para:
     </h2>
 
     <div class="row gy-4">
 
       <!-- MENU IZQUIERDO -->
-      <div class="col-lg-7 d-flex">
+      <div class="col-lg-12 d-flex">
 
-        <div class="menu-requisitos">
+        <div class="menu-requisitos2">
 
           <button
-            class="btn-requisito active"
+            class="btn-requisito2 active"
             onclick="mostrarRequisito('req1', this)">
-            Nueva Lic. de Conducir Moto Lineal
-          </button>
-
-          <button
-            class="btn-requisito"
-            onclick="mostrarRequisito('req2', this)">
-            Nueva Lic. de Conducir Mototaxi
-          </button>
-
-          <button
-            class="btn-requisito"
-            onclick="mostrarRequisito('req3', this)">
-            Duplicado Lic. de Conducir Moto Lineal o Mototaxi
-          </button>
-
-          <button
-            class="btn-requisito"
-            onclick="mostrarRequisito('req4', this)">
-            Revalidar Lic. de Conducir Moto Lineal
-          </button>
-
-          <button
-            class="btn-requisito"
-            onclick="mostrarRequisito('req5', this)">
-            Revalidar Lic. de Conducir Mototaxi
+            La liquidación del Impuesto de Alcabala
           </button>
 
         </div>
@@ -366,68 +391,17 @@
       </div>
 
       <!-- CUADRO DERECHO -->
-      <div class="col-lg-5 d-flex">
+      <div class="col-lg-12 d-flex">
 
-        <div class="contenido-requisitos">
+        <div class="contenido-requisitos2">
 
           <!-- PANEL 1 -->
           <div class="requisito-box active" id="req1">
 
             <ol>
-              <li>Copia de DNI.</li>
-              <li>Foto Tamaño Carné.</li>
-              <li>Certificado Médico.</li>
-              <li>Derecho de Pago.</li>
-            </ol>
-
-          </div>
-
-          <!-- PANEL 2 -->
-          <div class="requisito-box" id="req2">
-
-            <ol>
-              <li>Copia de DNI.</li>
-              <li>Foto Tamaño Carné.</li>
-              <li>Certificado Médico.</li>
-              <li>Certificado Cofipro.</li>
-              <li>Derecho de Pago.</li>
-            </ol>
-
-          </div>
-
-          <!-- PANEL 3 -->
-          <div class="requisito-box" id="req3">
-
-            <ol>
-              <li>Copia de DNI.</li>
-              <li>Foto Tamaño Carné.</li>
-              <li>Denuncia policial por pérdida o robo.</li>
-              <li>Derecho de Pago.</li>
-            </ol>
-
-          </div>
-
-          <!-- PANEL 4 -->
-          <div class="requisito-box" id="req4">
-
-            <ol>
-              <li>Copia de DNI.</li>
-              <li>Foto Tamaño Carné.</li>
-              <li>Certificado Médico.</li>
-              <li>Licencia Vencida Original.</li>
-            </ol>
-
-          </div>
-
-          <!-- PANEL 5 -->
-          <div class="requisito-box" id="req5">
-
-            <ol>
-              <li>Copia de DNI.</li>
-              <li>Foto Tamaño Carné.</li>
-              <li>Certificado Médico.</li>
-              <li>Certificado Cofipro.</li>
-              <li>Licencia Vencida Original.</li>
+              <li>Exhibir el documento de identidad de la persona que realice el trámite</li>
+              <li>Presentar copia simple del documento en el que consta la transferencia de propiedad(minuta)</li>
+              <li>Presentar copia simple del autovalúo del año en que se produjo la transferencia.</li>
               <li>Derecho de Pago.</li>
             </ol>
 
@@ -443,6 +417,7 @@
 
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="row">
@@ -450,7 +425,7 @@
         <nav class="nav-footer">
           <ul class="list-inline">
             <li class="list-inline-item">
-              <a href="./">Inicio</a>
+              <a href="">Inicio</a>
             </li>
             <li class="list-inline-item">
               <a href="nosotros.php">Nosotros</a>
@@ -526,8 +501,10 @@
   </div>
 </footer>
 
+
+
 <script type="module" src="../../js/main.js"></script>
-<script type="module" src="../tramites/js/tramites.js"></script>
+<script type="module" src="js/tramites.js"></script>
 
 </body>
 </html>

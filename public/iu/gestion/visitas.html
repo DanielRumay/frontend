@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Muni-Ascope</title>
   <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../gestion/css/agenda.css">
+  <link rel="stylesheet" href="css/visitas.css">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css">
 </head>
 <body>
 
@@ -39,7 +38,7 @@
       >
     </a>
 
-    <a href="../../index.html">
+    <a href="../../../index.html">
       <img
         src="../../multimedia/Muni_Ascope.png"
         class="logo-pdt"
@@ -79,7 +78,7 @@
 
         <!-- INICIO -->
         <li class="nav-item">
-          <a class="nav-link" href="../../index.html">
+          <a class="nav-link" href="../../../index.html">
             <i class="bi bi-house-fill me-1"></i>
             Inicio
           </a>
@@ -94,7 +93,7 @@
 
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="../municipalidad/noticias.html">
+              <a class="dropdown-item" href="../municipalidad/nosotros.html">
                 <i class="bi bi-building me-2"></i>
                 Nosotros
               </a>
@@ -237,8 +236,6 @@
           </a>
         </li>
 
-
-
       </ul>
 
     </div>
@@ -255,149 +252,183 @@
 
   <div class="hero-overlay text-center">
     <h1>
-      Age<span>nda</span>
+      Vis<span>itas</span>
     </h1>
   </div>
 
 </section>
 
-<section class="agenda-section">
+<div class="visitas-container">
 
-  <div class="agenda-container">
+  <!-- SIDEBAR -->
 
-    <!-- SIDEBAR -->
-    <aside class="agenda-sidebar">
+  <aside class="visitas-sidebar">
 
-      <div class="sidebar-logo">
-        <h2>Agenda</h2>
-        <span>Actividades Institucionales</span>
+    <div class="sidebar-logo">
+
+      <h2>
+        Registro
+      </h2>
+
+      <span>
+                Sistema de Visitas
+            </span>
+
+    </div>
+
+    <div class="sidebar-group active">
+
+      <button class="sidebar-toggle">
+        Año
+        <i class="bi bi-chevron-up"></i>
+      </button>
+
+      <div class="sidebar-search">
+        <i class="bi bi-search"></i>
+        <input
+          type="text"
+          id="buscarAnio"
+          placeholder="Buscar año..."
+        >
       </div>
 
-      <div class="sidebar-filter active">
+      <ul id="listaAnios"></ul>
 
-        <h3>
-          <i class="bi bi-calendar3"></i>
-          Año
-        </h3>
+    </div>
 
-        <div class="sidebar-search">
-          <i class="bi bi-search"></i>
-          <input
-            type="text"
-            id="buscarAnioAgenda"
-            placeholder="Buscar año..."
-          >
-        </div>
+    <div class="sidebar-group active">
 
-        <ul id="listaAniosAgenda"></ul>
+      <button class="sidebar-toggle">
+        Mes
+        <i class="bi bi-chevron-up"></i>
+      </button>
 
+      <div class="sidebar-search">
+        <i class="bi bi-search"></i>
+        <input
+          type="text"
+          id="buscarMes"
+          placeholder="Buscar mes..."
+        >
       </div>
 
-      <div class="sidebar-filter active">
+      <ul id="listaMeses"></ul>
 
-        <h3>
-          <i class="bi bi-calendar-event"></i>
-          Mes
-        </h3>
+    </div>
 
-        <div class="sidebar-search">
-          <i class="bi bi-search"></i>
-          <input
-            type="text"
-            id="buscarMesAgenda"
-            placeholder="Buscar mes..."
-          >
-        </div>
+    <div class="sidebar-group active">
 
-        <ul id="listaMesesAgenda"></ul>
+      <button class="sidebar-toggle">
+        Lugar Visitado
+        <i class="bi bi-chevron-up"></i>
+      </button>
 
+      <div class="sidebar-search">
+        <i class="bi bi-search"></i>
+        <input
+          type="text"
+          id="buscarLugar"
+          placeholder="Buscar lugar..."
+        >
       </div>
 
-      <div class="sidebar-lugar active">
+      <ul id="listaLugares"></ul>
 
-        <h3>
-          <i class="bi bi-geo-alt-fill"></i>
-          Lugar
-        </h3>
+    </div>
 
-        <div class="sidebar-search">
+  </aside>
 
-          <i class="bi bi-search"></i>
+  <!-- CONTENIDO -->
 
-          <input
-            type="text"
-            id="buscarLugarAgenda"
-            placeholder="Buscar lugar..."
-          >
+  <main class="visitas-content">
 
-        </div>
+    <!-- HEADER -->
 
-        <ul id="listaLugaresAgenda"></ul>
+    <div class="visitas-header">
 
-      </div>
+      <div>
 
-    </aside>
-
-    <!-- PANEL -->
-
-    <div class="agenda-panel">
-
-      <div class="agenda-header">
-        <h2>Agenda Institucional</h2>
+        <h1>
+          Registro de Visitas
+        </h1>
 
         <p>
-          Consulte las actividades programadas por la Municipalidad Provincial de Ascope.
+          Historial de ingresos y salidas
         </p>
+
       </div>
 
-      <div class="agenda-filtros">
+      <!-- BOTÓN CREAR VISITA -->
+      <a href="../panel/panel_admin.html" class="btn-crear-visita">
+        <i class="bi bi-plus-circle-fill"></i>
+        Crear Visita
+      </a>
+
+    </div>
+
+    <!-- FILTROS -->
+
+    <div class="visitas-filtros">
+
+      <div class="input-group">
 
         <input
           type="text"
-          id="buscarAgenda"
-          placeholder="Buscar actividad o lugar..."
+          id="buscarVisitante"
+          placeholder="Buscar visitante..."
         >
-
-        <a href="../panel/panel_admin.html"
-           class="btn-agregar-agenda"
-           target="_blank">
-
-          <i class="bi bi-calendar-plus-fill"></i>
-          Agregar agenda
-
-        </a>
 
       </div>
 
-      <div class="agenda-table-wrapper">
+      <div class="input-group">
 
-        <table class="agenda-table">
-
-          <thead>
-
-          <tr>
-            <th>N°</th>
-            <th>Actividad</th>
-            <th>Lugar</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-          </tr>
-
-          </thead>
-
-          <tbody id="tablaAgenda">
-
-          </tbody>
-
-        </table>
+        <input
+          type="text"
+          id="buscarFuncionario"
+          placeholder="Buscar funcionario..."
+        >
 
       </div>
 
     </div>
 
-  </div>
+    <!-- TABLA -->
 
-</section>
+    <div class="tabla-card">
+
+      <table class="visitas-table">
+
+        <thead>
+
+        <tr>
+
+          <th>ID</th>
+          <th>Fecha</th>
+          <th>Visitante</th>
+          <th>DNI</th>
+          <th>Funcionario</th>
+          <th>Entrada</th>
+          <th>Salida</th>
+          <th>Motivo</th>
+          <th>Lugar</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody id="tablaVisitas">
+
+        </tbody>
+
+      </table>
+
+      <div id="paginacion" class="paginacion"></div>
+
+    </div>
+
+  </main>
+
+</div>
 
 <footer>
   <div class="container">
@@ -406,10 +437,10 @@
         <nav class="nav-footer">
           <ul class="list-inline">
             <li class="list-inline-item">
-              <a href="index.html">Inicio</a>
+              <a href="../../../index.html">Inicio</a>
             </li>
             <li class="list-inline-item">
-              <a href="iu/municipalidad/nosotros.html">Nosotros</a>
+              <a href="../municipalidad/nosotros.html">Nosotros</a>
             </li>
             <li class="list-inline-item">
               <a href="servicios.php">Servicios</a>
@@ -482,9 +513,15 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 <script type="module" src="../../js/main.js"></script>
-<script type="module" src="../gestion/js/agenda.js"></script>
+<script type="module" src="js/visitas.js"></script>
+
+<div
+  id="toast"
+  class="toast"
+>
+</div>
 
 </body>
 </html>
+

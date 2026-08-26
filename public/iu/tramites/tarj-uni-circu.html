@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Muni-Ascope</title>
   <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../servicios/css/servicios.css">
+  <link rel="stylesheet" href="css/tramites.css">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -38,7 +38,7 @@
       >
     </a>
 
-    <a href="../../index.html">
+    <a href="../../../index.html">
       <img
         src="../../multimedia/Muni_Ascope.png"
         class="logo-pdt"
@@ -78,7 +78,7 @@
 
         <!-- INICIO -->
         <li class="nav-item">
-          <a class="nav-link" href="../../index.html">
+          <a class="nav-link" href="../../../index.html">
             <i class="bi bi-house-fill me-1"></i>
             Inicio
           </a>
@@ -138,7 +138,7 @@
 
         <!-- SERVICIOS -->
         <li class="nav-item">
-          <a class="nav-link" href="servicios.html">
+          <a class="nav-link" href="../servicios/servicios.html">
             <i class="bi bi-grid-fill me-1"></i>
             Servicios
           </a>
@@ -153,35 +153,35 @@
 
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="../tramites/lice-condu-clasb.html">
+              <a class="dropdown-item" href="lice-condu-clasb.html">
                 <i class="bi bi-car-front me-2"></i>
                 Licencia de Conducir Clase B
               </a>
             </li>
 
             <li>
-              <a class="dropdown-item" href="../tramites/tarj-uni-circu.html">
+              <a class="dropdown-item" href="tarj-uni-circu.html">
                 <i class="bi bi-card-heading me-2"></i>
                 Tarjeta única de Circulación
               </a>
             </li>
 
             <li>
-              <a class="dropdown-item" href="../tramites/impu-predi.html">
+              <a class="dropdown-item" href="impu-predi.html">
                 <i class="bi bi-receipt me-2"></i>
                 Impuesto Predial
               </a>
             </li>
 
             <li>
-              <a class="dropdown-item" href="../tramites/impu-vehi.html">
+              <a class="dropdown-item" href="impu-vehi.html">
                 <i class="bi bi-clipboard2-data me-2"></i>
                 Impuesto Vehicular
               </a>
             </li>
 
             <li>
-              <a class="dropdown-item" href="../tramites/impu-alcabala.html">
+              <a class="dropdown-item" href="impu-alcabala.html">
                 <i class="bi bi-file-earmark-text me-2"></i>
                 Impuesto de Alcabala
               </a>
@@ -252,59 +252,164 @@
 
   <div class="hero-overlay text-center">
     <h1>
-      Gerencia de <span>transporte</span>
+      Tarjeta única <span>de Circulación</span>
     </h1>
   </div>
 
 </section>
 
-<div class="transport-content">
+<section class="tramites-section py-5">
+  <div class="container">
 
-  <!-- IZQUIERDA -->
-  <div class="transport-info">
-
-    <div class="faq-card">
-
-      <h3>Contacto / Consultas</h3>
-
-      <p>
-        <strong>Email:</strong> transporte@muniascope.gob.pe
-      </p>
-
-      <p>
-        <strong>Dirección:</strong> Calle Miguel Grau - Ascope
-      </p>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-custom mb-4">
+      <a href="../../../index.html">Inicio</a>
+      <span>/</span>
+      <strong>Tramites</strong>
     </div>
 
-    <div class="faq-card">
+    <section class="licencia-section">
 
-      <h3>Funciones</h3>
+      <div class="container">
 
-      <ul class="transport-list">
-        <li>
-          Emite los permisos de operación de vehículos menores
-          motorizados y no motorizados.
-        </li>
+        <div class="row align-items-center gy-4">
 
-        <li>
-          Otorga las licencias en transportes de acuerdo a su
-          competencia municipal.
-        </li>
-      </ul>
+          <!-- IMAGEN -->
+          <div class="col-lg-5 text-center">
+
+            <img
+              src="../../multimedia/tuc.jpg"
+              alt="Licencia de conducir"
+              class="licencia-img"
+            >
+
+          </div>
+
+          <!-- TEXTO -->
+          <div class="col-lg-7">
+
+            <h1 class="titulo-licencia">
+              ¿QUE ES LA TARJETA UNICA DE CIRCULACION?
+            </h1>
+
+            <p class="texto-licencia">
+              Es un documento que acredita que un vehículo
+              puede prestar servicios de transporte de personas
+              o mercancías en el territorio nacional.</br>
+              Se emite por el Ministerio de Transportes y Comunicaciones (MTC).
+            </p>
+
+            <p class="correo-licencia">
+              <strong>Correo:</strong>
+              transporte@muniascope.gob.pe
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+</section>
+
+<section class="requisitos-section">
+
+  <div class="container">
+
+    <!-- TITULO -->
+    <h2 class="titulo-requisitos">
+      Requisitos para:
+    </h2>
+
+    <div class="row gy-4">
+
+      <!-- MENU IZQUIERDO -->
+      <div class="col-lg-12 d-flex">
+
+        <div class="menu-requisitos">
+
+          <button
+            class="btn-requisito active"
+            onclick="mostrarRequisito('req1', this)">
+            Incorporación de Unidad Vehicular
+          </button>
+
+          <button
+            class="btn-requisito"
+            onclick="mostrarRequisito('req2', this)">
+            Duplicado de Tarjeta única de circulación
+          </button>
+
+          <button
+            class="btn-requisito"
+            onclick="mostrarRequisito('req3', this)">
+            Baja de Unidad Vehicular
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- CUADRO DERECHO -->
+      <div class="col-lg-12 d-flex">
+
+        <div class="contenido-requisitos">
+
+          <!-- PANEL 1 -->
+          <div class="requisito-box active" id="req1">
+
+            <ol>
+              <li>Solicitud dirigida a la Alcaldesa(FUT).</li>
+              <li>Formato de Verificación Vehicular(FVV).</li>
+              <li>Copia de DNI del propietario y del conductor.</li>
+              <li>Copia de la Ficha SUNARP.</li>
+              <li>Constancia de Vigencia(SOAT).</li>
+              <li>Certificado de Inspección Técnica Vehicular.</li>
+              <li>Copia de Licencia de Conducir.</li>
+              <li>Derecho de Pago de Record de Papeletas.</li>
+              <li>Derecho de Pago de Inscripción de Automoviles Nuevos.</li>
+            </ol>
+
+          </div>
+
+          <!-- PANEL 2 -->
+          <div class="requisito-box" id="req2">
+
+            <ol>
+              <li>Solicitud Dirigida a la Alcaldesa.</li>
+              <li>Copia de DNI del Solicitante.</li>
+              <li>Denuncia Policial en caso de Pérdida o Robo.</li>
+              <li>Derecho de Pago de Duplicado TUC.</li>
+            </ol>
+
+          </div>
+
+          <!-- PANEL 3 -->
+          <div class="requisito-box" id="req3">
+
+            <ol>
+              <li>Solicitud dirigida a la Alcaldesa(FUT).</li>
+              <li>Solicitud de Baja hecha por el Representante Legal.</li>
+              <li>Copia de DNI del Propietario y del Conductor.</li>
+              <li>Copia de la Tarjeta Única de Circulación.</li>
+              <li>Copia de la Ficha SUNARP.</li>
+              <li>Derecho de Pago de Baja Vehicular.</li>
+            </ol>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>
 
-  <!-- DERECHA -->
-  <div class="transport-image-side">
-    <img
-      src="../../multimedia/transporte.jpg"
-      alt="Gerencia de Transporte"
-      class="transport-image"
-    >
-  </div>
-
-</div>
+</section>
 
 <footer>
   <div class="container">
@@ -313,10 +418,10 @@
         <nav class="nav-footer">
           <ul class="list-inline">
             <li class="list-inline-item">
-              <a href="../../index.html">Inicio</a>
+              <a href="">Inicio</a>
             </li>
             <li class="list-inline-item">
-              <a href="nosotros.html">Nosotros</a>
+              <a href="nosotros.php">Nosotros</a>
             </li>
             <li class="list-inline-item">
               <a href="servicios.php">Servicios</a>
@@ -390,8 +495,7 @@
 </footer>
 
 <script type="module" src="../../js/main.js"></script>
-<script type="module" src="../municipalidad/js/muni.js"></script>
+<script type="module" src="js/tramites.js"></script>
 
 </body>
 </html>
-

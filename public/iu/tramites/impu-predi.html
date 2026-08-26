@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Muni-Ascope</title>
   <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../tramites/css/tramites.css">
+  <link rel="stylesheet" href="css/tramites.css">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -39,7 +39,7 @@
       >
     </a>
 
-    <a href="../../index.html">
+    <a href="../../../index.html">
       <img
         src="../../multimedia/Muni_Ascope.png"
         class="logo-pdt"
@@ -79,7 +79,7 @@
 
         <!-- INICIO -->
         <li class="nav-item">
-          <a class="nav-link" href="../../index.html">
+          <a class="nav-link" href="../../../index.html">
             <i class="bi bi-house-fill me-1"></i>
             Inicio
           </a>
@@ -254,7 +254,7 @@
 
   <div class="hero-overlay text-center">
     <h1>
-      Impuesto <span>Alcabala</span>
+      Impuesto <span>Predial</span>
     </h1>
   </div>
 
@@ -266,7 +266,7 @@
 
     <!-- Breadcrumb -->
     <div class="breadcrumb-custom mb-4">
-      <a href="../../index.html">Inicio</a>
+      <a href="../../../index.html">Inicio</a>
       <span>/</span>
       <strong>Tramites</strong>
     </div>
@@ -277,35 +277,36 @@
 
         <div class="row align-items-center gy-4">
 
-          <!-- IMAGEN -->
-          <div class="col-lg-5 text-center">
-
-            <img
-              src="../../multimedia/alcabala.jpg"
-              alt="ALCABALA"
-              class="licencia-img"
-            >
-
-          </div>
-
           <!-- TEXTO -->
           <div class="col-lg-7">
 
             <h1 class="titulo-licencia">
-              ¿QUE ES EL IMPUESTO DE ALCABALA?
+              ¿QUE ES EL IMPUESTO PREDIAL?
             </h1>
 
             <p class="texto-licencia">
-              Es un Impuesto que grava las transferencias de propiedad
-              de bienes inmuebles urbanos o rústicos a título oneroso
-              o gratuito, cualquiera sea su forma o modalidad, inclusive
-              las ventas con reserva de dominio.
+              Este tributo grava el valor de los predios urbanos y rústicos
+              en base a su autoavalúo. El autovalúo se obtiene aplicando los aranceles
+              y precios unitarios de construcción que formula el Consejo Nacional de
+              Tasaciones y aprueba el Ministerio de Vivienda, Construcción y
+              Saneamiento todos los años. Es de periocidad anual.
             </p>
 
             <p class="correo-licencia">
               <strong>Correo:</strong>
               rentas@muniascope.gob.pe
             </p>
+
+          </div>
+
+          <!-- IMAGEN -->
+          <div class="col-lg-5 text-center">
+
+            <img
+              src="../../multimedia/predial.jpg"
+              alt="Licencia de conducir"
+              class="licencia-img"
+            >
 
           </div>
 
@@ -318,49 +319,49 @@
   </div>
 </section>
 
-<!-- INFORMACION -->
+<!-- CARDS EXPLICATIVAS -->
 <section class="faq-section">
+
   <div class="container">
 
-    <div class="faq-grid">
+    <div class="faq-grid2">
 
+      <!-- CARD 1 -->
       <div class="faq-card">
 
-        <h3>¿Quién paga el Impuesto de Alcabala?</h3>
+        <h3>
+          ¿Quién paga el Impuesto Predial?
+        </h3>
 
         <p>
-          Está obligado al pago el comprador o adquiriente del inmueble.
+          Son contribuyentes de este impuesto las personas naturales o jurídicas
+          que al 1° de enero de cada año resultan propietarios de los predios
+          gravados. En caso de transferir el predio, el comprador asumirá la
+          condición de contribuyente a partir del 1° de enero del año siguiente
+          de producida la transferencia.
         </p>
+
       </div>
 
+      <!-- CARD 2 -->
       <div class="faq-card">
 
-        <h3>¿Cuánto se paga del Impuesto de Alcabala?</h3>
+        <h3>
+          ¿Dónde puede declarar y pagar el Impuesto Predial?
+        </h3>
 
         <p>
-          La base imponible del impuesto es el valor de transferencia,
-          el cual no podrá ser menor al valor de autovalúo del inmueble
-          correspondiente al ejercicio en que se produce la transferencia, ajustado por el Índice de Precios al por Mayor (IPM).
-          A la referida base se aplicará la tasa del impuesto del 3%.
-          No esta afecto al Impuesto de Alcabala, el tramo comprendido por las primeras 10 UIT del valor del inmueble.
+          En la Municipalidad Distrital correspondiente.
+          De pertenecer al distrito de Ascope, puede acercarse a nuestra
+          Oficina de Rentas y Ejecución Coactiva.
         </p>
-      </div>
 
-      <div class="faq-card">
-
-        <h3>¿Hasta cuándo hay plazo para efectuar el pago?</h3>
-
-        <p>
-          El pago del impuesto debe realizarse hasta el último día hábil del mes siguiente
-          de efectuada la transferencia. En caso contrario se aplicarán los intereses moratorias correspondientes.
-          El pago se efectuará al contado, sin que para ello sea relevante la forma de
-          pago del precio de venta del bien acordada por las partes.
-        </p>
       </div>
 
     </div>
 
   </div>
+
 </section>
 
 <!-- SELECCION SEGUN REQUISITO -->
@@ -370,7 +371,7 @@
 
     <!-- TITULO -->
     <h2 class="titulo-requisitos">
-      Requisitos que debe cumplir para:
+      Requisitos para:
     </h2>
 
     <div class="row gy-4">
@@ -378,12 +379,30 @@
       <!-- MENU IZQUIERDO -->
       <div class="col-lg-12 d-flex">
 
-        <div class="menu-requisitos2">
+        <div class="menu-requisitos">
 
           <button
-            class="btn-requisito2 active"
+            class="btn-requisito active"
             onclick="mostrarRequisito('req1', this)">
-            La liquidación del Impuesto de Alcabala
+            Cambio de nombre en el Padrón de Contribuyentes del Impuesto Predial
+          </button>
+
+          <button
+            class="btn-requisito"
+            onclick="mostrarRequisito('req2', this)">
+            Constancia de No Adeudo del Impuesto Predial
+          </button>
+
+          <button
+            class="btn-requisito"
+            onclick="mostrarRequisito('req3', this)">
+            Prescripción de mi Deuda Tributaria
+          </button>
+
+          <button
+            class="btn-requisito"
+            onclick="mostrarRequisito('req4', this)">
+            Inscripción, Anotación y/o Rectificación en Padrones del Impuesto Predial
           </button>
 
         </div>
@@ -393,15 +412,57 @@
       <!-- CUADRO DERECHO -->
       <div class="col-lg-12 d-flex">
 
-        <div class="contenido-requisitos2">
+        <div class="contenido-requisitos">
 
           <!-- PANEL 1 -->
           <div class="requisito-box active" id="req1">
 
             <ol>
-              <li>Exhibir el documento de identidad de la persona que realice el trámite</li>
-              <li>Presentar copia simple del documento en el que consta la transferencia de propiedad(minuta)</li>
-              <li>Presentar copia simple del autovalúo del año en que se produjo la transferencia.</li>
+              <li>Solicitud dirigida a la Alcaldesa(FUT).</li>
+              <li>Certificado y/o Copia Literal, </br>
+                Copia fedateada de escritura pública y/o minuta de compra venta o documento</br>
+                que acredite la transferencia del predio.</li>
+              <li>Copia de vigencia de poder para el paso de personas juridicas.</li>
+              <li>Copia de DNI.</li>
+              <li>Derecho de Pago.</li>
+            </ol>
+
+          </div>
+
+          <!-- PANEL 2 -->
+          <div class="requisito-box" id="req2">
+
+            <ol>
+              <li>Solicitud dirigida a la Alcaldesa(FUT).</li>
+              <li>Copia de DNI.</li>
+              <li>Estado de deuda.</li>
+              <li>Copia de Vigencia de Poder para el caso de personas jurídicas.</li>
+              <li>Derecho de Pago.</li>
+            </ol>
+
+          </div>
+
+          <!-- PANEL 3 -->
+          <div class="requisito-box" id="req3">
+
+            <ol>
+              <li>Solicitud dirigida a la Alcaldesa(FUT).</li>
+              <li>Solicitud de Baja hecha por el Representante Legal.</li>
+              <li>Copia de DNI del Propietario y del Conductor.</li>
+              <li>Copia de la Tarjeta Única de Circulación.</li>
+              <li>Copia de la Ficha SUNARP.</li>
+              <li>Derecho de Pago de Baja Vehicular.</li>
+            </ol>
+
+          </div>
+
+          <!-- PANEL 4 -->
+          <div class="requisito-box" id="req4">
+
+            <ol>
+              <li>Solicitud dirigida a la Alcaldesa(FUT).</li>
+              <li>Certificado y/o Copia Literal.</li>
+              <li>Copia fedateada de DNI.</li>
               <li>Derecho de Pago.</li>
             </ol>
 
@@ -425,7 +486,7 @@
         <nav class="nav-footer">
           <ul class="list-inline">
             <li class="list-inline-item">
-              <a href="./">Inicio</a>
+              <a href="">Inicio</a>
             </li>
             <li class="list-inline-item">
               <a href="nosotros.php">Nosotros</a>
@@ -504,7 +565,7 @@
 
 
 <script type="module" src="../../js/main.js"></script>
-<script type="module" src="../tramites/js/tramites.js"></script>
+<script type="module" src="js/tramites.js"></script>
 
 </body>
 </html>

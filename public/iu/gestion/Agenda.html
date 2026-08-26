@@ -1,13 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Muni-Ascope</title>
   <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../servicios/css/servicios.css">
+  <link rel="stylesheet" href="css/agenda.css">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css">
 </head>
 <body>
 
@@ -38,7 +39,7 @@
       >
     </a>
 
-    <a href="../../index.html">
+    <a href="../../../index.html">
       <img
         src="../../multimedia/Muni_Ascope.png"
         class="logo-pdt"
@@ -78,7 +79,7 @@
 
         <!-- INICIO -->
         <li class="nav-item">
-          <a class="nav-link" href="../../index.html">
+          <a class="nav-link" href="../../../index.html">
             <i class="bi bi-house-fill me-1"></i>
             Inicio
           </a>
@@ -93,7 +94,7 @@
 
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="../municipalidad/nosotros.html">
+              <a class="dropdown-item" href="../municipalidad/noticias.html">
                 <i class="bi bi-building me-2"></i>
                 Nosotros
               </a>
@@ -138,7 +139,7 @@
 
         <!-- SERVICIOS -->
         <li class="nav-item">
-          <a class="nav-link" href="servicios.html">
+          <a class="nav-link" href="../servicios/servicios.html">
             <i class="bi bi-grid-fill me-1"></i>
             Servicios
           </a>
@@ -205,21 +206,21 @@
 
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="../gestion/documentos.html">
+              <a class="dropdown-item" href="documentos.html">
                 <i class="bi bi-file-earmark-text me-2"></i>
                 Documentos
               </a>
             </li>
 
             <li>
-              <a class="dropdown-item" href="../gestion/Agenda.html">
+              <a class="dropdown-item" href="Agenda.html">
                 <i class="bi bi-calendar-event me-2"></i>
                 Agenda
               </a>
             </li>
 
             <li>
-              <a class="dropdown-item" href="../gestion/visitas.html">
+              <a class="dropdown-item" href="visitas.html">
                 <i class="bi bi-people me-2"></i>
                 Visitas
               </a>
@@ -235,6 +236,8 @@
             Mesa de Partes Virtual
           </a>
         </li>
+
+
 
       </ul>
 
@@ -252,183 +255,142 @@
 
   <div class="hero-overlay text-center">
     <h1>
-      Servi<span>cios</span>
+      Age<span>nda</span>
     </h1>
   </div>
 
 </section>
 
-<section class="quick-links-section">
+<section class="agenda-section">
 
-  <div class="container">
+  <div class="agenda-container">
 
-    <div class="breadcrumb-custom mb-4">
-      <a href="../../index.html">Inicio</a>
-      <span>/</span>
-      <strong>Servicios</strong>
-    </div>
+    <!-- SIDEBAR -->
+    <aside class="agenda-sidebar">
 
-    </br>
-    </br>
-
-    <!-- GRID -->
-    <div class="row g-4 justify-content-center">
-
-      <!-- RECAUDACION -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="https://recaudacion.muniascope.com/" class="quick-link-card" target="_blank">
-
-          <i class="bi bi-cash-coin"></i>
-
-          <span>
-                        Sistema de Recaudacion
-                    </span>
-
-        </a>
+      <div class="sidebar-logo">
+        <h2>Agenda</h2>
+        <span>Actividades Institucionales</span>
       </div>
 
-      <!-- INFRACCION -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="https://busqueda.muniascope.com/" class="quick-link-card" target="_blank">
+      <div class="sidebar-filter active">
 
-          <i class="bi bi-file-earmark-text"></i>
+        <h3>
+          <i class="bi bi-calendar3"></i>
+          Año
+        </h3>
 
-          <span>
-                        Sistema Interno de Infracciones
-                    </span>
+        <div class="sidebar-search">
+          <i class="bi bi-search"></i>
+          <input
+            type="text"
+            id="buscarAnioAgenda"
+            placeholder="Buscar año..."
+          >
+        </div>
 
-        </a>
+        <ul id="listaAniosAgenda"></ul>
+
       </div>
 
-      <!-- TRAMITE DOCUMENTARIO -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="http://muniascopevirtual.com/tramite/vista/login.php" class="quick-link-card" target="_blank">
+      <div class="sidebar-filter active">
 
-          <i class="bi bi-folder2-open"></i>
+        <h3>
+          <i class="bi bi-calendar-event"></i>
+          Mes
+        </h3>
 
-          <span>
-                        Trámite Documentario
-                    </span>
+        <div class="sidebar-search">
+          <i class="bi bi-search"></i>
+          <input
+            type="text"
+            id="buscarMesAgenda"
+            placeholder="Buscar mes..."
+          >
+        </div>
 
-        </a>
+        <ul id="listaMesesAgenda"></ul>
+
       </div>
 
-      <!-- MESA DE PARTES -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="https://facilita.gob.pe/t/53070" class="quick-link-card" target="_blank">
+      <div class="sidebar-lugar active">
 
-          <i class="bi bi-person-workspace"></i>
+        <h3>
+          <i class="bi bi-geo-alt-fill"></i>
+          Lugar
+        </h3>
 
-          <span>
-                        Mesa de Partes
-                    </span>
+        <div class="sidebar-search">
 
-        </a>
+          <i class="bi bi-search"></i>
+
+          <input
+            type="text"
+            id="buscarLugarAgenda"
+            placeholder="Buscar lugar..."
+          >
+
+        </div>
+
+        <ul id="listaLugaresAgenda"></ul>
+
       </div>
 
-      <!-- BREVETES -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="https://consultas.muniascope.com/" class="quick-link-card" target="_blank">
+    </aside>
 
-          <i class="bi bi-person-vcard"></i>
+    <!-- PANEL -->
 
-          <span>
-                        Consulta de licencias
-                    </span>
+    <div class="agenda-panel">
 
-        </a>
+      <div class="agenda-header">
+        <h2>Agenda Institucional</h2>
+
+        <p>
+          Consulte las actividades programadas por la Municipalidad Provincial de Ascope.
+        </p>
       </div>
 
-      <!-- TRANSPORTE -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="transporte.html" class="quick-link-card">
+      <div class="agenda-filtros">
 
-          <i class="bi bi-bus-front"></i>
+        <input
+          type="text"
+          id="buscarAgenda"
+          placeholder="Buscar actividad o lugar..."
+        >
 
-          <span>
-                        Sistema de Tranporte
-                    </span>
+        <a href="../panel/panel_admin.html"
+           class="btn-agregar-agenda"
+           target="_blank">
+
+          <i class="bi bi-calendar-plus-fill"></i>
+          Agregar agenda
 
         </a>
+
       </div>
 
-      <!-- SEGURIDAD CIUDADANA -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="https://muniascope.gob.pe/seguridad.html" class="quick-link-card" target="_blank">
+      <div class="agenda-table-wrapper">
 
-          <i class="bi bi-shield-check"></i>
+        <table class="agenda-table">
 
-          <span>
-                        Seguridad Ciudadana
-                    </span>
+          <thead>
 
-        </a>
-      </div>
+          <tr>
+            <th>N°</th>
+            <th>Actividad</th>
+            <th>Lugar</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+          </tr>
 
-      <!-- RECLAMACIONES -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="https://facilita.gob.pe/t/49876" class="quick-link-card" target="_blank">
+          </thead>
 
-          <i class="bi bi-book"></i>
+          <tbody id="tablaAgenda">
 
-          <span>
-                        Libro de Reclamaciones
-                    </span>
+          </tbody>
 
-        </a>
-      </div>
+        </table>
 
-      <!-- OSCE -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="https://prod2.seace.gob.pe/seacebus-uiwd-pub/buscadorPublico/buscadorPublico.xhtml"
-           class="quick-link-card" href="#" target="_blank">
-
-                    <span>
-                        OSCE
-                    </span>
-
-          <img src="../../multimedia/osce.png" alt="OSCE">
-
-        </a>
-      </div>
-
-      <!-- PDU PAD -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="#" class="quick-link-card">
-
-          <i class="bi bi-buildings"></i>
-
-          <span>
-                        PDU - PAD
-                    </span>
-
-        </a>
-      </div>
-
-      <!-- CORREO -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="https://muniascope.gob.pe:2096/" class="quick-link-card">
-
-          <i class="bi bi-envelope-at"></i>
-
-          <span>
-                        Correo Electrónico
-                    </span>
-
-        </a>
-      </div>
-
-      <!-- OEFA -->
-      <div class="col-12 col-sm-6 col-lg-4">
-        <a href="https://pifa.oefa.gob.pe/VigilanciaAmbiental/" class="quick-link-card" href="#">
-
-                    <span>
-                        Vigilancia Ambiental
-                    </span>
-
-          <img src="../../multimedia/oefa.png" alt="OEFA">
-
-        </a>
       </div>
 
     </div>
@@ -444,10 +406,10 @@
         <nav class="nav-footer">
           <ul class="list-inline">
             <li class="list-inline-item">
-              <a href="../../index.html">Inicio</a>
+              <a href="../../../index.html">Inicio</a>
             </li>
             <li class="list-inline-item">
-              <a href="nosotros.html">Nosotros</a>
+              <a href="../municipalidad/nosotros.html">Nosotros</a>
             </li>
             <li class="list-inline-item">
               <a href="servicios.php">Servicios</a>
@@ -520,9 +482,9 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 <script type="module" src="../../js/main.js"></script>
-<script type="module" src="../municipalidad/js/muni.js"></script>
+<script type="module" src="js/agenda.js"></script>
 
 </body>
 </html>
-
