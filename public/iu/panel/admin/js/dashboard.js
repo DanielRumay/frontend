@@ -143,21 +143,19 @@ document.addEventListener(
 
 async function verificarSesion() {
 
-  const maxIntentos = 3;
+  if (redirigiendoLogin) {
+    return false;
+  }
 
+  const MAX_INTENTOS = 3;
 
-  for (
-    let intento = 1;
-    intento <= maxIntentos;
-    intento++
-  ) {
+  for (let intento = 1; intento <= MAX_INTENTOS; intento++) {
 
     try {
 
       console.log(
-        `Verificando sesión. Intento ${intento}/${maxIntentos}`
+        `Verificando sesión. Intento ${intento}/${MAX_INTENTOS}`
       );
-
 
       const respuesta =
         await fetchConTimeout(
@@ -171,31 +169,40 @@ async function verificarSesion() {
         );
 
 
-      /* ==========================
-         SESIÓN INVÁLIDA
-      ========================== */
+      /* ==========================================
+         SESIÓN NO AUTORIZADA
+      ========================================== */
 
-      if (respuesta.status === 401) {
+      if (
+        respuesta.status === 401 ||
+        respuesta.status === 403
+      ) {
 
-        return "NO_VALIDA";
+        console.warn(
+          "Sesión no válida."
+        );
+
+        redirigirAlLogin();
+
+        return false;
 
       }
 
 
-      if (respuesta.status === 403) {
+      /* ==========================================
+         ERROR DEL SERVIDOR
+      ========================================== */
 
-        return "NO_VALIDA";
+      if (
+        respuesta.status >= 500
+      ) {
 
-      }
+        console.error(
+          "El backend respondió:",
+          respuesta.status
+        );
 
-
-      /* ==========================
-         ERROR SERVIDOR
-      ========================== */
-
-      if (respuesta.status >= 500) {
-
-        if (intento < maxIntentos) {
+        if (intento < MAX_INTENTOS) {
 
           await esperar(2000);
 
@@ -203,33 +210,78 @@ async function verificarSesion() {
 
         }
 
-        return "ERROR";
+        mostrarErrorConexion();
+
+        return false;
 
       }
 
+
+      /* ==========================================
+         OTROS ERRORES HTTP
+      ========================================== */
 
       if (!respuesta.ok) {
 
-        return "ERROR";
+        console.error(
+          "Error verificando sesión:",
+          respuesta.status
+        );
+
+        if (intento < MAX_INTENTOS) {
+
+          await esperar(2000);
+
+          continue;
+
+        }
+
+        mostrarErrorConexion();
+
+        return false;
 
       }
 
+
+      /* ==========================================
+         USUARIO
+      ========================================== */
 
       const usuario =
         await respuesta.json();
 
+
+      console.log(
+        "Usuario recibido:",
+        usuario
+      );
+
+
+      /* ==========================================
+         VALIDAR USUARIO
+      ========================================== */
 
       if (
         !usuario ||
         usuario.activo !== true
       ) {
 
-        return "NO_VALIDA";
+        console.warn(
+          "Usuario no válido o inactivo."
+        );
+
+        redirigirAlLogin();
+
+        return false;
 
       }
 
 
-      return "VALIDA";
+      console.log(
+        "Sesión válida."
+      );
+
+      return true;
 
 
     } catch (error) {
@@ -240,7 +292,16 @@ async function verificarSesion() {
       );
 
 
-      if (intento < maxIntentos) {
+      /*
+       * Timeout o error de conexión.
+       * NO significa que la sesión haya expirado.
+       */
+
+      if (intento < MAX_INTENTOS) {
+
+        console.log(
+          "Esperando antes de reintentar..."
+        );
 
         await esperar(2000);
 
@@ -248,18 +309,77 @@ async function verificarSesion() {
 
       }
 
-
-      return "ERROR";
-
     }
 
   }
 
 
-  return "ERROR";
+  /*
+   * Después de los 3 intentos,
+   * el problema parece ser conexión/backend.
+   */
+
+  console.error(
+    "No se pudo verificar la sesión después de 3 intentos."
+  );
+
+  mostrarErrorConexion();
+
+  return false;
 
 }
 
+async function fetchConTimeout(
+  url,
+  opciones = {},
+  timeout = 10000
+) {
+
+  const controller =
+    new AbortController();
+
+  const timeoutId =
+    setTimeout(
+      () => controller.abort(),
+      timeout
+    );
+
+  try {
+
+    const respuesta =
+      await fetch(
+        url,
+        {
+          ...opciones,
+          signal: controller.signal
+        }
+      );
+
+    return respuesta;
+
+  } finally {
+
+    clearTimeout(timeoutId);
+
+  }
+
+}
+
+function mostrarErrorConexion() {
+
+  console.error(
+    "No fue posible comunicarse con el backend."
+  );
+
+
+  alert(
+    "No se pudo verificar la sesión.\n\n" +
+    "El servidor puede estar iniciándose o " +
+    "temporalmente no disponible.\n\n" +
+    "Intente nuevamente en unos segundos."
+  );
+
+}
 
 function esperar(ms) {
 
