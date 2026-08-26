@@ -37,7 +37,7 @@ body {
   position: relative;
   background:
     linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
-    url('/multimedia/fondo-municipalidad.jpg');
+    url('https://imgs.deperu.com/pueblos/municipalidad_provincial_ascope_la_libertad.jpg');
   background-size: cover;
   background-position: center;
   overflow: hidden;
