@@ -147,78 +147,120 @@ document.addEventListener(
 
 async function verificarSesion() {
 
-  /*
-   * Si ya estamos redirigiendo,
-   * no realizar más peticiones.
-   */
   if (redirigiendoLogin) {
     return false;
   }
 
-
   try {
 
-    const respuesta =
-      await fetch(
-        `${API_URL}/usuarios/auth/verificar`,
-        {
-          method: "GET",
-          credentials: "include",
-          cache: "no-store"
-        }
-      );
+    const respuesta = await fetch(
+      `${API_URL}/usuarios/auth/verificar`,
+      {
+        method: "GET",
+        credentials: "include",
+        cache: "no-store"
+      }
+    );
 
 
-    /*
-     * 401 significa:
-     *
-     * - no existe sesión
-     * - usuario eliminado
-     * - usuario inactivo
-     */
+    /* ==========================================
+       SESIÓN NO VÁLIDA
+    ========================================== */
+
     if (respuesta.status === 401) {
+
+      console.warn(
+        "Sesión no válida. Redirigiendo al login."
+      );
 
       redirigirAlLogin();
 
       return false;
-
     }
 
+
+    /* ==========================================
+       PROHIBIDO
+    ========================================== */
+
+    if (respuesta.status === 403) {
+
+      console.error(
+        "El usuario no tiene autorización."
+      );
+
+      redirigirAlLogin();
+
+      return false;
+    }
+
+
+    /* ==========================================
+       ERROR DEL SERVIDOR
+    ========================================== */
+
+    if (respuesta.status >= 500) {
+
+      console.error(
+        "El backend respondió con error:",
+        respuesta.status
+      );
+
+      /*
+       * IMPORTANTE:
+       *
+       * NO redirigir.
+       *
+       * Un 500 no significa que
+       * la sesión haya terminado.
+       */
+
+      return false;
+    }
+
+
+    /* ==========================================
+       OTRO ERROR HTTP
+    ========================================== */
 
     if (!respuesta.ok) {
 
       console.error(
-        "No se pudo verificar la sesión."
+        "Error verificando sesión:",
+        respuesta.status
       );
 
-      redirigirAlLogin();
-
       return false;
-
     }
 
 
-    /*
-     * El backend devuelve el usuario.
-     */
+    /* ==========================================
+       LEER USUARIO
+    ========================================== */
+
     const usuario =
       await respuesta.json();
 
 
-    /*
-     * Comprobación adicional
-     * desde el frontend.
-     */
     if (
       !usuario ||
       usuario.activo !== true
     ) {
 
+      console.warn(
+        "La sesión no es válida o el usuario está inactivo."
+      );
+
       redirigirAlLogin();
 
       return false;
-
     }
+
+
+    console.log(
+      "Sesión verificada correctamente:",
+      usuario.usuario
+    );
 
 
     return true;
@@ -227,15 +269,19 @@ async function verificarSesion() {
   } catch (error) {
 
     console.error(
-      "Error verificando sesión:",
+      "Error de conexión verificando sesión:",
       error
     );
 
-
-    redirigirAlLogin();
+    /*
+     * IMPORTANTE:
+     *
+     * Un error de red NO significa
+     * automáticamente que la sesión
+     * haya expirado.
+     */
 
     return false;
-
   }
 
 }
