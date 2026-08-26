@@ -1,9 +1,10 @@
-import { Carousel } from 'bootstrap';
-
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
 console.log("main.js cargado");
-
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8080"
+    : "https://ascope-backend.onrender.com";
 
 window.addEventListener("load", () => {
 
@@ -140,13 +141,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (carouselPopup) {
 
-    new Carousel(carouselPopup, {
+    new bootstrap.Carousel(carouselPopup, {
       interval: 1000,
       ride: "carousel",
       pause: false,
       wrap: true
     });
-
   }
 
   // Cierre automático
@@ -204,22 +204,27 @@ function agregarMensaje(texto, tipo) {
 const preguntas = [
   {
     pregunta: "¿Cómo puedo saber qué infracciones tengo?",
+    claves: ["infraccion", "infracciones", "multa", "multas"],
     respuesta: "Entra a la web, selecciona en la barra de tareas Servicios y luego haz clic en Sistema Interno de Infracciones. Allí podrás ingresar tu documento de identidad."
   },
   {
     pregunta: "¿Cómo puedo informarme más sobre ustedes?",
+    claves: ["ustedes", "municipalidad", "informacion", "información"],
     respuesta: "En la barra de opciones encontrarás Municipalidad y luego la pestaña Nosotros donde se encuentra toda la información institucional."
   },
   {
     pregunta: "¿Cómo puedo acceder a la Mesa de Partes Virtual?",
+    claves: ["mesa de partes", "tramite", "trámite", "documento"],
     respuesta: "Selecciona la opción Mesa de Partes Virtual ubicada en la barra de navegación. Serás redirigido al portal del Gobierno para realizar tu solicitud."
   },
   {
     pregunta: "¿Cómo puedo ver mi brevete o licencia de conducir?",
+    claves: ["brevete", "licencia", "conducir"],
     respuesta: "Entra a Servicios y luego a Consulta de Licencia. Allí podrás ingresar tu documento de identidad para conocer el estado de tu licencia."
   },
   {
     pregunta: "¿Qué hago si no encuentro lo que busco?",
+    claves: ["no encuentro", "ayuda", "buscar", "busco"],
     respuesta: "Puedes dirigirte a la sección Contacto y enviarnos tu consulta para recibir ayuda."
   }
 ];
@@ -350,7 +355,7 @@ async function enviarContacto(e) {
   try {
 
     const response = await fetch(
-      "http://localhost:8080/contacto",
+      `${API_URL}/contacto`,
       {
         method: "POST",
         headers: {
