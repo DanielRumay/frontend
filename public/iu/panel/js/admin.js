@@ -49,80 +49,83 @@ boton.addEventListener("click", () => {
 
 form.addEventListener("submit", async (e) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    const datos = {
+  const datos = {
+    usuario: usuario.value.trim(),
+    password: password.value
+  };
 
-        usuario: usuario.value,
+  console.log("Datos enviados:", {
+    usuario: datos.usuario,
+    password: "***"
+  });
 
-        password: password.value
+  try {
 
-    };
+    const response = await fetch(
+      `${API_URL}/usuarios/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify(datos)
+      }
+    );
 
+    console.log("Status login:", response.status);
 
-    try {
+    if (response.ok) {
 
-        const response = await fetch(
-          `${API_URL}/usuarios/login`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            credentials: "include",
-            body: JSON.stringify({
-              usuario,
-              password
-            })
-          }
+      const user = await response.json();
+
+      console.log("Usuario recibido:", user);
+      console.log("Rol:", user.rol);
+
+      if (user.rol === "ADMIN") {
+
+        window.location.href =
+          "admin/dashboard.html";
+
+      } else if (
+        user.rol === "PERSONAL_ADMINISTRATIVO"
+      ) {
+
+        window.location.href =
+          "user/panel_creacion.html";
+
+      } else {
+
+        alert(
+          "El usuario no tiene un rol válido."
         );
 
+      }
 
-        /* ==============================
-           LOGIN CORRECTO
-        ============================== */
+    } else {
 
-        if (response.ok) {
+      console.error(
+        "Login rechazado. Status:",
+        response.status
+      );
 
-            const user = await response.json();
-
-            console.log("Usuario recibido:", user);
-
-            console.log("Rol:", user.rol);
-
-
-            /* ==============================
-               REDIRECCIÓN SEGÚN ROL
-            ============================== */
-
-            if (user.rol === "ADMIN") {
-
-                window.location.href = "admin/dashboard.html";
-
-            } else if (user.rol === "PERSONAL_ADMINISTRATIVO") {
-
-                window.location.href = "user/panel_creacion.html";
-
-            } else {
-
-                alert("El usuario no tiene un rol válido.");
-
-            }
-
-
-        } else {
-
-            alert("Usuario o contraseña incorrectos");
-
-        }
-
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert("No se pudo conectar con el servidor");
-
+      alert(
+        "Usuario o contraseña incorrectos"
+      );
     }
+
+  } catch (error) {
+
+    console.error(
+      "Error realizando login:",
+      error
+    );
+
+    alert(
+      "No se pudo conectar con el servidor"
+    );
+  }
 
 });
