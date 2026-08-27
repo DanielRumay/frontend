@@ -1,26 +1,191 @@
 // ==========================================
+//        VERIFICACIÓN DEL JAVASCRIPT
+// ==========================================
+
+console.log("========================================");
+console.log("🚀 tabs.js INICIANDO...");
+console.log("📅 Fecha:", new Date().toLocaleString());
+console.log("🌐 Página:", window.location.href);
+console.log("========================================");
+
+
+// ==========================================
 // COMPONENTES GLOBALES Y PESTAÑAS (TABS)
 // ==========================================
 
 const buttons = document.querySelectorAll(".tab-btn");
 const contents = document.querySelectorAll(".tab-content");
 
-buttons.forEach(button => {
+
+// ==========================================
+// VERIFICAR ELEMENTOS ENCONTRADOS
+// ==========================================
+
+console.log("📑 PESTAÑAS");
+
+console.log(
+  "🔘 Botones encontrados:",
+  buttons.length
+);
+
+console.log(
+  "📄 Contenidos encontrados:",
+  contents.length
+);
+
+
+// Verificar si existen botones
+
+if (buttons.length === 0) {
+
+  console.warn(
+    "⚠️ No se encontraron elementos con la clase .tab-btn"
+  );
+
+} else {
+
+  console.log(
+    "✅ Se encontraron los botones de las pestañas"
+  );
+
+}
+
+
+// Verificar si existen contenidos
+
+if (contents.length === 0) {
+
+  console.warn(
+    "⚠️ No se encontraron elementos con la clase .tab-content"
+  );
+
+} else {
+
+  console.log(
+    "✅ Se encontraron los contenidos de las pestañas"
+  );
+
+}
+
+
+// ==========================================
+// REGISTRAR EVENTOS
+// ==========================================
+
+buttons.forEach((button, index) => {
+
+  console.log(
+    `🔘 Registrando evento para botón ${index + 1}`
+  );
+
+
+  // Mostrar qué data-tab tiene cada botón
+
+  const tab = button.getAttribute("data-tab");
+
+  console.log(
+    `   data-tab: ${tab || "❌ NO definido"}`
+  );
+
+
   button.addEventListener("click", () => {
-    // Quitar active de botones
-    buttons.forEach(btn => btn.classList.remove("active"));
 
-    // Quitar active de contenidos
-    contents.forEach(content => content.classList.remove("active"));
+    console.log("========================================");
 
-    // Activar botón actual
+    console.log(
+      `🖱️ CLICK en pestaña ${index + 1}`
+    );
+
+    console.log(
+      "📌 data-tab:",
+      tab
+    );
+
+
+    // ======================================
+    // QUITAR ACTIVE DE BOTONES
+    // ======================================
+
+    buttons.forEach(btn => {
+
+      btn.classList.remove("active");
+
+    });
+
+    console.log(
+      "🔄 Clase 'active' eliminada de los botones"
+    );
+
+
+    // ======================================
+    // QUITAR ACTIVE DE CONTENIDOS
+    // ======================================
+
+    contents.forEach(content => {
+
+      content.classList.remove("active");
+
+    });
+
+    console.log(
+      "🔄 Clase 'active' eliminada de los contenidos"
+    );
+
+
+    // ======================================
+    // ACTIVAR BOTÓN ACTUAL
+    // ======================================
+
     button.classList.add("active");
 
-    // Activar contenido correspondiente
-    const tab = button.getAttribute("data-tab");
-    const targetContent = document.getElementById(tab);
+    console.log(
+      "✅ Botón actual activado"
+    );
+
+
+    // ======================================
+    // BUSCAR CONTENIDO
+    // ======================================
+
+    const targetContent =
+      document.getElementById(tab);
+
+
     if (targetContent) {
+
       targetContent.classList.add("active");
+
+      console.log(
+        "✅ Contenido encontrado y activado:",
+        targetContent.id
+      );
+
+    } else {
+
+      console.error(
+        "❌ No se encontró el contenido correspondiente"
+      );
+
+      console.error(
+        "🔎 Se buscó el elemento con ID:",
+        tab
+      );
+
     }
+
+
+    console.log("========================================");
+
   });
+
 });
+
+
+// ==========================================
+// FINAL DEL JAVASCRIPT
+// ==========================================
+
+console.log("========================================");
+console.log("✅ tabs.js FINALIZADO CORRECTAMENTE");
+console.log("🚀 El archivo JS llegó hasta el final");
+console.log("========================================");
