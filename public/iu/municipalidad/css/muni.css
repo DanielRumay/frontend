@@ -45,15 +45,15 @@ body {
 }
 
 .alcalde-img {
-  width: 500px;
-  height: 500px;
+  width: 380px;
+  height: 380px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .titulo-alcalde {
-  font-size: 55px;
+  font-size: 42px;
   font-weight: 900;
   color: #2e2e2e;
   margin-bottom: 10px;
@@ -61,25 +61,25 @@ body {
 }
 
 .subtitulo-alcalde {
-  font-size: 28px;
+  font-size: 22px;
   color: #444;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-family: serif;
 }
 
 .titulo-presentacion {
   color: #c8ab3f;
-  font-size: 45px;
+  font-size: 36px;
   font-weight: 800;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .texto-presentacion {
-  font-size: 17px;
-  line-height: 1.9;
+  font-size: 16px;
+  line-height: 1.8;
   color: #333;
   text-align: justify;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 /* ==========================================
