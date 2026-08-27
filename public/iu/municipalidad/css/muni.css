@@ -200,3 +200,237 @@ body {
     line-height: 1.5;
   }
 }
+
+/* ==========================================
+   NAVBAR (ACTUALIZADO)
+========================================== */
+
+.custom-navbar {
+  background: #e7d05c;
+  padding: 0;
+  width: 100%;
+  position: relative;
+  z-index: 1000;
+}
+
+.custom-navbar .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1400px;
+  min-height: 65px;
+  margin: 0 auto;
+}
+
+/* MENÚ PRINCIPAL */
+.custom-navbar .navbar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ELEMENTOS */
+.custom-navbar .nav-item {
+  position: relative;
+}
+
+/* LINKS */
+.custom-navbar .nav-link {
+  display: flex;
+  align-items: center;
+  padding: 18px 14px;
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* HOVER & FOCUS */
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link:focus {
+  color: #000;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================
+   FLECHA DROPDOWN
+========================================== */
+
+.custom-navbar .dropdown-toggle::after {
+  content: "";
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+  border-top: 6px solid #000;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  transition: transform 0.2s ease;
+}
+
+/* ==========================================
+   DROPDOWN
+========================================== */
+
+.custom-navbar .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 280px;
+  margin-top: 0;
+  padding: 8px 0;
+  list-style: none;
+  background: #ffffff;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  display: none;
+  z-index: 2000;
+}
+
+/* MOSTRAR DROPDOWN */
+.custom-navbar .dropdown:hover > .dropdown-menu,
+.custom-navbar .dropdown:focus-within > .dropdown-menu {
+  display: block;
+}
+
+/* GIRAR FLECHA */
+.custom-navbar .dropdown:hover > .dropdown-toggle::after,
+.custom-navbar .dropdown:focus-within > .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* ==========================================
+   ITEMS DROPDOWN
+========================================== */
+
+.custom-navbar .dropdown-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 16px;
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 18px;
+  background: #ffffff;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.custom-navbar .dropdown-item:hover,
+.custom-navbar .dropdown-item:focus {
+  background: #e7d05c;
+  color: #000;
+}
+
+.custom-navbar .dropdown-item i {
+  width: 22px;
+  font-size: 17px;
+  color: #000;
+}
+
+/* ==========================================
+   BOTÓN MOBILE (NAVBAR TOGGLER)
+========================================== */
+
+.custom-navbar .navbar-toggler {
+  display: none;
+  border: 2px solid #000;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+.custom-navbar .navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: #000;
+  position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background: #000;
+}
+
+.navbar-toggler-icon::before {
+  top: -9px;
+}
+
+.navbar-toggler-icon::after {
+  top: 9px;
+}
+
+/* ==========================================
+   RESPONSIVE NAVBAR (991px)
+========================================== */
+
+@media (max-width: 991px) {
+  .custom-navbar {
+    padding: 8px 0;
+  }
+
+  .custom-navbar .container {
+    justify-content: flex-start;
+    padding: 0 20px;
+  }
+
+  .navbar-toggler {
+    display: block;
+  }
+
+  .navbar-collapse {
+    display: none;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .navbar-collapse.active {
+    display: block;
+  }
+
+  .custom-navbar .navbar-nav {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0 !important;
+  }
+
+  .custom-navbar .nav-link {
+    width: 100%;
+    padding: 12px 15px;
+  }
+
+  /* DROPDOWN EN MOBILE */
+  .custom-navbar .dropdown-menu {
+    position: static;
+    width: 100%;
+    min-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    border-left: 3px solid #000;
+    margin-left: 10px;
+  }
+
+  .custom-navbar .dropdown.active > .dropdown-menu {
+    display: block;
+  }
+
+  .custom-navbar .dropdown-item {
+    padding-left: 40px;
+  }
+}

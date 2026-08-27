@@ -180,6 +180,118 @@ buttons.forEach((button, index) => {
 
 });
 
+// ==========================================
+// NAVBAR SIN BOOTSTRAP
+// ==========================================
+
+console.log("🧭 Inicializando navbar...");
+
+
+// ==========================================
+// BOTÓN MOBILE
+// ==========================================
+
+const navbarToggler =
+  document.querySelector(".navbar-toggler");
+
+const navbarCollapse =
+  document.querySelector("#navbarNav");
+
+
+if (navbarToggler && navbarCollapse) {
+
+  navbarToggler.addEventListener("click", () => {
+
+    const abierto =
+      navbarCollapse.classList.toggle("active");
+
+    navbarToggler.setAttribute(
+      "aria-expanded",
+      abierto
+    );
+
+    console.log(
+      abierto
+        ? "📂 Menú mobile abierto"
+        : "📁 Menú mobile cerrado"
+    );
+
+  });
+
+}
+
+
+// ==========================================
+// DROPDOWNS
+// ==========================================
+
+const dropdowns =
+  document.querySelectorAll(".navbar .dropdown");
+
+
+dropdowns.forEach(dropdown => {
+
+  const toggle =
+    dropdown.querySelector(".dropdown-toggle");
+
+
+  if (!toggle) return;
+
+
+  toggle.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    // En escritorio dejamos que CSS controle
+    // el dropdown mediante hover.
+
+    if (window.innerWidth > 992) {
+      return;
+    }
+
+
+    // Cerrar los demás dropdowns
+
+    dropdowns.forEach(otro => {
+
+      if (otro !== dropdown) {
+
+        otro.classList.remove("active");
+
+      }
+
+    });
+
+
+    // Abrir/cerrar actual
+
+    dropdown.classList.toggle("active");
+
+  });
+
+});
+
+
+// ==========================================
+// CERRAR DROPDOWN AL HACER CLICK FUERA
+// ==========================================
+
+document.addEventListener("click", (e) => {
+
+  if (!e.target.closest(".navbar")) {
+
+    dropdowns.forEach(dropdown => {
+
+      dropdown.classList.remove("active");
+
+    });
+
+  }
+
+});
+
+
+console.log("✅ Navbar inicializado correctamente");
 
 // ==========================================
 // FINAL DEL JAVASCRIPT

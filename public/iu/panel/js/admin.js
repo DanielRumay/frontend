@@ -11,15 +11,7 @@ const API_URL =
     ? "http://localhost:8080"
     : "https://ascope-backend.onrender.com";
 
-/* ==============================
-   MOSTRAR / OCULTAR PASSWORD
-============================== */
-/* ==============================
-   MOSTRAR / OCULTAR PASSWORD
-============================== */
-/* ==============================
-   MOSTRAR / OCULTAR PASSWORD
-============================== */
+
 /* ==============================
    MOSTRAR / OCULTAR PASSWORD
 ============================== */
