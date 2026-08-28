@@ -80,6 +80,7 @@ const iconoUsuarioSesion =
   document.getElementById("iconoUsuarioSesion");
 
 
+
 /* =========================================================
    CARGAR PERFIL DEL USUARIO
 ========================================================= */
@@ -90,12 +91,14 @@ async function cargarPerfilUsuario() {
 
     console.log("Verificando sesión del usuario...");
 
-
     const response = await fetch(
       `${API_URL}/usuarios/auth/verificar`,
       {
         method: "GET",
-        credentials: "include"
+        credentials: "include",
+        headers: {
+          "Accept": "application/json"
+        }
       }
     );
 
@@ -106,114 +109,20 @@ async function cargarPerfilUsuario() {
         "No existe una sesión activa."
       );
 
-      alert(
-        "Su sesión ha expirado o no ha iniciado sesión."
-      );
-
-      window.location.href = "login.html";
+      window.location.href =
+        "../error.html";
 
       return;
-
     }
 
 
-    const datosSesion =
+    const usuario =
       await response.json();
 
-    console.log(
-      "Sesión verificada:",
-      datosSesion
-    );
-
-
-    /*
-       El endpoint /auth/verificar devuelve:
-       {
-         autenticado: true,
-         usuario: "...",
-         rol: "..."
-       }
-
-       Por eso tomamos directamente
-       el usuario desde la sesión del backend.
-    */
-
-    const nombreUsuario =
-      datosSesion.usuario;
-
-
-    if (!nombreUsuario) {
-
-      console.warn(
-        "La sesión no contiene usuario."
-      );
-
-      alert(
-        "No se pudo identificar al usuario de la sesión."
-      );
-
-      return;
-
-    }
-
-
-    /*
-       Obtener información completa del usuario
-       para obtener fotoPerfil.
-    */
-
-    const usuariosResponse =
-      await fetch(
-        `${API_URL}/usuarios`,
-        {
-          method: "GET",
-          credentials: "include",
-          headers: {
-            "Accept": "application/json"
-          }
-        }
-      );
-
-
-    if (!usuariosResponse.ok) {
-
-      throw new Error(
-        "No se pudo obtener la información del usuario."
-      );
-
-    }
-
-
-    const usuarios =
-      await usuariosResponse.json();
-
-
-    const usuarioActual =
-      usuarios.find(
-        usuario =>
-          usuario.usuario === nombreUsuario
-      );
-
-
-    if (!usuarioActual) {
-
-      console.warn(
-        "No se encontró el usuario:",
-        nombreUsuario
-      );
-
-      alert(
-        "No se encontró la información del usuario autenticado."
-      );
-
-      return;
-
-    }
-
 
     console.log(
-      "Usuario actual:",
-      usuarioActual
+      "Usuario autenticado:",
+      usuario
     );
 
 
@@ -222,12 +131,13 @@ async function cargarPerfilUsuario() {
     ===================================================== */
 
     if (
-      usuarioActual.fotoPerfil &&
-      String(usuarioActual.fotoPerfil).trim() !== ""
+      usuario &&
+      usuario.fotoPerfil &&
+      String(usuario.fotoPerfil).trim() !== ""
     ) {
 
       fotoUsuarioSesion.src =
-        usuarioActual.fotoPerfil;
+        usuario.fotoPerfil;
 
       fotoUsuarioSesion.style.display =
         "block";
@@ -253,9 +163,9 @@ async function cargarPerfilUsuario() {
     } else {
 
       /*
-         No tiene foto:
-         mostrar icono por defecto.
-      */
+       * El usuario no tiene foto.
+       * Se mantiene el icono como respaldo.
+       */
 
       fotoUsuarioSesion.style.display =
         "none";
@@ -275,6 +185,8 @@ async function cargarPerfilUsuario() {
   }
 
 }
+
+
 
 
 /* =========================================================

@@ -364,12 +364,18 @@ body {
 }
 
 
-.visitas-usuario-icono i {
+/* FOTO DE PERFIL */
 
-  color:
-    #2563eb;
+.usuario-icono img {
 
-  font-size: 28px;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  display: block;
 
 }
 
@@ -2165,16 +2171,6 @@ body {
 
 
 /* ICONO PERSONA */
-
-.usuario-icono i {
-
-  font-size: 18px;
-
-  line-height: 1;
-
-  color: #2563eb;
-
-}
 
 
 /* HOVER */

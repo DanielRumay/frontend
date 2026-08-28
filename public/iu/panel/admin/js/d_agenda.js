@@ -39,6 +39,9 @@ const agendaPerfil =
 const btnAgendaPerfil =
   document.getElementById("btnAgendaPerfil");
 
+const agendaFotoPerfil =
+  document.getElementById("agendaFotoPerfil");
+
 const agendaPerfilMenu =
   document.getElementById("agendaPerfilMenu");
 
@@ -476,11 +479,10 @@ function mostrarPerfil(usuario) {
   // FOTO
   // =======================================================
 
-  if (fotoPerfil) {
+  if (agendaFotoPerfil) {
 
-    fotoPerfil.src =
-      usuario.fotoPerfil ||
-      "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-photo-183042379.jpg";
+    agendaFotoPerfil.src =
+      usuario.fotoPerfil;
 
   }
 

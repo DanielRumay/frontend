@@ -39,6 +39,9 @@ const porcentajePortal =
 const btnPerfil =
   document.getElementById("btnPerfil");
 
+const fotoPerfil =
+  document.getElementById("fotoPerfil");
+
 const menuPerfil =
   document.getElementById("menuPerfil");
 
@@ -219,6 +222,17 @@ async function verificarSesion() {
 
     const usuario =
       await respuesta.json();
+
+    if (fotoPerfil) {
+
+      if (usuario.fotoPerfil) {
+
+        fotoPerfil.src =
+          usuario.fotoPerfil;
+
+      }
+
+    }
 
 
     console.log(

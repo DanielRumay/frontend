@@ -74,6 +74,8 @@ const confirmarEliminarVisita =
 const nombreVisitaEliminar =
   document.getElementById("nombreVisitaEliminar");
 
+console.log("🔥 D_VISITAS.JS - VERSION 2026-08-28-01");
+console.log("🔥 VERSION NUEVA D_VISITAS.JS - 28/08/2026");
 
 /* =========================================================
    PERFIL / MENÚ DE USUARIO
@@ -184,12 +186,15 @@ function configurarPerfil() {
    MOSTRAR DATOS DEL PERFIL
 ========================================================= */
 
+/* =========================================================
+   MOSTRAR DATOS DEL PERFIL
+========================================================= */
+
 function mostrarPerfil(usuario) {
 
   if (!usuario) {
     return;
   }
-
 
   const nombrePerfil =
     document.getElementById("nombrePerfil");
@@ -242,7 +247,7 @@ function mostrarPerfil(usuario) {
 
 
   // =======================================================
-  // FOTO
+  // FOTO DE PERFIL
   // =======================================================
 
   if (fotoPerfil) {
@@ -250,17 +255,36 @@ function mostrarPerfil(usuario) {
     const foto =
       usuario.fotoPerfil;
 
-    if (foto) {
+    if (
+      foto &&
+      typeof foto === "string" &&
+      foto.trim() !== ""
+    ) {
 
       fotoPerfil.src =
         foto;
 
+    } else {
+
+      fotoPerfil.src =
+        "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-photo-183042379.jpg";
+
     }
+
+
+    // Si la URL de la foto falla,
+    // mostrar nuevamente la imagen por defecto.
+
+    fotoPerfil.onerror = function () {
+
+      fotoPerfil.src =
+        "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-photo-183042379.jpg";
+
+    };
 
   }
 
 }
-
 
 /* =========================================================
    CERRAR SESIÓN
@@ -1108,8 +1132,10 @@ function obtenerIdVisita(visita) {
 
 async function registrarVisita(event) {
 
-  event.preventDefault();
+  console.log("🔥 EJECUTANDO registrarVisita NUEVA");
+  console.log("🔥 VERSION NUEVA D_VISITAS.JS - 28/08/2026");
 
+  event.preventDefault();
 
   try {
 
@@ -1118,42 +1144,35 @@ async function registrarVisita(event) {
         "crearFecha"
       )?.value.trim();
 
-
     const nombreVisitante =
       document.getElementById(
         "crearVisitante"
       )?.value.trim();
-
 
     const dniVisitante =
       document.getElementById(
         "crearDni"
       )?.value.trim();
 
-
     const funcionarioVisitado =
       document.getElementById(
         "crearFuncionario"
       )?.value.trim();
-
 
     const lugarEspecificoVisita =
       document.getElementById(
         "crearLugar"
       )?.value.trim();
 
-
     const horaEntradaRegistrada =
       document.getElementById(
         "crearEntrada"
       )?.value.trim();
 
-
     const horaSalidaRegistrada =
       document.getElementById(
         "crearSalida"
       )?.value.trim();
-
 
     const motivo =
       document.getElementById(
@@ -1176,15 +1195,25 @@ async function registrarVisita(event) {
     }
 
 
-    if (!visita.dniVisitante) {
-      alert("Ingrese el DNI del visitante.");
+    if (!dniVisitante) {
+
+      alert(
+        "Ingrese el DNI del visitante."
+      );
+
       return;
+
     }
 
 
-    if (!/^\d{8}$/.test(visita.dniVisitante)) {
-      alert("El DNI debe contener exactamente 8 dígitos.");
+    if (!/^\d{8}$/.test(dniVisitante)) {
+
+      alert(
+        "El DNI debe contener exactamente 8 dígitos."
+      );
+
       return;
+
     }
 
 
@@ -1584,16 +1613,9 @@ async function guardarCambiosVisita(event) {
     }
 
 
-    if (!/^\d{8}$/.test(
-      visita.dniVisitante
-    )) {
-
-      alert(
-        "El DNI debe contener exactamente 8 dígitos."
-      );
-
+    if (!/^\d{8}$/.test(dniVisitante)) {
+      alert("El DNI debe contener exactamente 8 dígitos.");
       return;
-
     }
 
 

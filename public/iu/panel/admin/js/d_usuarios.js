@@ -2043,16 +2043,8 @@ function mostrarPerfil(usuario) {
 
   if (fotoPerfil) {
 
-    /*
-     * Intentamos encontrar la foto usando
-     * diferentes nombres de propiedad.
-     */
-
-    const foto =
+    fotoPerfil.src =
       usuario.fotoPerfil;
-
-
-    fotoPerfil.src = foto;
 
   }
 

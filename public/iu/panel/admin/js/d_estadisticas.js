@@ -30,6 +30,27 @@ const btnDescargarPDF = document.getElementById("btnDescargarPDF");
 const estadoCarga = document.getElementById("estadoCarga");
 const mensajeError = document.getElementById("mensajeError");
 
+/* =========================================================
+   CONST DE CERRAR SESION
+=========================================================*/
+
+const btnPerfil =
+  document.getElementById("btnPerfil");
+
+const profileDropdown =
+  document.getElementById("profileDropdown");
+
+const btnLogoutHeader =
+  document.getElementById("btnLogoutHeader");
+
+const modalLogout =
+  document.getElementById("modalLogout");
+
+const btnCancelarLogout =
+  document.getElementById("btnCancelarLogout");
+
+const btnConfirmarLogout =
+  document.getElementById("btnConfirmarLogout");
 
 /* =========================================================
    INIT
@@ -58,7 +79,199 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cargarEstadisticas();
 
+  configurarPerfilMenu();
+
+  configurarLogout();
+
 });
+
+
+// =====================================================
+// MENÚ DE PERFIL
+// =====================================================
+
+function configurarPerfilMenu() {
+
+  if (!btnPerfil || !profileDropdown) {
+    return;
+  }
+
+
+  btnPerfil.addEventListener(
+    "click",
+    (event) => {
+
+      event.stopPropagation();
+
+      const abierto =
+        profileDropdown.classList.toggle(
+          "show"
+        );
+
+
+      btnPerfil.setAttribute(
+        "aria-expanded",
+        abierto
+      );
+
+    }
+  );
+
+
+
+}
+
+// =====================================================
+// LOGOUT
+// =====================================================
+
+function configurarLogout() {
+
+  if (btnLogoutHeader) {
+
+    btnLogoutHeader.addEventListener(
+      "click",
+      () => {
+
+        if (profileDropdown) {
+
+          profileDropdown.classList.remove(
+            "show"
+          );
+
+        }
+
+
+        if (btnPerfil) {
+
+          btnPerfil.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+
+        abrirModalLogout();
+
+      }
+    );
+
+  }
+
+
+  if (btnCancelarLogout) {
+
+    btnCancelarLogout.addEventListener(
+      "click",
+      cerrarModalLogout
+    );
+
+  }
+
+
+  if (btnConfirmarLogout) {
+
+    btnConfirmarLogout.addEventListener(
+      "click",
+      cerrarSesion
+    );
+
+  }
+
+}
+
+// =====================================================
+// ABRIR MODAL
+// =====================================================
+
+function abrirModalLogout() {
+
+  if (!modalLogout) {
+    return;
+  }
+
+
+  modalLogout.style.display =
+    "flex";
+
+}
+
+// =====================================================
+// CERRAR MODAL
+// =====================================================
+
+function cerrarModalLogout() {
+
+  if (!modalLogout) {
+    return;
+  }
+
+
+  modalLogout.style.display =
+    "none";
+
+}
+
+// =====================================================
+// CERRAR SESIÓN
+// =====================================================
+
+async function cerrarSesion() {
+
+  try {
+
+    if (btnConfirmarLogout) {
+
+      btnConfirmarLogout.disabled =
+        true;
+
+      btnConfirmarLogout.innerHTML =
+        `
+          <i class="fa-solid fa-spinner fa-spin"></i>
+          Cerrando sesión...
+        `;
+
+    }
+
+
+    await fetch(
+      `${API_URL}/usuarios/logout`,
+      {
+        method: "POST",
+        credentials: "include"
+      }
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Error cerrando sesión:",
+      error
+    );
+
+  }
+
+  finally {
+
+    localStorage.removeItem(
+      "usuarioSesion"
+    );
+
+
+    sessionStorage.removeItem(
+      "usuarioSesion"
+    );
+
+
+    window.location.href =
+      LOGIN_URL;
+
+  }
+
+}
 
 
 /* =========================================================
@@ -93,86 +306,67 @@ function inicializarAnios() {
    LOAD
 ========================================================= */
 
-async function cargarEstadisticas() {
-
-  mostrarCarga();
-  ocultarError();
-
-  const anio = filtroAnio.value;
-  const periodo = filtroPeriodo.value;
-
-  const url =
-    `${API_URL}/estadisticas` +
-    `?anio=${encodeURIComponent(anio)}` +
-    `&periodo=${encodeURIComponent(periodo)}`;
-
+// Función principal para cargar y renderear las estadísticas
+async function cargarEstadisticas(anio = 2026, periodo = 'todo') {
   try {
+    console.group(`📊 [DEBUG] Cargando Estadísticas - Año: ${anio}, Periodo: ${periodo}`);
 
-    console.log(
-      "Cargando estadísticas:",
-      url
-    );
+    const response = await fetch(`/api/estadisticas?anio=${anio}&periodo=${periodo}`);
 
-    const response = await fetch(
-      url,
-      {
-        method: "GET",
-
-        credentials: "include",
-
-        headers: {
-          Accept: "application/json"
-        }
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(
-        `Error HTTP ${response.status}`
-      );
+    // Si la respuesta no es OK o no es JSON, imprimimos el HTML que llegó
+    if (!response.ok || !response.headers.get("content-type")?.includes("application/json")) {
+      const htmlError = await response.text();
+      console.error("❌ El servidor respondió con HTML en lugar de JSON. Código:", response.status);
+      console.log("📄 Contenido HTML devuelto por la API:", htmlError);
+      console.groupEnd();
+      return;
     }
 
-    const datos = await response.json();
+    const data = await response.json();
+    console.log("📦 DTO Recibido completo:", data);
 
-    console.log(
-      "Estadísticas recibidas:",
-      datos
-    );
-
-    /*
-     * Guardamos los datos para que CSV y PDF
-     * utilicen exactamente la información que
-     * actualmente muestra el dashboard.
-     */
-    datosEstadisticasActuales = datos;
-
-    actualizarTarjetas(datos);
-
-    actualizarGraficos(datos);
-
-    actualizarResumen(datos);
-
-    ocultarCarga();
+    actualizarTarjetasDOM(data);
+    renderizarGraficos(data);
+    console.groupEnd();
 
   } catch (error) {
-
-    console.error(
-      "Error cargando estadísticas:",
-      error
-    );
-
-    datosEstadisticasActuales = null;
-
-    ocultarCarga();
-
-    mostrarError(
-      "No se pudieron cargar las estadísticas. " +
-      "Verifica que Spring Boot esté ejecutándose " +
-      "en el puerto 8080."
-    );
-
+    console.error("❌ Error al cargar estadísticas:", error);
   }
+}
 
+// ✅ Opción recomendada: limpia, segura y compatible
+function actualizarTarjetasDOM(data) {
+  const asignarTexto = (id, valor) => {
+    const el = document.getElementById(id);
+    if (el) el.innerText = valor ?? 0;
+  };
+
+  asignarTexto('cardUsuarios', data.usuariosRegistrados);
+  asignarTexto('cardVisitas', data.visitasRegistradas);
+  asignarTexto('cardAgenda', data.actividadesProgramadas);
+  asignarTexto('cardDocumentos', data.documentosPublicados);
+  asignarTexto('cardNoticias', data.noticiasPublicadas);
+  asignarTexto('cardUsuariosActivos', data.usuariosActivos);
+}
+
+// Mapeo detallado de los datasets para Chart.js
+function renderizarGraficos(data) {
+  // Ejemplo de mapeo con log para Registros Mensuales
+  if (data.registrosMensuales) {
+    const meses = data.registrosMensuales.map(m => m.nombreMes);
+    const visitas = data.registrosMensuales.map(m => m.visitas);
+    const documentos = data.registrosMensuales.map(m => m.documentos);
+    const noticias = data.registrosMensuales.map(m => m.noticias);
+    const actividades = data.registrosMensuales.map(m => m.actividades);
+
+    console.log("🎨 Mapeo 'Registros Mensuales' -> Meses:", meses);
+    console.log("🎨 Mapeo 'Registros Mensuales' -> Documentos por mes:", documentos);
+
+    // Aquí invocas o actualizas la instancia de tu Chart.js
+    // miGraficoBarra.data.labels = meses;
+    // miGraficoBarra.data.datasets[1].data = documentos;
+    // miGraficoBarra.update();
+  }
 }
 
 
@@ -1733,7 +1927,11 @@ async function inicializarSesion() {
 
     console.log("Usuario autenticado:", usuario);
 
+    usuarioSesionActual = usuario;
+
     cargarFotoPerfil(usuario);
+
+    actualizarPerfilFrontend(usuario);
 
   } catch (error) {
 
@@ -1864,23 +2062,7 @@ function formatearRol(rol) {
 }
 
 
-/* =========================================================
-   BOTÓN PERFIL
-========================================================= */
 
-document
-  .getElementById("btnPerfil")
-  ?.addEventListener(
-    "click",
-    () => {
-
-      console.log(
-        "Perfil:",
-        usuarioSesionActual
-      );
-
-    }
-  );
 
 
 /* =========================================================

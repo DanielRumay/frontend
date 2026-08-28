@@ -7,8 +7,9 @@
 
   <title>Estadísticas | Municipalidad</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="css/d_estadisticas.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
@@ -102,18 +103,82 @@
 
       </div>
 
-      <button
-        type="button"
-        class="profile-button"
-        id="btnPerfil"
-        aria-label="Perfil"
-      >
-        <img
-          id="fotoPerfilHeader"
-          src=""
-          alt="Foto de perfil"
+      <!-- =================================================
+     PERFIL SUPERIOR DERECHO
+================================================== -->
+
+      <div class="profile-wrapper">
+
+        <button
+          type="button"
+          class="profile-button"
+          id="btnPerfil"
+          aria-label="Abrir menú de perfil"
+          aria-expanded="false"
         >
-      </button>
+
+          <img
+            src="../../../multimedia/perfil-default.png"
+            id="fotoPerfil"
+            alt="Foto de perfil"
+          >
+
+        </button>
+
+
+        <!-- =================================================
+             MENÚ DESPLEGABLE
+        ================================================== -->
+
+        <div
+          class="profile-dropdown"
+          id="profileDropdown"
+        >
+
+          <div class="profile-dropdown-header">
+
+            <img
+              src="../../../multimedia/perfil-default.png"
+              id="imagenPerfilDropdown"
+              alt="Perfil"
+            >
+
+            <div>
+
+              <strong id="nombrePerfilDropdown">
+                Administrador
+              </strong>
+
+              <span id="usuarioPerfilDropdown">
+          admin
+        </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="profile-dropdown-divider"></div>
+
+
+          <button
+            type="button"
+            class="profile-dropdown-item logout-item"
+            id="btnLogoutHeader"
+          >
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>
+        Cerrar sesión
+      </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
 
     </header>
 

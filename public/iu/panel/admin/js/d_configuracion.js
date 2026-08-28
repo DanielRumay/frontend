@@ -9,8 +9,6 @@ const API_URL =
 
 const LOGIN_URL = "../error.html";
 
-const LOGIN_URL = "../error.html";
-
 const INTERVALO_SESION = 60 * 1000;
 
 let intervaloSesion = null;
@@ -167,118 +165,169 @@ function configurarCambioFoto() {
 // MANEJAR CAMBIO DE FOTO
 // =====================================================
 
-function manejarCambioFoto(event) {
+async function manejarCambioFoto(event) {
 
-  const archivo =
-    event.target.files?.[0];
+  try {
 
+    // Obtener archivo
+    const archivo =
+      event.target.files?.[0];
 
-  if (!archivo) {
-    return;
-  }
-
-
-  // =================================================
-  // VALIDAR FORMATO
-  // =================================================
-
-  const tiposPermitidos = [
-    "image/jpeg",
-    "image/png",
-    "image/webp"
-  ];
+    if (!archivo) {
+      return;
+    }
 
 
-  if (
-    !tiposPermitidos.includes(
-      archivo.type
-    )
-  ) {
+    // Validar formato
+    const tiposPermitidos = [
+      "image/jpeg",
+      "image/png",
+      "image/webp"
+    ];
 
-    mostrarError(
-      "Seleccione una imagen JPG, PNG o WEBP."
-    );
+    if (
+      !tiposPermitidos.includes(
+        archivo.type
+      )
+    ) {
 
-    event.target.value = "";
+      mostrarError(
+        "Seleccione una imagen JPG, PNG o WEBP."
+      );
 
-    return;
+      event.target.value = "";
 
-  }
-
-
-  // =================================================
-  // VALIDAR TAMAÑO
-  // =================================================
-
-  const maximo =
-    5 * 1024 * 1024;
+      return;
+    }
 
 
-  if (archivo.size > maximo) {
+    // Validar tamaño
+    const maximo =
+      5 * 1024 * 1024;
 
-    mostrarError(
-      "La imagen no puede superar los 5 MB."
-    );
+    if (archivo.size > maximo) {
 
-    event.target.value = "";
+      mostrarError(
+        "La imagen no puede superar los 5 MB."
+      );
 
-    return;
+      event.target.value = "";
 
-  }
-
-
-  // =================================================
-  // PREVISUALIZAR
-  // =================================================
-
-  const lector =
-    new FileReader();
+      return;
+    }
 
 
-  lector.onload = () => {
+    // Verificar usuario
+    if (!usuarioActual) {
 
-    const foto =
-      lector.result;
+      mostrarError(
+        "No se pudo identificar al usuario."
+      );
+
+      return;
+    }
 
 
-    actualizarImagen(
-      fotoPerfil,
-      foto
-    );
+    // Crear FormData
+    const formData =
+      new FormData();
 
-    actualizarImagen(
-      imagenPerfil,
-      foto
-    );
-
-    actualizarImagen(
-      imagenPerfilDropdown,
-      foto
+    formData.append(
+      "foto",
+      archivo
     );
 
 
-    mostrarExito(
-      "Foto seleccionada correctamente."
-    );
-
-  };
+    // Construir URL
+    const url =
+      `${API_URL}/usuarios/${usuarioActual.id}/foto`;
 
 
-  lector.onerror = () => {
-
-    mostrarError(
-      "No se pudo cargar la imagen seleccionada."
-    );
-
-  };
-
-
-  lector.readAsDataURL(
-    archivo
+// Enviar imagen
+const respuesta =
+  await fetch(
+    url,
+    {
+      method: "PUT",
+      credentials: "include",
+      body: formData
+    }
   );
 
+
+// Verificar respuesta
+if (!respuesta.ok) {
+
+  const textoError =
+    await respuesta.text();
+
+  console.error(
+    "Error del backend:",
+    textoError
+  );
+
+  throw new Error(
+    `Error HTTP ${respuesta.status}`
+  );
 }
 
+
+// Obtener usuario actualizado
+const usuarioActualizado =
+  await respuesta.json();
+
+
+// Actualizar usuario local
+usuarioActual =
+  usuarioActualizado;
+
+
+// Obtener nueva foto
+const nuevaFoto =
+  usuarioActualizado.fotoPerfil;
+
+
+// Actualizar imágenes
+actualizarImagen(
+  fotoPerfil,
+  nuevaFoto
+);
+
+actualizarImagen(
+  imagenPerfil,
+  nuevaFoto
+);
+
+actualizarImagen(
+  imagenPerfilDropdown,
+  nuevaFoto
+);
+
+
+// Mostrar éxito
+mostrarExito(
+  "Foto de perfil actualizada correctamente."
+);
+
+
+// Limpiar input
+event.target.value = "";
+
+
+} catch (error) {
+
+  console.error(
+    "Error cambiando foto:",
+    error
+  );
+
+  mostrarError(
+    "No se pudo actualizar la foto de perfil."
+  );
+
+  event.target.value = "";
+}
+}
 
 // =====================================================
 // SESIÓN

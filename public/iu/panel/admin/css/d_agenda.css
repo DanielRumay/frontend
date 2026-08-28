@@ -345,13 +345,16 @@ body {
    ICONO PERSONA
 ===================================================== */
 
-.agenda-usuario-icono i {
+.agenda-usuario-icono img {
 
-  font-size: 18px;
+  width: 100%;
+  height: 100%;
 
-  line-height: 1;
+  border-radius: 50%;
 
-  color: #2563eb;
+  object-fit: cover;
+
+  display: block;
 
 }
 
