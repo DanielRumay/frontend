@@ -17,6 +17,44 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
+  server: {
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+      '/estadisticas': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+      '/usuarios': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+      '/visitas': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+      '/documentos': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+      '/agenda': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+      '/actividades': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+      '/noticias': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      }
+    }
+  },
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if

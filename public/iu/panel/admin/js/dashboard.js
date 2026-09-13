@@ -674,8 +674,8 @@ function generarGraficoRegistros() {
     canvas.getContext("2d");
 
 
-  const anioActual =
-    new Date().getFullYear();
+  // 0 = todos los años (sin filtro de año)
+  const anioFiltro = 0;
 
 
   const meses = [
@@ -698,7 +698,7 @@ function generarGraficoRegistros() {
     contarPorMes(
       usuariosGlobal,
       "fechaRegistro",
-      anioActual
+      anioFiltro
     );
 
 
@@ -706,7 +706,7 @@ function generarGraficoRegistros() {
     contarPorMes(
       documentosGlobal,
       "fechaPublicacion",
-      anioActual
+      anioFiltro
     );
 
 
@@ -714,7 +714,7 @@ function generarGraficoRegistros() {
     contarPorMes(
       agendaGlobal,
       "fecha",
-      anioActual
+      anioFiltro
     );
 
 
@@ -722,7 +722,7 @@ function generarGraficoRegistros() {
     contarPorMes(
       visitasGlobal,
       "fechaRegistro",
-      anioActual
+      anioFiltro
     );
 
 
@@ -846,7 +846,9 @@ function contarPorMes(
     }
 
 
+    // anio === 0 → mostrar todos los años
     if (
+      anio === 0 ||
       fecha.getFullYear() === anio
     ) {
 

@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inicializarAnios();
 
-  filtroAnio.value = String(new Date().getFullYear());
+  filtroAnio.value = "0"; // "Todos los años" por defecto
 
   btnAplicarFiltros.addEventListener(
     "click",
@@ -284,6 +284,13 @@ function inicializarAnios() {
 
   filtroAnio.innerHTML = "";
 
+  // Opción "Todos los años" seleccionada por defecto
+  const optionTodos = document.createElement("option");
+  optionTodos.value = "0";
+  optionTodos.textContent = "Todos los años";
+  optionTodos.selected = true;
+  filtroAnio.appendChild(optionTodos);
+
   for (
     let anio = anioActual;
     anio >= anioActual - 5;
@@ -306,15 +313,36 @@ function inicializarAnios() {
    LOAD
 ========================================================= */
 
-// Función principal para cargar y renderear las estadísticas
-async function cargarEstadisticas(anio = 2026, periodo = 'todo') {
+async function cargarEstadisticas(anioParam, periodoParam) {
   try {
+    const selectAnio = document.getElementById("filtroAnio");
+    const selectPeriodo = document.getElementById("filtroPeriodo");
+
+    const anio = (typeof anioParam === "number" || (typeof anioParam === "string" && anioParam !== "[object PointerEvent]" && anioParam !== "[object MouseEvent]"))
+      ? anioParam
+      : (selectAnio ? selectAnio.value : 0);  // 0 = todos los años
+
+    const periodo = (typeof periodoParam === "string" && periodoParam !== "[object PointerEvent]" && periodoParam !== "[object MouseEvent]")
+      ? periodoParam
+      : (selectPeriodo ? selectPeriodo.value : 'todo');
+
     console.group(`📊 [DEBUG] Cargando Estadísticas - Año: ${anio}, Periodo: ${periodo}`);
 
-    const response = await fetch(`/api/estadisticas?anio=${anio}&periodo=${periodo}`);
+    let apiUrl = `/api/estadisticas?anio=${anio}&periodo=${periodo}`;
+    let response = await fetch(apiUrl);
 
-    // Si la respuesta no es OK o no es JSON, imprimimos el HTML que llegó
-    if (!response.ok || !response.headers.get("content-type")?.includes("application/json")) {
+    let contentType = response.headers.get("content-type") || "";
+
+    // Si respondió HTML (servidor estático Vite) en lugar de JSON, probar directamente a http://localhost:8080/estadisticas
+    if (contentType.includes("text/html") || !response.ok) {
+      console.warn("⚠️ /api/estadisticas devolvió HTML o falló. Reintentando a http://localhost:8080/estadisticas");
+      apiUrl = `http://localhost:8080/estadisticas?anio=${anio}&periodo=${periodo}`;
+      response = await fetch(apiUrl);
+      contentType = response.headers.get("content-type") || "";
+    }
+
+    // Si la respuesta sigue no siendo OK o no es JSON, imprimimos el HTML que llegó
+    if (!response.ok || !contentType.includes("application/json")) {
       const htmlError = await response.text();
       console.error("❌ El servidor respondió con HTML en lugar de JSON. Código:", response.status);
       console.log("📄 Contenido HTML devuelto por la API:", htmlError);
@@ -325,47 +353,15 @@ async function cargarEstadisticas(anio = 2026, periodo = 'todo') {
     const data = await response.json();
     console.log("📦 DTO Recibido completo:", data);
 
-    actualizarTarjetasDOM(data);
-    renderizarGraficos(data);
+    datosEstadisticasActuales = data;
+
+    actualizarTarjetas(data);
+    actualizarGraficos(data);
+    actualizarResumen(data);
     console.groupEnd();
 
   } catch (error) {
     console.error("❌ Error al cargar estadísticas:", error);
-  }
-}
-
-// ✅ Opción recomendada: limpia, segura y compatible
-function actualizarTarjetasDOM(data) {
-  const asignarTexto = (id, valor) => {
-    const el = document.getElementById(id);
-    if (el) el.innerText = valor ?? 0;
-  };
-
-  asignarTexto('cardUsuarios', data.usuariosRegistrados);
-  asignarTexto('cardVisitas', data.visitasRegistradas);
-  asignarTexto('cardAgenda', data.actividadesProgramadas);
-  asignarTexto('cardDocumentos', data.documentosPublicados);
-  asignarTexto('cardNoticias', data.noticiasPublicadas);
-  asignarTexto('cardUsuariosActivos', data.usuariosActivos);
-}
-
-// Mapeo detallado de los datasets para Chart.js
-function renderizarGraficos(data) {
-  // Ejemplo de mapeo con log para Registros Mensuales
-  if (data.registrosMensuales) {
-    const meses = data.registrosMensuales.map(m => m.nombreMes);
-    const visitas = data.registrosMensuales.map(m => m.visitas);
-    const documentos = data.registrosMensuales.map(m => m.documentos);
-    const noticias = data.registrosMensuales.map(m => m.noticias);
-    const actividades = data.registrosMensuales.map(m => m.actividades);
-
-    console.log("🎨 Mapeo 'Registros Mensuales' -> Meses:", meses);
-    console.log("🎨 Mapeo 'Registros Mensuales' -> Documentos por mes:", documentos);
-
-    // Aquí invocas o actualizas la instancia de tu Chart.js
-    // miGraficoBarra.data.labels = meses;
-    // miGraficoBarra.data.datasets[1].data = documentos;
-    // miGraficoBarra.update();
   }
 }
 
