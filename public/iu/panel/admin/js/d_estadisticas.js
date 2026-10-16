@@ -357,98 +357,96 @@ async function cargarEstadisticas(anioParam, periodoParam) {
     console.log("📦 DTO Recibido completo:", data);
 
     // =========================================================
-    // ENRIQUECIMIENTO INTELIGENTE DE DATOS
-    // Asegura que si existen registros en la base de datos (resumenTotal),
-    // ninguna tarjeta o gráfico muestre 0 falsamente.
+    // GESTIÓN SEGÚN FILTRO SOLICITADO
+    // Si se filtra por año específico, se respeta estrictamente ese año.
+    // Si se selecciona "Todos los años" y "Todo el año", se agrupa
+    // con un periodo de 1 año de diferencia para análisis exacto.
     // =========================================================
-    try {
-      // 1. Documentos
-      if ((!data.documentosPublicados || data.documentosPublicados === 0) && (data.resumenTotal?.totalDocumentos > 0)) {
-        const resDocs = await fetch(`${API_URL}/documentos`);
-        if (resDocs.ok) {
-          const docs = await resDocs.json();
-          if (Array.isArray(docs) && docs.length > 0) {
-            data.documentosPublicados = docs.length;
-            docs.forEach(doc => {
-              if (doc.fechaPublicacion) {
-                const mes = parseInt(doc.fechaPublicacion.split('-')[1], 10);
-                if (mes >= 1 && mes <= 12) {
-                  if (data.documentosMensuales && data.documentosMensuales[mes - 1]) {
-                    data.documentosMensuales[mes - 1].documentos = (data.documentosMensuales[mes - 1].documentos || 0) + 1;
-                  }
-                  if (data.registrosMensuales && data.registrosMensuales[mes - 1]) {
-                    data.registrosMensuales[mes - 1].documentos = (data.registrosMensuales[mes - 1].documentos || 0) + 1;
-                  }
-                }
-              }
-            });
-          }
+    const esTodosLosAnios = (anio === 0 || anio === "0" || String(anio) === "0");
+    const esTodoElPeriodo = (periodo === "todo" || !periodo);
+
+    if (esTodosLosAnios) {
+      try {
+        // En "Todos los años", las tarjetas muestran el consolidado global real
+        if (data.resumenTotal) {
+          data.usuariosRegistrados = data.resumenTotal.totalUsuarios || 0;
+          data.visitasRegistradas = data.resumenTotal.totalVisitas || 0;
+          data.documentosPublicados = data.resumenTotal.totalDocumentos || 0;
+          data.actividadesProgramadas = data.resumenTotal.totalAgenda || 0;
+          data.noticiasPublicadas = data.resumenTotal.totalNoticias || 0;
         }
-      }
 
-      // 2. Actividades de Agenda (Actividades programadas)
-      if ((!data.actividadesProgramadas || data.actividadesProgramadas === 0) && (data.resumenTotal?.totalAgenda > 0)) {
-        const resAgenda = await fetch(`${API_URL}/agenda`);
-        if (resAgenda.ok) {
-          const agendas = await resAgenda.json();
-          if (Array.isArray(agendas) && agendas.length > 0) {
-            data.actividadesProgramadas = agendas.length;
-            agendas.forEach(ag => {
-              if (ag.fecha) {
-                const mes = parseInt(ag.fecha.split('-')[1], 10);
-                if (mes >= 1 && mes <= 12) {
-                  if (data.agendaMensual && data.agendaMensual[mes - 1]) {
-                    data.agendaMensual[mes - 1].actividades = (data.agendaMensual[mes - 1].actividades || 0) + 1;
-                  }
-                  if (data.registrosMensuales && data.registrosMensuales[mes - 1]) {
-                    data.registrosMensuales[mes - 1].actividades = (data.registrosMensuales[mes - 1].actividades || 0) + 1;
-                  }
-                }
-              }
-            });
-          }
+        // Consultar registros para estructurar gráficos por AÑO (1 año de diferencia)
+        const anioActual = new Date().getFullYear();
+        const listaAnios = [];
+        for (let y = anioActual - 5; y <= anioActual; y++) {
+          listaAnios.push(y);
         }
-      }
 
-      // 3. Visitas y distribución por lugar
-      if ((!data.visitasPorLugar || data.visitasPorLugar.length === 0) && (data.resumenTotal?.totalVisitas > 0 || data.visitasRegistradas > 0)) {
-        const resVis = await fetch(`${API_URL}/visitas`);
-        if (resVis.ok) {
-          const visitas = await resVis.json();
-          if (Array.isArray(visitas) && visitas.length > 0) {
-            data.visitasRegistradas = data.visitasRegistradas || visitas.length;
-            const conteoLugares = {};
-            visitas.forEach(v => {
-              const lugar = (v.lugarEspecificoVisita || "Sin especificar").trim();
-              conteoLugares[lugar] = (conteoLugares[lugar] || 0) + 1;
-            });
-            data.visitasPorLugar = Object.keys(conteoLugares).map(lugar => ({
-              lugar,
-              cantidad: conteoLugares[lugar]
-            }));
-          }
+        const [resDocs, resAgenda, resVis, resNot, resAct] = await Promise.all([
+          fetch(`${API_URL}/documentos`).then(r => r.ok ? r.json() : []).catch(() => []),
+          fetch(`${API_URL}/agenda`).then(r => r.ok ? r.json() : []).catch(() => []),
+          fetch(`${API_URL}/visitas`).then(r => r.ok ? r.json() : []).catch(() => []),
+          fetch(`${API_URL}/noticias`).then(r => r.ok ? r.json() : []).catch(() => []),
+          fetch(`${API_URL}/actividades`).then(r => r.ok ? r.json() : []).catch(() => [])
+        ]);
+
+        function extraerAnio(str) {
+          if (!str) return null;
+          const match = String(str).match(/^(\d{4})/);
+          return match ? parseInt(match[1], 10) : null;
         }
-      }
 
-      // 4. Fallback de tarjetas si aún estuvieran en 0 pero en resumenTotal existen
-      if (!data.usuariosRegistrados && data.resumenTotal?.totalUsuarios) {
-        data.usuariosRegistrados = data.resumenTotal.totalUsuarios;
-      }
-      if (!data.noticiasPublicadas && data.resumenTotal?.totalNoticias) {
-        data.noticiasPublicadas = data.resumenTotal.totalNoticias;
-      }
-      if (!data.documentosPublicados && data.resumenTotal?.totalDocumentos) {
-        data.documentosPublicados = data.resumenTotal.totalDocumentos;
-      }
-      if (!data.actividadesProgramadas && data.resumenTotal?.totalAgenda) {
-        data.actividadesProgramadas = data.resumenTotal.totalAgenda;
-      }
-      if (!data.visitasRegistradas && data.resumenTotal?.totalVisitas) {
-        data.visitasRegistradas = data.resumenTotal.totalVisitas;
-      }
+        // 1. Registros agrupados por Año (periodo de 1 año)
+        data.registrosMensuales = listaAnios.map(y => ({
+          mes: y,
+          nombreMes: String(y),
+          usuarios: 0,
+          visitas: resVis.filter(v => extraerAnio(v.fechaRegistro) === y).length,
+          documentos: resDocs.filter(d => extraerAnio(d.fechaPublicacion) === y).length,
+          noticias: resNot.filter(n => extraerAnio(n.fechaPublicacion) === y).length,
+          actividades: resAct.filter(a => extraerAnio(a.fecha) === y).length
+        }));
 
-    } catch (errData) {
-      console.warn("Aviso al enriquecer datos estadísticos:", errData);
+        // 2. Documentos agrupados por Año
+        data.documentosMensuales = listaAnios.map(y => ({
+          mes: y,
+          nombreMes: String(y),
+          documentos: resDocs.filter(d => extraerAnio(d.fechaPublicacion) === y).length
+        }));
+
+        // 3. Actividades y Agenda agrupadas por Año
+        data.actividadesMensuales = listaAnios.map(y => ({
+          mes: y,
+          nombreMes: String(y),
+          actividades: resAct.filter(a => extraerAnio(a.fecha) === y).length
+        }));
+
+        data.agendaMensual = listaAnios.map(y => ({
+          mes: y,
+          nombreMes: String(y),
+          actividades: resAgenda.filter(ag => extraerAnio(ag.fecha) === y).length
+        }));
+
+        // 4. Visitas por lugar
+        const conteoLugares = {};
+        resVis.forEach(v => {
+          const l = (v.lugarEspecificoVisita || "Sin especificar").trim();
+          conteoLugares[l] = (conteoLugares[l] || 0) + 1;
+        });
+        data.visitasPorLugar = Object.keys(conteoLugares).map(lugar => ({
+          lugar,
+          cantidad: conteoLugares[lugar]
+        }));
+
+      } catch (errHist) {
+        console.warn("Aviso al armar histórico anual:", errHist);
+      }
+    } else {
+      // FILTRO POR AÑO ESPECÍFICO (ej. 2026, 2024, etc.):
+      // Se respeta estrictamente lo que devuelve el backend para dicho año y periodo.
+      // Si en 2026 hay 0 documentos, se mantiene en 0.
+      // Si en 2024 hay 1 documento, el backend lo devuelve en su mes exacto.
     }
 
     datosEstadisticasActuales = data;
