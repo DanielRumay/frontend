@@ -356,6 +356,101 @@ async function cargarEstadisticas(anioParam, periodoParam) {
     const data = await response.json();
     console.log("📦 DTO Recibido completo:", data);
 
+    // =========================================================
+    // ENRIQUECIMIENTO INTELIGENTE DE DATOS
+    // Asegura que si existen registros en la base de datos (resumenTotal),
+    // ninguna tarjeta o gráfico muestre 0 falsamente.
+    // =========================================================
+    try {
+      // 1. Documentos
+      if ((!data.documentosPublicados || data.documentosPublicados === 0) && (data.resumenTotal?.totalDocumentos > 0)) {
+        const resDocs = await fetch(`${API_URL}/documentos`);
+        if (resDocs.ok) {
+          const docs = await resDocs.json();
+          if (Array.isArray(docs) && docs.length > 0) {
+            data.documentosPublicados = docs.length;
+            docs.forEach(doc => {
+              if (doc.fechaPublicacion) {
+                const mes = parseInt(doc.fechaPublicacion.split('-')[1], 10);
+                if (mes >= 1 && mes <= 12) {
+                  if (data.documentosMensuales && data.documentosMensuales[mes - 1]) {
+                    data.documentosMensuales[mes - 1].documentos = (data.documentosMensuales[mes - 1].documentos || 0) + 1;
+                  }
+                  if (data.registrosMensuales && data.registrosMensuales[mes - 1]) {
+                    data.registrosMensuales[mes - 1].documentos = (data.registrosMensuales[mes - 1].documentos || 0) + 1;
+                  }
+                }
+              }
+            });
+          }
+        }
+      }
+
+      // 2. Actividades de Agenda (Actividades programadas)
+      if ((!data.actividadesProgramadas || data.actividadesProgramadas === 0) && (data.resumenTotal?.totalAgenda > 0)) {
+        const resAgenda = await fetch(`${API_URL}/agenda`);
+        if (resAgenda.ok) {
+          const agendas = await resAgenda.json();
+          if (Array.isArray(agendas) && agendas.length > 0) {
+            data.actividadesProgramadas = agendas.length;
+            agendas.forEach(ag => {
+              if (ag.fecha) {
+                const mes = parseInt(ag.fecha.split('-')[1], 10);
+                if (mes >= 1 && mes <= 12) {
+                  if (data.agendaMensual && data.agendaMensual[mes - 1]) {
+                    data.agendaMensual[mes - 1].actividades = (data.agendaMensual[mes - 1].actividades || 0) + 1;
+                  }
+                  if (data.registrosMensuales && data.registrosMensuales[mes - 1]) {
+                    data.registrosMensuales[mes - 1].actividades = (data.registrosMensuales[mes - 1].actividades || 0) + 1;
+                  }
+                }
+              }
+            });
+          }
+        }
+      }
+
+      // 3. Visitas y distribución por lugar
+      if ((!data.visitasPorLugar || data.visitasPorLugar.length === 0) && (data.resumenTotal?.totalVisitas > 0 || data.visitasRegistradas > 0)) {
+        const resVis = await fetch(`${API_URL}/visitas`);
+        if (resVis.ok) {
+          const visitas = await resVis.json();
+          if (Array.isArray(visitas) && visitas.length > 0) {
+            data.visitasRegistradas = data.visitasRegistradas || visitas.length;
+            const conteoLugares = {};
+            visitas.forEach(v => {
+              const lugar = (v.lugarEspecificoVisita || "Sin especificar").trim();
+              conteoLugares[lugar] = (conteoLugares[lugar] || 0) + 1;
+            });
+            data.visitasPorLugar = Object.keys(conteoLugares).map(lugar => ({
+              lugar,
+              cantidad: conteoLugares[lugar]
+            }));
+          }
+        }
+      }
+
+      // 4. Fallback de tarjetas si aún estuvieran en 0 pero en resumenTotal existen
+      if (!data.usuariosRegistrados && data.resumenTotal?.totalUsuarios) {
+        data.usuariosRegistrados = data.resumenTotal.totalUsuarios;
+      }
+      if (!data.noticiasPublicadas && data.resumenTotal?.totalNoticias) {
+        data.noticiasPublicadas = data.resumenTotal.totalNoticias;
+      }
+      if (!data.documentosPublicados && data.resumenTotal?.totalDocumentos) {
+        data.documentosPublicados = data.resumenTotal.totalDocumentos;
+      }
+      if (!data.actividadesProgramadas && data.resumenTotal?.totalAgenda) {
+        data.actividadesProgramadas = data.resumenTotal.totalAgenda;
+      }
+      if (!data.visitasRegistradas && data.resumenTotal?.totalVisitas) {
+        data.visitasRegistradas = data.resumenTotal.totalVisitas;
+      }
+
+    } catch (errData) {
+      console.warn("Aviso al enriquecer datos estadísticos:", errData);
+    }
+
     datosEstadisticasActuales = data;
 
     actualizarTarjetas(data);
