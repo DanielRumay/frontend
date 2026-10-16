@@ -3,7 +3,10 @@
 ========================================================= */
 
 const API_URL =
-  window.location.hostname === "localhost"
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1" ||
+  window.location.protocol === "file:" ||
+  window.location.hostname === ""
     ? "http://localhost:8080"
     : "https://ascope-backend.onrender.com";
 
@@ -328,15 +331,15 @@ async function cargarEstadisticas(anioParam, periodoParam) {
 
     console.group(`📊 [DEBUG] Cargando Estadísticas - Año: ${anio}, Periodo: ${periodo}`);
 
-    let apiUrl = `/api/estadisticas?anio=${anio}&periodo=${periodo}`;
+    let apiUrl = `${API_URL}/estadisticas?anio=${encodeURIComponent(anio)}&periodo=${encodeURIComponent(periodo)}`;
     let response = await fetch(apiUrl);
 
     let contentType = response.headers.get("content-type") || "";
 
     // Si respondió HTML (servidor estático Vite) en lugar de JSON, probar directamente a http://localhost:8080/estadisticas
-    if (contentType.includes("text/html") || !response.ok) {
-      console.warn("⚠️ /api/estadisticas devolvió HTML o falló. Reintentando a http://localhost:8080/estadisticas");
-      apiUrl = `http://localhost:8080/estadisticas?anio=${anio}&periodo=${periodo}`;
+    if ((contentType.includes("text/html") || !response.ok) && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
+      console.warn("⚠️ Falló en local o devolvió HTML. Reintentando a http://localhost:8080/estadisticas");
+      apiUrl = `http://localhost:8080/estadisticas?anio=${encodeURIComponent(anio)}&periodo=${encodeURIComponent(periodo)}`;
       response = await fetch(apiUrl);
       contentType = response.headers.get("content-type") || "";
     }
