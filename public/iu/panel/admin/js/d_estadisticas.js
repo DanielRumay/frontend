@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inicializarAnios();
 
-  filtroAnio.value = "0"; // "Todos los años" por defecto
+  filtroAnio.value = String(new Date().getFullYear());
 
   btnAplicarFiltros.addEventListener(
     "click",
@@ -291,7 +291,7 @@ function inicializarAnios() {
   const optionTodos = document.createElement("option");
   optionTodos.value = "0";
   optionTodos.textContent = "Todos los años";
-  optionTodos.selected = true;
+  optionTodos.selected = false;
   filtroAnio.appendChild(optionTodos);
 
   for (
@@ -304,7 +304,7 @@ function inicializarAnios() {
 
     option.value = anio;
     option.textContent = anio;
-
+    if (anio === anioActual) option.selected = true;
     filtroAnio.appendChild(option);
 
   }
