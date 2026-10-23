@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Noticias - Muni Ascope</title>
+  <link rel="stylesheet" href="css/d_noticias.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+<aside class="noticias-sidebar">
+  <div class="noticias-logo">
+    <img src="../../../multimedia/admin1.png" alt="Municipalidad">
+    <div>
+      <h2>Municipalidad</h2>
+      <span>Provincia de Ascope</span>
+    </div>
+  </div>
+
+  <nav class="noticias-nav">
+    <a href="dashboard.html">
+      <i class="bi bi-house-door-fill"></i>
+      <span>Dashboard</span>
+    </a>
+    <a href="d_usuarios.html">
+      <i class="bi bi-people-fill"></i>
+      <span>Usuarios</span>
+    </a>
+    <a href="d_agenda.html">
+      <i class="bi bi-calendar-event-fill"></i>
+      <span>Agenda</span>
+    </a>
+    <a href="d_documentos.html">
+      <i class="bi bi-file-earmark-text-fill"></i>
+      <span>Documentos</span>
+    </a>
+    <a href="d_noticias.html" class="activo">
+      <i class="bi bi-newspaper"></i>
+      <span>Noticias</span>
+    </a>
+    <a href="d_visitas.html">
+      <i class="bi bi-person-vcard-fill"></i>
+      <span>Visitas</span>
+    </a>
+    <a href="d_estadisticas.html">
+      <i class="bi bi-bar-chart-fill"></i>
+      <span>Estadísticas</span>
+    </a>
+    <a href="d_configuracion.html">
+      <i class="bi bi-gear-fill"></i>
+      <span>Configuración</span>
+    </a>
+  </nav>
+</aside>
+
+<!-- =========================================================
+     CONTENIDO PRINCIPAL
+========================================================= -->
+<main class="noticias-contenido">
+
+  <!-- =======================================================
+       ENCABEZADO
+  ======================================================== -->
+  <header class="noticias-encabezado">
+    <div>
+      <h1>Noticias</h1>
+      <p>Administración y publicación de noticias institucionales</p>
+    </div>
+
+    <div class="noticias-usuario-perfil" id="usuarioPerfil">
+      <button type="button" class="noticias-usuario-icono" id="btnPerfilUsuario" title="Perfil">
+        <img id="fotoUsuarioSesion" src="" alt="Foto de perfil">
+        <i class="bi bi-person-circle" id="iconoUsuarioSesion" style="display:none; font-size: 2.2rem; color: #14213d;"></i>
+      </button>
+
+      <div class="noticias-menu-perfil" id="menuPerfilUsuario">
+        <button type="button" id="btnCerrarSesion">
+          <i class="bi bi-box-arrow-right"></i>
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =======================================================
+       SECCIÓN PRINCIPAL
+  ======================================================== -->
+  <section class="noticias-container">
+
+    <div class="noticias-header">
+      <div>
+        <h2>
+          <i class="bi bi-newspaper"></i>
+          Gestión de Noticias
+        </h2>
+        <p>Registre, modifique o elimine noticias del portal institucional.</p>
+      </div>
+
+      <button type="button" class="noticias-btn-crear" id="btnCrearNoticia">
+        <i class="bi bi-plus-circle-fill"></i>
+        Crear noticia
+      </button>
+    </div>
+
+    <!-- BUSCADOR Y FILTROS -->
+    <div class="noticias-filtros">
+      <div class="noticias-buscador">
+        <i class="bi bi-search"></i>
+        <input type="text" id="buscarNoticia" placeholder="Buscar por título, categoría o resumen..." autocomplete="off">
+      </div>
+
+      <div class="noticias-filtro-categoria">
+        <i class="bi bi-funnel"></i>
+        <select id="filtroCategoria">
+          <option value="">Todas las categorías</option>
+          <option value="Institucional">Institucional</option>
+          <option value="Obras">Obras</option>
+          <option value="Desarrollo Social">Desarrollo Social</option>
+          <option value="Educación">Educación</option>
+          <option value="Salud">Salud</option>
+          <option value="Medio Ambiente">Medio Ambiente</option>
+          <option value="Turismo">Turismo</option>
+          <option value="Seguridad">Seguridad</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- TABLA DE NOTICIAS -->
+    <div class="noticias-tabla-container">
+      <table class="noticias-tabla">
+        <thead>
+          <tr>
+            <th style="width: 70px;">Imagen</th>
+            <th>Título</th>
+            <th>Categoría</th>
+            <th>Fecha publicación</th>
+            <th>Resumen</th>
+            <th style="width: 120px; text-align: center;">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaNoticias">
+          <tr>
+            <td colspan="6" class="noticias-cargando">
+              <i class="bi bi-arrow-repeat girar"></i> Cargando noticias...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+</main>
+
+<!-- =========================================================
+     MODAL CREAR / EDITAR NOTICIA
+========================================================= -->
+<div class="noticias-modal-overlay" id="modalNoticia">
+  <div class="noticias-modal">
+    <div class="noticias-modal-header">
+      <div>
+        <h2 id="modalNoticiaTitulo">
+          <i class="bi bi-newspaper"></i>
+          Crear noticia
+        </h2>
+        <p id="modalNoticiaSubtitulo">Complete la información requerida de la noticia.</p>
+      </div>
+      <button type="button" class="noticias-modal-cerrar" id="btnCerrarModalNoticia">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <form id="formNoticia" class="noticias-modal-body" autocomplete="off">
+      <input type="hidden" id="noticiaId">
+
+      <div class="form-grupo">
+        <label for="tituloNoticia">Título <span class="requerido">*</span></label>
+        <input type="text" id="tituloNoticia" maxlength="100" placeholder="Ingrese el título de la noticia" required>
+        <small class="contador" id="contadorTitulo">0 / 100</small>
+      </div>
+
+      <div class="form-fila">
+        <div class="form-grupo">
+          <label for="categoriaNoticia">Categoría <span class="requerido">*</span></label>
+          <select id="categoriaNoticia" required>
+            <option value="">Seleccione una categoría</option>
+            <option value="Institucional">Institucional</option>
+            <option value="Obras">Obras</option>
+            <option value="Desarrollo Social">Desarrollo Social</option>
+            <option value="Educación">Educación</option>
+            <option value="Salud">Salud</option>
+            <option value="Medio Ambiente">Medio Ambiente</option>
+            <option value="Turismo">Turismo</option>
+            <option value="Seguridad">Seguridad</option>
+          </select>
+        </div>
+
+        <div class="form-grupo">
+          <label for="fechaNoticia">Fecha de publicación <span class="requerido">*</span></label>
+          <input type="date" id="fechaNoticia" required>
+        </div>
+      </div>
+
+      <div class="form-grupo">
+        <label for="resumenNoticia">Resumen <span class="requerido">*</span></label>
+        <textarea id="resumenNoticia" rows="2" maxlength="250" placeholder="Breve descripción o resumen de la noticia" required></textarea>
+        <small class="contador" id="contadorResumen">0 / 250</small>
+      </div>
+
+      <div class="form-grupo">
+        <label for="contenidoNoticia">Contenido completo <span class="requerido">*</span></label>
+        <textarea id="contenidoNoticia" rows="6" placeholder="Detalle completo de la noticia" required></textarea>
+      </div>
+
+      <!-- IMAGEN -->
+      <div class="form-grupo">
+        <label>Imagen de la noticia <span class="requerido">*</span></label>
+        
+        <div class="tipo-imagen-selector">
+          <label class="radio-label">
+            <input type="radio" name="tipoImagen" value="archivo" checked>
+            <span>Subir archivo</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="tipoImagen" value="url">
+            <span>Enlace / URL</span>
+          </label>
+        </div>
+
+        <div id="contenedorArchivoImagen" class="input-archivo-box">
+          <label for="archivoImagen" class="btn-seleccionar-archivo">
+            <i class="bi bi-upload"></i> Seleccionar imagen
+          </label>
+          <input type="file" id="archivoImagen" accept="image/*" hidden>
+          <span id="nombreArchivoImagen">Ningún archivo seleccionado</span>
+        </div>
+
+        <div id="contenedorUrlImagen" class="input-url-box" style="display: none;">
+          <input type="url" id="urlImagenNoticia" placeholder="https://ejemplo.com/imagen.jpg">
+        </div>
+
+        <div class="preview-box" id="previewBox" style="display: none;">
+          <img id="previewImagen" src="" alt="Vista previa">
+          <button type="button" id="btnQuitarImagen" title="Quitar imagen"><i class="bi bi-x-circle-fill"></i></button>
+        </div>
+      </div>
+
+      <div class="noticias-modal-footer">
+        <button type="button" class="btn-cancelar" id="btnCancelarNoticia">Cancelar</button>
+        <button type="submit" class="btn-guardar" id="btnGuardarNoticia">
+          <i class="bi bi-check-circle-fill"></i> Guardar noticia
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- =========================================================
+     MODAL CONFIRMAR ELIMINACIÓN
+========================================================= -->
+<div class="noticias-modal-overlay" id="modalEliminarNoticia">
+  <div class="noticias-modal modal-eliminar">
+    <div class="icono-peligro">
+      <i class="bi bi-trash3-fill"></i>
+    </div>
+    <h2>¿Eliminar noticia?</h2>
+    <p>Esta acción no se puede deshacer. La noticia seleccionada será eliminada definitivamente del sistema.</p>
+    <div class="noticia-eliminar-titulo" id="tituloNoticiaEliminar"></div>
+    <div class="modal-eliminar-acciones">
+      <button type="button" class="btn-cancelar" id="btnCancelarEliminar">Cancelar</button>
+      <button type="button" class="btn-eliminar-confirmar" id="btnConfirmarEliminar">
+        <i class="bi bi-trash3-fill"></i> Eliminar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     TOAST DE NOTIFICACIÓN
+========================================================= -->
+<div id="toastNoticia" class="toast-notificacion"></div>
+
+<script src="js/d_noticias.js"></script>
+</body>
+</html>
