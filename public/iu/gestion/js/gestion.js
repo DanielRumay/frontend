@@ -1,6 +1,11 @@
 /* ==========================================
    VARIABLES GLOBALES - DOCUMENTOS
 ========================================== */
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8080"
+    : "https://ascope-backend.onrender.com";
+
 let documentosGlobal = [];
 
 let filtroAnioDocumento = "";
@@ -13,7 +18,7 @@ let filtroTipo = "";
 ========================================== */
 async function cargarDocumentos() {
   try {
-    const response = await fetch("http://localhost:8080/documentos");
+    const response = await fetch(`${API_URL}/documentos`);
     const documentos = await response.json();
 
     documentosGlobal = documentos;

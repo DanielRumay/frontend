@@ -1,6 +1,11 @@
 /* ==========================================
    VARIABLES GLOBALES - VISITAS
 ========================================== */
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8080"
+    : "https://ascope-backend.onrender.com";
+
 let visitasGlobal = [];
 let ultimoID = 0;
 
@@ -18,7 +23,7 @@ let visitasFiltradas = [];
 ========================================== */
 async function cargarVisitas() {
   try {
-    const response = await fetch("http://localhost:8080/visitas");
+    const response = await fetch(`${API_URL}/visitas`);
     const visitas = await response.json();
 
     visitasGlobal = visitas;
@@ -362,7 +367,7 @@ async function verificarNuevosDatos(){
 
   try{
 
-    const response = await fetch("http://localhost:8080/visitas");
+    const response = await fetch(`${API_URL}/visitas`);
 
     const nuevasVisitas = await response.json();
 

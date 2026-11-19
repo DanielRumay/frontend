@@ -1,6 +1,10 @@
 /* ==========================================
    VARIABLES GLOBALES
 ========================================== */
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8080"
+    : "https://ascope-backend.onrender.com";
 
 let agendaGlobal = [];
 
@@ -16,7 +20,7 @@ async function cargarAgenda() {
 
   try {
 
-    const response = await fetch("http://localhost:8080/agenda");
+    const response = await fetch(`${API_URL}/agenda`);
 
     const agenda = await response.json();
 
