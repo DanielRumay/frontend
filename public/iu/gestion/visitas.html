@@ -264,175 +264,146 @@
 
 </section>
 
-<div class="visitas-container">
+<section class="visitas-section">
 
-  <!-- SIDEBAR -->
+  <div class="visitas-container">
 
-  <aside class="visitas-sidebar">
+    <!-- SIDEBAR -->
+    <aside class="visitas-sidebar">
 
-    <div class="sidebar-logo">
-
-      <h2>
-        Registro
-      </h2>
-
-      <span>
-                Sistema de Visitas
-            </span>
-
-    </div>
-
-    <div class="sidebar-group active">
-
-      <button class="sidebar-toggle">
-        Año
-        <i class="bi bi-chevron-up"></i>
-      </button>
-
-      <div class="sidebar-search">
-        <i class="bi bi-search"></i>
-        <input
-          type="text"
-          id="buscarAnio"
-          placeholder="Buscar año..."
-        >
+      <div class="sidebar-logo">
+        <h2>Visitas</h2>
+        <span>Sistema de Visitas</span>
       </div>
 
-      <ul id="listaAnios"></ul>
+      <div class="sidebar-group active">
+        <button class="sidebar-toggle" type="button">
+          <span><i class="bi bi-calendar3"></i> Año</span>
+          <i class="bi bi-chevron-up"></i>
+        </button>
 
-    </div>
+        <div class="sidebar-search">
+          <i class="bi bi-search"></i>
+          <input
+            type="text"
+            id="buscarAnio"
+            placeholder="Buscar año..."
+          >
+        </div>
 
-    <div class="sidebar-group active">
-
-      <button class="sidebar-toggle">
-        Mes
-        <i class="bi bi-chevron-up"></i>
-      </button>
-
-      <div class="sidebar-search">
-        <i class="bi bi-search"></i>
-        <input
-          type="text"
-          id="buscarMes"
-          placeholder="Buscar mes..."
-        >
+        <ul id="listaAnios"></ul>
       </div>
 
-      <ul id="listaMeses"></ul>
+      <div class="sidebar-group active">
+        <button class="sidebar-toggle" type="button">
+          <span><i class="bi bi-calendar-event"></i> Mes</span>
+          <i class="bi bi-chevron-up"></i>
+        </button>
 
-    </div>
+        <div class="sidebar-search">
+          <i class="bi bi-search"></i>
+          <input
+            type="text"
+            id="buscarMes"
+            placeholder="Buscar mes..."
+          >
+        </div>
 
-    <div class="sidebar-group active">
-
-      <button class="sidebar-toggle">
-        Lugar Visitado
-        <i class="bi bi-chevron-up"></i>
-      </button>
-
-      <div class="sidebar-search">
-        <i class="bi bi-search"></i>
-        <input
-          type="text"
-          id="buscarLugar"
-          placeholder="Buscar lugar..."
-        >
+        <ul id="listaMeses"></ul>
       </div>
 
-      <ul id="listaLugares"></ul>
+      <div class="sidebar-group active">
+        <button class="sidebar-toggle" type="button">
+          <span><i class="bi bi-geo-alt-fill"></i> Lugar Visitado</span>
+          <i class="bi bi-chevron-up"></i>
+        </button>
 
-    </div>
+        <div class="sidebar-search">
+          <i class="bi bi-search"></i>
+          <input
+            type="text"
+            id="buscarLugar"
+            placeholder="Buscar lugar..."
+          >
+        </div>
 
-  </aside>
-
-  <!-- CONTENIDO -->
-
-  <main class="visitas-content">
-
-    <!-- HEADER -->
-
-    <div class="visitas-header">
-
-      <div>
-
-        <h1>
-          Registro de Visitas
-        </h1>
-
-        <p>
-          Historial de ingresos y salidas
-        </p>
-
+        <ul id="listaLugares"></ul>
       </div>
 
-      <!-- BOTÓN CREAR VISITA -->
-      <a href="../panel/panel_admin.html" class="btn-crear-visita">
-        <i class="bi bi-plus-circle-fill"></i>
-        Crear Visita
-      </a>
+    </aside>
 
-    </div>
+    <!-- PANEL PRINCIPAL -->
+    <div class="visitas-panel visitas-content">
 
-    <!-- FILTROS -->
-
-    <div class="visitas-filtros">
-
-      <div class="input-group">
-
-        <input
-          type="text"
-          id="buscarVisitante"
-          placeholder="Buscar visitante..."
-        >
-
+      <!-- HEADER -->
+      <div class="visitas-header">
+        <div>
+          <h2>Registro de Visitas</h2>
+          <p>Consulte el historial de ingresos y salidas en la Municipalidad Provincial de Ascope.</p>
+        </div>
       </div>
 
-      <div class="input-group">
+      <!-- FILTROS Y BOTÓN -->
+      <div class="visitas-filtros">
+        <div class="filtros-inputs">
+          <div class="input-search-wrapper">
+            <i class="bi bi-search"></i>
+            <input
+              type="text"
+              id="buscarVisitante"
+              placeholder="Buscar visitante..."
+            >
+          </div>
 
-        <input
-          type="text"
-          id="buscarFuncionario"
-          placeholder="Buscar funcionario..."
-        >
+          <div class="input-search-wrapper">
+            <i class="bi bi-search"></i>
+            <input
+              type="text"
+              id="buscarFuncionario"
+              placeholder="Buscar funcionario..."
+            >
+          </div>
+        </div>
 
+        <!-- BOTÓN CREAR VISITA -->
+        <a href="../panel/panel_admin.html" class="btn-crear-visita" target="_blank">
+          <i class="bi bi-plus-circle-fill"></i>
+          Crear Visita
+        </a>
       </div>
 
-    </div>
+      <!-- TABLA -->
+      <div class="visitas-table-wrapper tabla-card">
+        <table class="visitas-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fecha</th>
+              <th>Visitante</th>
+              <th>DNI</th>
+              <th>Funcionario</th>
+              <th>Entrada</th>
+              <th>Salida</th>
+              <th>Motivo</th>
+              <th>Lugar</th>
+            </tr>
+          </thead>
+          <tbody id="tablaVisitas">
+          </tbody>
+        </table>
+      </div>
 
-    <!-- TABLA -->
-
-    <div class="tabla-card">
-
-      <table class="visitas-table">
-
-        <thead>
-
-        <tr>
-
-          <th>ID</th>
-          <th>Fecha</th>
-          <th>Visitante</th>
-          <th>DNI</th>
-          <th>Funcionario</th>
-          <th>Entrada</th>
-          <th>Salida</th>
-          <th>Motivo</th>
-          <th>Lugar</th>
-
-        </tr>
-
-        </thead>
-
-        <tbody id="tablaVisitas">
-
-        </tbody>
-
-      </table>
+      <!-- PAGINACIÓN -->
+      <div class="paginacion" id="paginacion"></div>
 
     </div>
 
-  </main>
+  </div>
 
-</div>
+</section>
+
+<!-- NOTIFICACIÓN TOAST -->
+<div id="toast" class="toast"></div>
 
 <footer>
   <div class="container">
